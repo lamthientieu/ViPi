@@ -22,7 +22,7 @@ Tester nghiệp dư [tienhuansk](https://github.com/tienhuansk)
 
 Đây là dự án miễn phí, phục vụ cá nhân khi rảnh rỗi, không phải dev chuyên nghiệp. 
 
-Anh em muốn tham gia vào đội coder thì cứ inbox [m.me/thangnd85](m.me/thangnd85) hoặc [t.me/thangnd85](t.me/thangnd85)
+Anh em muốn tham gia vào đội coder thì cứ inbox [Nhóm test code](https://t.me/vipi_code)
 
 ## 1.Chuẩn bị:
 Thẻ nhớ, file image tải bên dưới:
@@ -114,8 +114,8 @@ arecord -l
 aplay -l
 ```
 
-###
-### 4. Cài portaudio:
+##4. Cài portaudio:
+ 
 Tải về từ git:
 ```sh
 git clone -b alsapatch https://github.com/gglockner/portaudio
@@ -131,7 +131,7 @@ sudo apt-get install pulseaudio -y && sudo apt-get remove pulseaudio -y
 ```
 
 
-## 4.1. Disable onboard sound nếu không dùng:
+### 4.1. Disable onboard sound nếu không dùng:
 ```sh
 sudo nano /etc/modprobe.d/snd-blacklist.conf
 ```
@@ -141,7 +141,7 @@ blacklist snd_bcm2835
 ```
 Ctr + X, Y Enter
 
-### 5. Clone source về  Pi và cài đặt
+## 5. Clone source về  Pi và cài đặt
 
 
 ```sh
@@ -173,7 +173,7 @@ rm -rf ViPi
 git clone https://github.com/thangnd85/ViPi
 ```
 
-### 6. Cấu hình led và các cài đặt khác trong file ViPi/src/config.yaml
+## 6. Cấu hình led và các cài đặt khác trong file ViPi/src/config.yaml
 ```sh
   #  Set type mic to:
   # 1. 'GEN'   ---> USB-MIC-JACK
@@ -189,7 +189,7 @@ git clone https://github.com/thangnd85/ViPi
   .......
 ```
 
-### 7.Chạy lần đầu:
+## 7.Chạy lần đầu:
 Chạy lần đầu với raspi:
 ```sh
 source ~/env/bin/activate
@@ -204,7 +204,7 @@ Tiếp tục:
 Thay XXX bằng project-id và device-model-id của bạn.
 
 
-### 8.Thiết lập chạy tự động:
+## 8.Thiết lập chạy tự động:
 a. Chạy tự động với supervisor:
 ```sh
 sudo nano /etc/supervisor/conf.d/ViPi.conf
@@ -250,16 +250,16 @@ chọn 1 và paste line to the end, press ctrl + X, Y. Then reboot Pi
 ```sh
 @reboot python -u /home/pi/run_vipi.py
 ```
-### 9.Tắt chạy tự động trong phiên làm việc:
+### 8.1.Tắt chạy tự động trong phiên làm việc:
 
 ```sh
 sudo supervisorctl stop ViPi
 ```
-### 10.Xóa chạy tự động:
+### 8.2.Xóa chạy tự động:
 ```sh
 sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
 ```
-### 11. Tạo STT tại đây:
+### 9. (Tùy chọn, chưa phát triển) Tạo STT tại đây:
 
 -  Đăng ký Acc FPT AI tại: https://fpt.ai/
 
