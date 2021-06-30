@@ -146,7 +146,7 @@ Ctr + X, Y Enter
 
 ```sh
 cd /home/${USER}/
-git clone https://github.com/thangnd85/ViPi.git
+git clone https://github.com/lamthientieu/ViPi.git
 sudo chmod +x ./ViPi/scripts/installer.sh && sudo ./ViPi/scripts/installer.sh
 ```
 Nhập đường dẫn json:  /home/pi/ten_file.json (đổi tên cho đúng nhé)
@@ -170,7 +170,7 @@ Cách 2:
 ```
 cd /home/${USER}/
 rm -rf ViPi
-git clone https://github.com/thangnd85/ViPi
+git clone https://github.com/lamthientieu/ViPi.git
 ```
 
 ## 6. Cấu hình led và các cài đặt khác trong file ViPi/src/config.yaml
