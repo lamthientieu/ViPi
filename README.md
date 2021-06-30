@@ -239,17 +239,7 @@ Ctrn + X, Y, enter để save. Xong reboot lại Pi, có thể mở web lên nh�
 ```sh
 sudo reboot
 ```
-b. Chạy tự động với crontab -e:
 
-```sh
-sudo cp /home/pi/ViPi/run_vipi.py /home/pi/run_vipi.py
-crontab -e
-```
-chọn 1 và paste line to the end, press ctrl + X, Y. Then reboot Pi
-
-```sh
-@reboot python -u /home/pi/run_vipi.py
-```
 ### 8.1.Tắt chạy tự động trong phiên làm việc:
 
 ```sh
