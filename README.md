@@ -207,9 +207,9 @@ google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-proto
 ```
 Tiếp tục:
 ```sh
-~/env/bin/python -u ~/ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
+~/env/bin/python -u ~/ViPi/src/start.py
 ```
-Thay XXX bằng project-id và device-model-id của bạn.
+Thay bằng project-id và device-model-id của bạn trong file config.
 
 
 ## 8.Thiết lập chạy tự động:
@@ -221,7 +221,7 @@ Cửa sổ nano hiện lên, paste dòng sau
 ```sh
 [program:ViPi]
 directory=/home/pi
-command=/bin/bash -c 'env/bin/python -u ./ViPi/src/start.py'
+command=/bin/bash -c 'env/bin/python -u ./ViPi/src/main.py'
 numprocs=1
 autostart=true
 autorestart=true
