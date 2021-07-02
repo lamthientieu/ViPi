@@ -1,2 +1,2 @@
 import main
-main.Myassisstant().main
+main.Myassistant().main()

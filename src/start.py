@@ -121,9 +121,9 @@ def checkvlcpaused():
     else:
         currentstate=False
     return currentstate
-
-from hass_skill import *
-import hass_skill as ha
+if configuration['Home_Assistant']['control']=='Enabled':
+    from hass_skill import *
+    import hass_skill as ha
 ASSISTANT_API_ENDPOINT = 'embeddedassistant.googleapis.com'
 END_OF_UTTERANCE = embedded_assistant_pb2.AssistResponse.END_OF_UTTERANCE
 DIALOG_FOLLOW_ON = embedded_assistant_pb2.DialogStateOut.DIALOG_FOLLOW_ON
@@ -227,6 +227,7 @@ class SampleAssistant(object):
 
 
     def data_processing(self,data):
+        import fuzzywuzzy
         from fuzzywuzzy import fuzz
         match_key = []
         compare_ratio=[]
@@ -292,8 +293,13 @@ class SampleAssistant(object):
             if resp.event_type == END_OF_UTTERANCE:
                 self.conversation_stream.stop_recording()
                 #ctr_led('think')
+    
             if resp.speech_results:
-                for r in resp.speech_results:
+                print (resp.speech_results)
+                logging.info('Transcript of user request: "%s".',
+                             ' '.join(r.transcript
+                                      for r in resp.speech_results))
+                for r in resp.speech_results:            
                     usercommand=str(r)
                 if "stability: 1.0" in usercommand.lower():
                     usrcmd=str(' '.join(r.transcript for r in resp.speech_results))
@@ -938,7 +944,7 @@ def re_ask():
         print("Say something!")
         r.adjust_for_ambient_noise(source)
         audio = r.listen(source)
-        data = r.recognize_google(audio,language = "vi-VN"))
+        data = r.recognize_google(audio,language = "vi-VN")
         toc = time.perf_counter()
         print("Google: " + data)
         print(f"Google take {toc - tic:0.4f} seconds")  
