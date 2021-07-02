@@ -4,6 +4,14 @@ https://github.com/shivasiddharth/GassistPi
 
 Với sự đóng góp các thành viên mù code và tester đam mê phá nhà, nghèo vì độ loa sẽ update trong contributer sau :D
 
+1 số bạn có nhã ý donate cho nhóm.mình xin ghi nhận tấm lòng.cũng là 1 phần các bạn đã kích lệ cho anh em tìm tòi và nghiên cứu thêm các thứ mới.
+Nhất là phần cứng all in all anh em đang ấp ủ.
+
+Momo: 0935300314 lâm.
+Xin ghi rõ nội dung ủng hộ nhóm vipi.
+ Tất cả thông tin donate đều cập nhập lên git.
+
+Cái này chúng tôi ko hề bắt buộc.không có chúng tôi vẫn làm và chia sẻ cho cộng đồng.xin chân thành cảm ơn.
 ## ĐÓNG GÓP
 Người mò mẫm đầu tiên [longhd2](https://github.com/longhd2)
 
@@ -239,17 +247,7 @@ Ctrn + X, Y, enter để save. Xong reboot lại Pi, có thể mở web lên nh�
 ```sh
 sudo reboot
 ```
-b. Chạy tự động với crontab -e:
 
-```sh
-sudo cp /home/pi/ViPi/run_vipi.py /home/pi/run_vipi.py
-crontab -e
-```
-chọn 1 và paste line to the end, press ctrl + X, Y. Then reboot Pi
-
-```sh
-@reboot python -u /home/pi/run_vipi.py
-```
 ### 8.1.Tắt chạy tự động trong phiên làm việc:
 
 ```sh
