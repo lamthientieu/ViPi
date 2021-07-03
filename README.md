@@ -10,9 +10,29 @@ Nhất là phần cứng all in all anh em đang ấp ủ.
 Momo: 0935300314 lâm.
 Xin ghi rõ nội dung ủng hộ nhóm vipi.
  Tất cả thông tin donate đều cập nhập lên git.
+## DONATE: 
+Danh sách các bạn đã ủng hộ.cập nhập đến 03.07.2021.
 
-Cái này chúng tôi ko hề bắt buộc.không có chúng tôi vẫn làm và chia sẻ cho cộng đồng.xin chân thành cảm ơn.
-## ĐÓNG GÓP
+Dù ít hay nhiều chúng tôi đều trân trọng tấm lòng của các bạn như nhau.
+
+1 - Khuê: 50.000đ
+
+2 - Tiến: 500.000đ
+
+3 - T.Quang: 100.000đ
+
+4 - M.Quang: 200.000đ
+
+5 - T.Nguyên: 2.000.000đ
+
+Vì anh em chúng tôi làm nhóm nên tất cả đều công khai minh bạch.😍😍😍😍😍
+
+Donate chúng tôi ko hề bắt buộc.
+
+Kinh phí này nhóm sẽ dùng cho việc phát triển phần cứng all in one.
+
+xin chân thành cảm ơn.
+## PHÁT TRIỂN CODE :
 Người mò mẫm đầu tiên [longhd2](https://github.com/longhd2)
 
 Coder 3h Youtube [canghp128](https://github.com/canghp128)
@@ -21,7 +41,9 @@ Coder ẩn dật [HungDoManh](https://github.com/HungDoManh)
 
 Copy & paste [thangnd85](https://github.com/thangnd85)
 
-Sharktank [lamthientieu](https://github.com/lamthientieu)
+Phá Hoại Bày Vẽ [lamthientieu](https://github.com/lamthientieu)
+
+Chuyên gia âm thanh, độ chế tay nghề cao [Đại Ca SƠN - PHÚ QUỐC]
 
 Sharktank [tuanto90](https://github.com/tuanto90)
 
