@@ -229,7 +229,7 @@ google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-proto
 ```
 Tiếp tục:
 ```sh
-~/env/bin/python -u ~/ViPi/src/start.py
+env/bin/python -u ./ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
 ```
 Thay bằng project-id và device-model-id của bạn trong file config.
 
