@@ -221,7 +221,7 @@ Cửa sổ nano hiện lên, paste dòng sau
 ```sh
 [program:ViPi]
 directory=/home/pi
-command=/bin/bash -c 'env/bin/python -u ./ViPi/src/main.py'
+command=/bin/bash -c 'env/bin/python -u ./ViPi/src/start.py'
 numprocs=1
 autostart=true
 autorestart=true
