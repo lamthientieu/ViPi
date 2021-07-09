@@ -25,6 +25,16 @@ Dù ít hay nhiều chúng tôi đều trân trọng tấm lòng của các bạ
 
 5 - T.Nguyên: 2.000.000đ
 
+6 - D.Hai : 50.000đ
+
+7 - T.An: 100.000đ
+
+8 - T.Đạt: 100.000đ
+
+9 - V.Dũng: 100.000đ
+
+Tc: 3.200.000đ
+
 Vì anh em chúng tôi làm nhóm nên tất cả đều công khai minh bạch.😍😍😍😍😍
 
 Donate chúng tôi ko hề bắt buộc.
