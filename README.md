@@ -11,7 +11,7 @@ Momo: 0935300314 lâm.
 Xin ghi rõ nội dung ủng hộ nhóm vipi.
  Tất cả thông tin donate đều cập nhập lên git.
 ## DONATE: 
-Danh sách các bạn đã ủng hộ.cập nhập đến 03.07.2021.
+Danh sách các bạn đã ủng hộ.cập nhập đến 09.07.2021.
 
 Dù ít hay nhiều chúng tôi đều trân trọng tấm lòng của các bạn như nhau.
 
