@@ -330,6 +330,9 @@ notify:
   - name: ga_command
     platform: rest
     resource: http://ip_của_pi:5001/command
+  - name: ga_tts
+    platform: rest
+    resource: http://ip_của_pi:5001/tts	
 ```
 Và automation:
 ```
@@ -340,9 +343,9 @@ Và automation:
         entity_id: input_select.dishwasher_status
         to: 'Off'
     action:
-      - service: notify.ga_broadcast
+      - service: notify.ga_broadcast ## Thay thành notify.ga_broadcast nếu muốn thực hiện lênh hoặc notify.ga_tts nếu muốn TTS
         data:
-          message: "The Dishwasher has finished."
+          message: "Nội dung."
 ```
 ## 10. OAuth qua web và edit yaml bằng web
 Để sử dụng tính năng này, bạn phải cài đặt thêm gói ở bước 9. 
@@ -367,6 +370,8 @@ sudo supervisorctl update
 Vào web cấu hình OAuth và chỉnh YAML
 ```
 http://ip_của_pi:8080
+```
+Sau khi bấm nút chỉnh YAML thì sẽ chuyển sang port 8081.
 
 ### (Tùy chọn, chưa phát triển) Tạo STT tại đây:
 
