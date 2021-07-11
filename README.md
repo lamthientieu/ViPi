@@ -290,6 +290,12 @@ sudo supervisorctl stop ViPi
 sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
 ```
 ## 9. Chạy TTS Web và điều khiển Google Assistant qua web:
+Để sử dụng tính năng số 9 và 10, cần cài đặt thêm gói
+```
+source ~/env/bin/activate
+cd ~/ViPi/scripts
+pip install -r pip.txt
+```
 ```
 sudo nano /etc/supervisor/conf.d/webtts.conf
 ```
@@ -339,6 +345,8 @@ Và automation:
           message: "The Dishwasher has finished."
 ```
 ## 10. OAuth qua web và edit yaml bằng web
+Để sử dụng tính năng này, bạn phải cài đặt thêm gói ở bước 9. 
+Lưu ý: File yaml sau khi sửa xong sẽ có cấu trúc khác, sẽ điều chỉnh lại cho hợp lí hơn.
 ```
 sudo nano /etc/supervisor/conf.d/oauth.conf
 ```
