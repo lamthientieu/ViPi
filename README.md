@@ -11,7 +11,7 @@ Momo: 0935300314 lâm.
 Xin ghi rõ nội dung ủng hộ nhóm vipi.
  Tất cả thông tin donate đều cập nhập lên git.
 ## DONATE: 
-Danh sách các bạn đã ủng hộ.cập nhập đến 03.07.2021.
+Danh sách các bạn đã ủng hộ.cập nhập đến 09.07.2021.
 
 Dù ít hay nhiều chúng tôi đều trân trọng tấm lòng của các bạn như nhau.
 
@@ -24,6 +24,16 @@ Dù ít hay nhiều chúng tôi đều trân trọng tấm lòng của các bạ
 4 - M.Quang: 200.000đ
 
 5 - T.Nguyên: 2.000.000đ
+
+6 - D.Hai : 50.000đ
+
+7 - T.An: 100.000đ
+
+8 - T.Đạt: 100.000đ
+
+9 - V.Dũng: 100.000đ
+
+Tc: 3.200.000đ
 
 Vì anh em chúng tôi làm nhóm nên tất cả đều công khai minh bạch.😍😍😍😍😍
 
