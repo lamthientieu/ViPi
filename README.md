@@ -289,7 +289,78 @@ sudo supervisorctl stop ViPi
 ```sh
 sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
 ```
-### 9. (Tùy chọn, chưa phát triển) Tạo STT tại đây:
+## 9. Chạy TTS Web và điều khiển Google Assistant qua web:
+```
+sudo nano /etc/supervisor/conf.d/webtts.conf
+```
+Dán nội dung sau:
+```sh
+[program:WebTTS]
+directory=/home/pi
+command=/bin/bash -c 'env/bin/python -u ./ViPi/src/webtts.py'
+numprocs=1
+autostart=true
+autorestart=true
+user=pi
+```
+Chạy lệnh sau để khởi động chạy tự động:
+```sh
+sudo supervisorctl update
+```
+Điều khiển Google Assistant qua web:
+```
+http://ip_của_pi:5001/command?message=lệnh muốn điều khiển
+```
+TTS qua web:
+```
+http://ip_của_pi:5001/tts?message=text muốn phát
+```
+Qua Home Assistant:
+```
+notify:
+  - name: ga_broadcast
+    platform: rest
+    resource: http://ip_của_pi:5001/broadcast_message
+  - name: ga_command
+    platform: rest
+    resource: http://ip_của_pi:5001/command
+```
+Và automation:
+```
+  - alias: Broadcast the dishwasher has finished
+    initial_state: True
+    trigger:
+      - platform: state
+        entity_id: input_select.dishwasher_status
+        to: 'Off'
+    action:
+      - service: notify.ga_broadcast
+        data:
+          message: "The Dishwasher has finished."
+```
+## 10. OAuth qua web và edit yaml bằng web
+```
+sudo nano /etc/supervisor/conf.d/oauth.conf
+```
+Dán nội dung sau:
+```sh
+[program:OAuth]
+directory=/home/pi
+command=/bin/bash -c 'env/bin/python -u ./ViPi/src/oauth.py'
+numprocs=1
+autostart=true
+autorestart=true
+user=pi
+```
+Chạy lệnh sau để khởi động chạy tự động:
+```sh
+sudo supervisorctl update
+```
+Vào web cấu hình OAuth và chỉnh YAML
+```
+http://ip_của_pi:8080
+
+### (Tùy chọn, chưa phát triển) Tạo STT tại đây:
 
 -  Đăng ký Acc FPT AI tại: https://fpt.ai/
 
