@@ -37,3 +37,8 @@ fuzzywuzzy
 python-Levenshtein
 mutagen
 youtube-search-python
+flask
+flask-bootstrap
+flask-restful
+cherrypy
+git+https://github.com/thangnd85/yaml_editor
