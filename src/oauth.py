@@ -18,11 +18,10 @@ from google.assistant.library.file_helpers import existing_file
 ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
 oauth_json = os.path.join(os.path.expanduser('~/'),'ViPi','vipi.json')
-print (ROOT_PATH)
-def readf(filename):
-    file = open(oauth_json)
-    read = file.read()
-    return read
+data = {"installed":{"client_id":"id","project_id":"project_id","auth_uri":"https://accounts.google.com/o/oauth2/auth","token_uri":"https://oauth2.googleapis.com/token","auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs","client_secret":"secret","redirect_uris":["urn:ietf:wg:oauth:2.0:oob","http://localhost"]}}
+if os.path.exists(oauth_json)==False:
+    with open  (oauth_json,"w") as f:
+        json.dump(data,f,ensure_ascii=False,indent=4)
 class oauth2Site(object):
     """Website for handling oauth2."""
 
@@ -132,12 +131,9 @@ class oauth2Site(object):
             </form>
         </body></html>
         """).format(ip_address=self.ip_address)       
-def main():
+
+if __name__ == '__main__':
     config_dir =  os.path.join(os.path.expanduser('~/'),'.config','google')
     pathlib.Path(os.path.dirname(config_dir)).mkdir(exist_ok=True)
     cherrypy.config.update({'server.socket_port': 8080, 'server.socket_host': '0.0.0.0'})
     cherrypy.quickstart(oauth2Site())
-        
-
-if __name__ == '__main__':
-    main()
