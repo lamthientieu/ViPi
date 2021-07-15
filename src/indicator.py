@@ -15,6 +15,7 @@ import usb.core
 import usb.util
 from gpiozero import LED
 import argparse
+from termcolor import colored
 try:
     import queue as Queue
 except ImportError:
@@ -46,8 +47,9 @@ elif configuration['ctr_led']['type']=="WS2":
     audiosetup='WS2'
 else:
     audiosetup=''
-    print('Mic bạn đang sử dụng là: '+ audiosetup)
-
+print(colored('[ViPi_1.0]_Start...','green'))
+print(colored('Mic bạn đang sử dụng là: '+ audiosetup,'green'))
+print(colored('Lưu ý cấu hình đúng loại Mic bạn đang sử dụng trong file config.yaml, Chúc bạn có những trải nghiệm vui vẻ...','green'))
 if configuration['IR']['IR_Control']=='Enabled':
     ircontrol=True
 else:
@@ -687,8 +689,22 @@ def ctr_led(activity):
             pixel_ring.off()
         elif (audiosetup=='ALE'):
             pixels.pixels.off()              
-            
-            
+#########  start bot #########        
+    if activity=='wakeup':
+        if (audiosetup=='GEN'):
+            GPIO.output(speakingindicator,GPIO.LOW)
+            GPIO.output(listeningindicator,GPIO.HIGH)
+        elif (audiosetup=='R2M' or audiosetup=='R4M'):
+            pixels.wakeup()
+        elif (audiosetup=='WS2'):
+            pixels.wakeup()
+        elif (audiosetup=='AIY'):
+            led.ChangeDutyCycle(75)
+        elif (audiosetup=='RUM'):
+            pixel_ring.wakeup()
+        elif (audiosetup=='ALE'):
+            pixels.wakeup()   
+           
 #########  on/mute #########
     elif (activity=='on' or activity=='mute'):
         if (audiosetup=='GEN'):
@@ -704,3 +720,4 @@ def ctr_led(activity):
             pixels.pixels.off()  
         elif (audiosetup=='WS2'):
             pixels.mute()
+#########  start bot #########
