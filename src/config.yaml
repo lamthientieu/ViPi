@@ -41,9 +41,9 @@ ESP:
   - Device 2
   - Device 3
 Google_Assistant:
-  device_model_id: loa-vipi-demo-vipi-1985
-  project_id: loa-vipi-demo
-Google_cloud_api_key: AIzaSyBSZUMffFwHfjWhOF9qSfcV75T2ySwpoJw
+  device_model_id: device_model_id
+  project_id: project_id
+Google_cloud_api_key: DIEN_KEY_CUA_BAN_VAO_DAY
 Gpios:
   control: Enabled
   AIY_indicator:
@@ -230,6 +230,6 @@ Wemo:
 YouTube:
   YouTube_Control: Enabled
 app_news_radio: Enabled
-continue_conversation: True
+continue_conversation: False
 ctr_led:
-  type: WS2
+  type: R2M
