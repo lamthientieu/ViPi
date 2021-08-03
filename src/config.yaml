@@ -1,290 +1,235 @@
-#Config file for declaring custom actions'parameters. The parameters have been listed here in alphabetical order (A-Z).
-ctr_led:
-  #  Set type mic to:
-  # 1. 'GEN'   ---> USB-MIC-JACK
-  # 2. 'GEN'   ---> USB-MIC-HDMI
-  # 3. 'AIY'   ---> AIY-HAT
-  # 4. 'R2M'   ---> Respeaker-2-Mic
-  # 5. 'R4M'   ---> Respeaker-4-Mic
-  # 6. 'RUM'   ---> Respeaker-Usb-Mic
-  # 7. 'NEO'   ---> NeoPixel
-  # 8. 'GOO'   ---> Google
-  # 8. 'ALE'   ---> Alexa
-  # 9. 'WS2'   ---> WS2812
-  type: 'R2M'
-Register_Device: False
-Startup_voice: 'Disabled'  
-continue_conversation: False #True or False
-app_news_radio: 'Enabled'
-Google_Assistant:
-    device_model_id: 'dien_cua_ban'
-    project_id: 'dien_cua_ban'
-
-Weather:
-    control: 'Disabled'
-    lat_long: 
-        - 11.555358
-        - 106.172483
-    ipfy_api: '128979ae3de728602f249354a85ac508'
-    darksky_api: 'c457d056f60c2aa93fd47339aad294da'
-    
-Home_Assistant:
-    control: 'Disabled'
-    ratio: 60
-    url: 'http://192.168.1.246:8123'
-    token: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY'
-    
-#Adafruit_IO. Sending commands from Genuine Google Home/Assistant Devices to control Domoticz Tasmota etc.
 ADAFRUIT_IO:
-  ADAFRUIT_IO_CONTROL: 'Disabled'
-  ADAFRUIT_IO_USERNAME: 'ENTER YOUR ADAFRUIT_IO USERNAME HERE'
-  ADAFRUIT_IO_KEY: 'ENTER YOUR ADAFRUIT_IO KEY HERE'
-  FEEDNAME: 'ENTER YOUR ADAFRUIT_IO FEEDNAME THAT YOU WANT TO MONITOR HERE'
-
-#Aftership API to Track Parcels. Create a developer account with Aftership and generate a key.
-#The number of couriers should match the number of tracking codes.
-
-#Custom conversation. Add your queries and expected assistant response. Do not add symbols or special charecters.
+  ADAFRUIT_IO_CONTROL: Disabled
+  ADAFRUIT_IO_KEY: ENTER YOUR ADAFRUIT_IO KEY HERE
+  ADAFRUIT_IO_USERNAME: ENTER YOUR ADAFRUIT_IO USERNAME HERE
+  FEEDNAME: ENTER YOUR ADAFRUIT_IO FEEDNAME THAT YOU WANT TO MONITOR HERE
+Chromecast:
+  Chromecast_Control: Enabled
+  Chromecast_Devices:
+    Device_Names:
+    - Mini
+    - "Tivi tr\u01B0\u1EDBc"
+    IP_Address:
+    - 192.168.1.11
+    - 192.168.1.21
 Conversation:
-  Conversation_Control: 'Disabled'
-  question:
-    1:
-      - 'Who are you'
-    2:
-      - 'Do you have a family'
+  Conversation_Control: Disabled
   answer:
-    1:
-      - 'I am not the one you expect to be'
-      - 'Who do you think I am'
-      - 'What bothers you'
-    2:
-      - 'Nope i am forever alone'
-      - 'The whole world is my family'
-
-
+    '1':
+    - I am not the one you expect to be
+    - Who do you think I am
+    - What bothers you
+    '2':
+    - Nope i am forever alone
+    - The whole world is my family
+  question:
+    '1':
+    - Who are you
+    '2':
+    - Do you have a family
 DIYHUE:
-  DIYHUE_Control: 'Disabled'
-
-
-#ESP control declarations. Follow a similar pattern to add your own list.
+  DIYHUE_Control: Disabled
 ESP:
-  ESP_Control: 'Disabled'
-  IP: 'xxxxxxxxxxxx' #Enter your ESP's IP here.
-  devicename:
-    - 'Device 1'
-    - 'Device 2'
-    - 'Device 3'
+  ESP_Control: Disabled
+  IP: xxxxxxxxxxxx
   deviceid:
-    - '/Device1'
-    - '/Device2'
-    - '/Device3'
-
-#Streaming songs from Gaana.com
-
-
-#API Key for YouTube and Kickstarter Search Engine
-Google_cloud_api_key: "AIzaSyBSZUMffFwHfjWhOF9qSfcV75T2ySwpoJw"
-
-#GPIOS used in the project. Feel free to change in case.
+  - /Device1
+  - /Device2
+  - /Device3
+  devicename:
+  - Device 1
+  - Device 2
+  - Device 3
+Google_Assistant:
+  device_model_id: loa-vipi-demo-vipi-1985
+  project_id: loa-vipi-demo
+Google_cloud_api_key: AIzaSyBSZUMffFwHfjWhOF9qSfcV75T2ySwpoJw
 Gpios:
+  control: Enabled
   AIY_indicator:
-    - 0
+  - 0
   assistant_indicators:
-    - 10
-    - 0
+  - 0
+  - 0
   ir:
-    - 0
+  - 12
   picontrol:
-    - 0
+  - 0
   pushbutton_trigger:
-    - 0
+  - 17
   servo:
-    - 0
+  - 0
   stopbutton_music_AIY_pushbutton:
-    - 0
-
-#Preset commands/requests using IR remote/receiver
-##
-
-
-##
+  - 17
+Home_Assistant:
+  control: Enabled
+  ratio: 65
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY
+  url: http://192.168.1.246:8123
 IR:
-  IR_Control: 'Disabled'
   Codes:
-    - 33738799 #Up 
-    - 33714319 #Down 
-    - 33720439 #Right 
-    - 33687799 #Left 
-    - 33735229 #Mute 
-    - 33731149 #Power 
-    - 33708199 #Home 
-    - 33727069 #Menu 
-    - 33702589 #Back 
-    - 33691879 #VolUp 
-    - 33744919 #VolDown 
-    - 33743389 #Assistant
-    - 33730639 #Play
+  - 33738799
+  - 33714319
+  - 33720439
+  - 33687799
+  - 33735229
+  - 33731149
+  - 33708199
+  - 33727069
+  - 33702589
+  - 33691879
+  - 33744919
+  - 33743389
+  - 33730639
   Commands:
-    - "Time"
-    - "Weather"
-    - "Next"
-    - "Prev"
-    - "Mute"
-    - "Stop"
-    - "Story"
-    - "Radio news"
-    - "Music"
-    - "VolUp"
-    - "VolDown"
-    - "Assistant"
-    - "Play"
-
-#Change you language. Default is english
+  - Time
+  - Weather
+  - Next
+  - Prev
+  - Mute
+  - Stop
+  - Story
+  - Radio news
+  - Music
+  - VolUp
+  - VolDown
+  - Assistant
+  - Play
+  IR_Control: Enabled
+  Music_list:
+  - 'nhạc thiếu nhi'
+  - 'cháu thương chú bộ đội'
+  - 'liên khúc con heo đất'
+  - 'nhạc thiếu nhi vai chú mang súng'
+  - 'nhạc thiếu nhi quả gì'
+  - 'nhạc thiếu nhi bé xuân mai'
+  - 'nhạc thiếu nhi cả nhà thương nhau'
+  - 'nhạc dân ca thiếu nhi'
+  Story_list:
+  - 'truyện cổ tích tích chu'
+  - 'truyện cổ tích thánh gióng'
+  - 'truyện kể cô bé quàng khăn đỏ'
+  - 'truyện cổ tích việt nam'
+  - 'truyện cổ tích tấm cám'
+  - 'sự tích hoa mào gà'
+  - 'sự tích quả dưa hấu'
+  - 'truyện cây khế'
 Language:
-  Choice: 'vi-VN'
+  Choice: vi-VN
   Language options:
-     - 'en-US' #'English'US
-     - 'vi-VN' #VietNam
-
-
-
-#MQTT credentials
+  - en-US
+  - vi-VN
 MQTT:
-  MQTT_Control: 'Disabled'
-  IP: 'Enter your MQTT IP ADDRESS here'
-  UNAME: 'Enter your MQTT USERNAME here'
-  PSWRD: 'Enter your MQTT PASSWORD here'
-  TOPIC: 'ENTER your MQTT TOPIC here'
-
-#Text to speak notifications (replay after me workaround for mqtt).
-#You can change command word to something else if your command is mixed with native functions
+  IP: Enter your MQTT IP ADDRESS here
+  MQTT_Control: Disabled
+  PSWRD: Enter your MQTT PASSWORD here
+  TOPIC: ENTER your MQTT TOPIC here
+  UNAME: Enter your MQTT USERNAME here
 Notify_TTS:
-  Notify_TTS_Control: 'Enabled'
-
-
-#Radio station declarations. Follow a similar pattern to add your own stations.
-#Google may not pickup the pronunciation of radio station names, hence 'Radio 1' etc is required.
+  Notify_TTS_Control: Enabled
+Pushbullet:
+  Pushbullet_API_KEY: o.K3D6uw98nPz28eiCdRh3PgNYqYsg7a6I
+  Pushbullet_Control: Enabled
 Radio_stations:
   Radio_Control: 'Enabled'
   stationnames:
     - 'Bà Rịa Vũng Tàu'
-    - 'Hải Phòng 1'
-    - 'Hải Phòng 2'
-    - 'VOV 1'
-    - 'Radio 5'
-    - 'Radio 6'
+    - 'kênh 1'
+    - 'kênh 2'
+    - 'kênh 3'
+    - 'kênh 4'
+    - 'vov2'
+    - 'vov1'
+    - 'vov3'
+    - 'vov hà nội'
+    - 'vov hồ chí minh'
   stationlinks:
     - 'http://113.163.216.23:1935/live/radio1.sdp_audio/playlist.m3u8'
-    - 'https://live.thhp.vn/radio/102/index.m3u8'
-    - 'https://live.thhp.vn/937/index.m3u8'
-    - 'https://str.vov.gov.vn/vovlive/vov1vov5Vietnamese.sdp_aac/chunklist_w1718990933.m3u8'
-    - 'http://icecast.omroep.nl/3fm-bb-mp3'
-    - 'http://playerservices.streamtheworld.com/api/livestream-redirect/VERONICA.mp3'
+    - 'https://strm.voh.com.vn/radio/channel2/chunklist_w591198153.m3u8'
+    - 'https://strm.voh.com.vn/radio/channel1/chunklist_w1204836375.m3u8'
+    - 'https://strm.voh.com.vn/radio/channel3/chunklist_w585709218.m3u8'
+    - 'https://strm.voh.com.vn/live/channel5/chunklist_w257791589.m3u8'
+    - 'http://stream2.mobiradio.vn/vovradio/vov2.stream/chunklist.m3u8'
+    - 'http://stream2.mobiradio.vn/vovradio/vov1.stream/chunklist.m3u8'
+    - 'http://stream2.mobiradio.vn/vovradio/vov3.stream/chunklist.m3u8'
+    - 'http://stream2.mobiradio.vn/vovradio/vovgthn.stream/chunklist.m3u8'
+    - 'http://stream2.mobiradio.vn/vovradio/vovgthcm.stream/chunklist.m3u8'
   stationradio:
     - 'Bà Rịa Vũng Tàu'
-    - 'Hải Phòng FM 102.2MHz'
-    - 'Hải Phòng FM 93.7MHz'
-    - 'VOV 1'
-    - '3 FM'
-    - 'Veronica'
-
-#Pi GPIO control declarations. Follow a similar pattern to add your own list of GPIOs
+    - 'AM 610Khz'
+    - 'FM 95.6 Mhz'
+    - 'FM 99.9 Mhz'
+    - 'FM 87.7 Mhz'
+    - 'vov 2'
+    - 'vov 1'
+    - 'vov 3'
+    - 'giao thông hà nội'
+    - 'giao thông hồ chí minh'  
 Raspberrypi_GPIO_Control:
-  GPIO_Control: 'Disabled'
+  GPIO_Control: Disabled
   lightnames:
-    - 'kitchen lights'
-    - 'bathroom lights'
-    - 'bedroom lights'
-
-#Custom scripts. Add your scripts commands.
+  - kitchen lights
+  - bathroom lights
+  - bedroom lights
+Register_Device: False
 Script:
-  Script_Control: 'Disabled'
-  scriptname:
-    - 'Script test'
+  Script_Control: Disabled
   scriptcommand:
-    - 'echo test >> /home/pi/test.txt'
-
-#Speech to text conversion
+  - echo test >> /home/pi/test.txt
+  scriptname:
+  - Script test
 Speechtotext:
   Google_Cloud_Speech:
-    Cloud_Speech_Control: 'Disabled'
-    Google_Cloud_Speech_Credentials_Path: "/home/pi/ViPi/src/google.json"
-
-#Spotify credentials. Register for a spotify developer and get the credentials.
+    Cloud_Speech_Control: Disabled
+    Google_Cloud_Speech_Credentials_Path: /home/pi/ViPi/src/google.json
 Spotify:
-  Spotify_Control: 'Disabled'
-  client_id: 'ENTER YOUR SPOTIFY CLIENT ID HERE'
-  client_secret: 'ENTER YOUR SPOTIFY CLIENT SECRET HERE'
-  username: 'ENTER YOUR SPOTIFY USERNAME HERE'
-
-#Enter your Tasmota Device details below
+  Spotify_Control: Disabled
+  client_id: ENTER YOUR SPOTIFY CLIENT ID HERE
+  client_secret: ENTER YOUR SPOTIFY CLIENT SECRET HERE
+  username: ENTER YOUR SPOTIFY USERNAME HERE
+Startup_voice: Disabled
 Tasmota_devicelist:
-  Tasmota_Control: 'Disabled'
+  Tasmota_Control: Disabled
   friendly-names:
-    - 'Desk Light'
-    - 'Table Light'
+  - Desk Light
+  - Table Light
   ipaddresses:
-    - '192.168.1.36'
-    - '192.168.1.35'
+  - 192.168.1.36
+  - 192.168.1.35
   portID:
-    - '1'
-    - '1'
-
-#Text to speech conversation
+  - '1'
+  - '1'
 TextToSpeech:
-  # Set the choice to:
-  # 1. "gTTS" for quotaless text to speech conversion
-  # 2. "Google Cloud" for Google Cloud text to sppech conversion. Free limit 4 Million Characters/month
-  # 3. "VIETTEL" 
-  Choice: 'gTTS'
-  Google_Cloud_TTS_Credentials_Path: "ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE"
-  #Voice for the "SAY" function or text to speech. Set it to 'Female' or 'Male' depending on your preference.
-  #Note: This does not change Google's voice. this is only for the speech generated within custom actions.
-  Voice_Gender: 'Female'
-Pushbullet:
-  Pushbullet_API_KEY: 'o.K3D6uw98nPz28eiCdRh3PgNYqYsg7a6I'
-  Pushbullet_Control: 'Enabled'
-#Custom wakeword On/Off.
-#To enable custom wakeword, change status to Enabled and restart the assistant.
+  Choice: gTTS
+  Google_Cloud_TTS_Credentials_Path: ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE
+  Voice_Gender: Female
 Wakewords:
-#  Ok_Google: 'Disabled'
-#  Custom_Wakeword: 'Enabled'
-  Ok_Google: 'Enabled'
-  Custom_Wakeword: 'Disabled'
-  #Set below to 'Picovoice' or 'Snowboy' as per your choice.
-  Wakeword_Engine: 'Picovoice'
+  Custom_Wakeword: Enabled
+  Ok_Google: Enabled
   Picovoice_wakeword_models:
-#    - '/home/pi/ViPi/src/resources/picovoice_models/hey siri_raspberry-pi.ppn'
-#    - '/home/pi/ViPi/src/resources/picovoice_models/americano_raspberry-pi.ppn'
-    - '/home/pi/ViPi/src/resources/picovoice_models/hey google_raspberry-pi.ppn'
-    - '/home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn'
-    - '/home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn'
-  sensitivities:  0.7
-
-#Wemo/Emulated Wemo devices
+  - /home/pi/ViPi/src/resources/picovoice_models/hey siri_raspberry-pi.ppn
+  - /home/pi/ViPi/src/resources/picovoice_models/americano_raspberry-pi.ppn
+  Wakeword_Engine: Picovoice
+  sensitivities: 0.3
+Weather:
+  control: Disabled
+  darksky_api: c457d056f60c2aa93fd47339aad294da
+  ipfy_api: 128979ae3de728602f249354a85ac508
+  lat_long:
+  - 11.555358
+  - 106.172483
 Wemo:
-  Wemo_Control: 'Disabled'
+  Wemo_Control: Disabled
   Wemo_Devices:
-    IP_Address:
-      - 'Enter wemo device 1 ip here'
-      - 'Enter wemo device 2 ip here'
     Device_Names:
-      - 'Enter wemo device 1 name here'
-      - 'Enter wemo device 1 name here'
-
-#Youtube music streaming
+    - Enter wemo device 1 name here
+    - Enter wemo device 1 name here
+    IP_Address:
+    - Enter wemo device 1 ip here
+    - Enter wemo device 2 ip here
 YouTube:
-  YouTube_Control: 'Enabled'
-
-#Chromecast on Tivi
-Chromecast:
-  Chromecast_Control: 'Disabled'
-
-  #Change ip to match th ip address of your Chromecast device
-  Chromecast_Devices:
-    IP_Address:
-      - '192.168.1.11'
-      - '192.168.1.21'
-    Device_Names:
-      - 'Mini'  
-      - 'Tivi trước' 
+  YouTube_Control: Enabled
+app_news_radio: Enabled
+continue_conversation: True
+ctr_led:
+  type: WS2
