@@ -556,3 +556,50 @@ systemctl --system start pulseaudio.service
 sudo cp ./client.conf /etc/pulse/client.conf        
 sudo sed -i '/^pulse-access:/ s/$/root,pi/' /etc/group    
 ```
+## Hướng dẫn cập nhật supervisor lên bản mới (fix lỗi utf-8)
+Dừng supervisor cũ: 
+```
+sudo systemctl disable supervisor
+sudo systemctl stop supervisor
+```
+Gỡ cài đặt supervisor cũ:
+```
+sudo apt remove supervisor -y
+```
+Xỏa bỏ config cũ
+```
+sudo rm - /etc/supervisor/supervisord.conf
+```
+Cài đặt supervisor mới. Trước tiên đảm bảo bạn không ở env, sau đó cài đặt, copy cấu hình mới qua:
+```
+deactivate
+sudo python3 -m pip install supervisor
+sudo cp ~/ViPi/supervisord.conf /etc/supervisor/supervisord.conf
+```
+Tiếp theo, chỉnh sửa lại init.d
+```
+sudo nano /etc/init.d/supervisor
+```
+Tìm đến đoạn 
+```
+PATH= .....
+```
+Sửa lại cho giống như sau: (quan trọng là cho thêm cái vị trí của supervisor bin file)
+```
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/supervisord
+NAME=supervisord
+DESC=supervisor
+````
+Sau đó Ctr + X, Y, Enter
+
+Enable và start supervisor
+````
+sudo systemctl enable supervisor
+sudo systemctl start supervisor
+````
+Kiểm tra nếu không start được thành công thì có thể chạy lệnh sau:
+```
+sudo pkill -9 supervisord
+```
+Rồi start lại supervisor. User và password web là user/123
