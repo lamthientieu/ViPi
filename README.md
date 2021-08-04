@@ -574,7 +574,7 @@ Cài đặt supervisor mới. Trước tiên đảm bảo bạn không ở env, 
 ```
 deactivate
 sudo python3 -m pip install supervisor
-sudo cp ~/ViPi/supervisord.conf /etc/supervisor/supervisord.conf
+sudo wget https://github.com/lamthientieu/ViPi/blob/20b8245a69fa94bfbc9f102df1004c6ec48b5258/supervisord.conf -P /etc/supervisor/
 ```
 Tiếp theo, chỉnh sửa lại init.d
 ```
