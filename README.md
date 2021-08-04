@@ -561,6 +561,7 @@ Dừng supervisor cũ:
 ```
 sudo systemctl disable supervisor
 sudo systemctl stop supervisor
+sudo rm /etc/systemd/system/supervisor.service
 ```
 Gỡ cài đặt supervisor cũ:
 ```
