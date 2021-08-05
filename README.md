@@ -113,7 +113,7 @@ Nhớ thêm email của mình vào mục Test user:
 
 Nếu cài đặt từ img gốc, tiến hành từ bước 2:
 
-Nếu cài từ img sẵn có môi trường, chuyển qua bước 7.
+Nếu cài từ img sẵn có môi trường, chuyển qua bước 5.1 update.
 
 ### 2.Update OS & cài đặt git:
 
@@ -245,6 +245,12 @@ Thay bằng project-id và device-model-id của bạn trong file config.
 
 
 ## 8.Thiết lập chạy tự động:
+Nếu img sẵn có thì chạy các lệnh sau:
+```
+sudo systemctl enable supervisor
+sudo systemctl start supervisor
+```
+Bỏ qua bước dưới đây nếu flash img sẵn môi trường.
 a. Chạy tự động với supervisor:
 ```sh
 sudo nano /etc/supervisor/conf.d/ViPi.conf
@@ -313,10 +319,7 @@ Chạy lệnh sau để khởi động chạy tự động:
 ```sh
 sudo supervisorctl update
 ```
-Điều khiển Google Assistant qua web:
-```
-http://ip_của_pi:5001/command?message=lệnh muốn điều khiển
-```
+
 TTS qua web:
 ```
 http://ip_của_pi:5001/tts?message=text muốn phát
@@ -569,13 +572,13 @@ sudo apt remove supervisor -y
 ```
 Xỏa bỏ config cũ
 ```
-sudo rm - /etc/supervisor/supervisord.conf
+sudo rm  /etc/supervisor/supervisord.conf
 ```
 Cài đặt supervisor mới. Trước tiên đảm bảo bạn không ở env, sau đó cài đặt, copy cấu hình mới qua:
 ```
 deactivate
 sudo python3 -m pip install supervisor
-sudo wget https://github.com/lamthientieu/ViPi/blob/20b8245a69fa94bfbc9f102df1004c6ec48b5258/supervisord.conf -P /etc/supervisor/
+sudo wget https://raw.githubusercontent.com/lamthientieu/ViPi/main/supervisord.conf -P /etc/supervisor/
 ```
 Tiếp theo, chỉnh sửa lại init.d
 ```
