@@ -4,34 +4,21 @@ try:
     import RPi.GPIO as GPIO
 except Exception as e:
     GPIO = None
-import time
-import os
-from actions import configuration
-import apa102
-import time
-import threading
-import numpy
-import usb.core
-import usb.util
+import time, os, apa102, threading, numpy, usb.core, usb.util, argparse, yaml, json
+#from actions import configuration
 from gpiozero import LED
-import argparse
 from termcolor import colored
 try:
     import queue as Queue
 except ImportError:
     import Queue as Queue
-import yaml
-import json
 from rpi_ws281x import PixelStrip, Color
 ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
-
 audiosetup=''
 with open('{}/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
     configuration = yaml.safe_load(conf)
-if configuration['ctr_led']['type']=="GEN'":
-    audiosetup=''
-elif configuration['ctr_led']['type']=="R4M":
+if configuration['ctr_led']['type']=="R4M":
     audiosetup='R4M'
 elif configuration['ctr_led']['type']=="R2M":
     audiosetup='R2M'
@@ -439,23 +426,12 @@ class PixelRing:
         usb.util.dispose_resources(self.dev)
 ##start ws2812
 class ws2812:
-    PIXELS_N = 3
-    LED_COUNT = 16       # Number of LED pixels.
-    #LED_PIN = 12         # GPIO pin connected to the pixels (18 uses PWM!).
-    LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-    LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
-    LED_DMA = 10          # DMA channel to use for generating signal (try 10)
-    LED_BRIGHTNESS = 250  # Set to 0 for darkest and 255 for brightest
-    LED_INVERT = False    # True to invert the signal (when using NPN transistor level shift)
-    LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
+    PIXELS_N,LED_COUNT,LED_PIN, LED_FREQ_HZ, LED_DMA, LED_BRIGHTNESS, LED_INVERT, LED_CHANNEL  = 3, 16, 10, 800000, 10, 250, False, 0
     strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     
     def __init__(self):
         self.basis = [0] * 3 * self.PIXELS_N
-        self.basis[0] = 2
-        self.basis[3] = 1
-        self.basis[4] = 1
-        self.basis[7] = 2
+        self.basis[0],self.basis[3],self.basis[4],self.basis[7] = 2,1,1,2
         self.colors = [0] * 3 * self.PIXELS_N
         self.dev = apa102.APA102(num_led=self.PIXELS_N)
         self.next = threading.Event()
@@ -466,13 +442,13 @@ class ws2812:
         self.strip.begin()
 ##
 
-    def colorWipe(self,strip, color, wait_ms=15):
+    def colorWipe(self,strip, color, wait_ms=5):
         """Wipe color across display a pixel at a time."""
         for i in range(self.strip.numPixels()):
             self.strip.setPixelColor(i, color)
             self.strip.show()
-            time.sleep(wait_ms / 2500.0)
-    def theaterChase(self,strip, color, wait_ms=15, iterations=5):
+            time.sleep(wait_ms / 2000.0)
+    def theaterChase(self,strip, color, wait_ms=5, iterations=1):
         """Movie theater light style chaser animation."""
         for j in range(iterations):
             for q in range(3):
@@ -492,36 +468,35 @@ class ws2812:
         else:
             pos -= 170
             return Color(0, pos * 3, 255 - pos * 3)
-    def rainbow(self,strip, wait_ms=15, iterations=1):
+    def rainbow(self,strip, wait_ms=5, iterations=1):
         """Draw rainbow that fades across all pixels at once."""
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
                 self.strip.setPixelColor(i, self.wheel((i + j) & 255))
             self.strip.show()
-            time.sleep(wait_ms / 2500.0)
-    def rainbowCycle(self,strip, wait_ms=15, iterations=1):
+            time.sleep(wait_ms / 2000.0)
+    def rainbowCycle(self,strip, wait_ms=3, iterations=2):
         """Draw rainbow that uniformly distributes itself across all pixels."""
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
                 self.strip.setPixelColor(i, self.wheel(
                     (int(i * 256 / strip.numPixels()) + j) & 255))
             self.strip.show()
-            time.sleep(wait_ms / 2500.0)
-    def theaterChaseRainbow(self,strip, wait_ms=15):
+            time.sleep(wait_ms / 2000.0)
+    def theaterChaseRainbow(self,strip, wait_ms=3):
         """Rainbow movie theater light style chaser animation."""
         for j in range(256):
-            for q in range(1):
+            for q in range(2):
                 for i in range(0, self.strip.numPixels(), 3):
                     self.strip.setPixelColor(i + q, self.wheel((i + j) % 255))
                 self.strip.show()
-                time.sleep(wait_ms / 2500.0)
+                time.sleep(wait_ms / 3000.0)
                 for i in range(0, strip.numPixels(), 3):
                     self.strip.setPixelColor(i + q, 0)
 
 ##
 
     def wakeup(self):
-           
         self.next.set()
         self.queue.put(self._wakeup)
         self.queue.put(self._off_apa)        
@@ -554,21 +529,23 @@ class ws2812:
         self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 255, 0))
         self.colorWipe(self.strip, Color(127, 0, 0))
-        
+        self.colorWipe(self.strip, Color(0, 0, 0))
     def _listen(self):
         self.write([0] * 3 * self.PIXELS_N)
         self.rainbow(self.strip)
         self.colorWipe(self.strip, Color(0, 0, 0))
     def _think(self):
         self.write([0] * 3 * self.PIXELS_N)
+        self.theaterChaseRainbow(self.strip)
+        self.colorWipe(self.strip, Color(0, 127, 255))         
+        self.colorWipe(self.strip, Color(0, 0, 0))
+        self.write([0] * 3 * self.PIXELS_N)        
+    def _speak(self):
+        self.write([0] * 3 * self.PIXELS_N)
         self.rainbowCycle(self.strip)
         self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 0, 0))
-    def _speak(self):
-        self.write([0] * 3 * self.PIXELS_N)
-        self.theaterChaseRainbow(self.strip)
-        self.write([0] * 3 * self.PIXELS_N)
-        self.colorWipe(self.strip, Color(0, 0, 0))
+
     def _off(self):
         self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 0, 0))

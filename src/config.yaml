@@ -8,7 +8,7 @@ Chromecast:
   Chromecast_Devices:
     Device_Names:
     - Mini
-    - "Tivi tr\u01B0\u1EDBc"
+    - "Tivi trước"
     IP_Address:
     - 192.168.1.11
     - 192.168.1.21
@@ -63,7 +63,7 @@ Gpios:
   - 17
 Home_Assistant:
   control: Enabled
-  ratio: 65
+  ratio: 70
   token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY
   url: http://192.168.1.246:8123
 IR:
@@ -203,6 +203,7 @@ TextToSpeech:
   Choice: gTTS
   Google_Cloud_TTS_Credentials_Path: ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE
   Voice_Gender: Female
+  Zalo_API: Vao_zalo.ai_dang_nhap_va_tao_key  
 Wakewords:
   Custom_Wakeword: Enabled
   Ok_Google: Enabled

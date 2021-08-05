@@ -12,6 +12,11 @@ Cutwords:
  - 'đi nào'
  - 'ngay đi'
 keyword:
+    app_read_note:
+        - 'sinh nhật của'
+        - 'ngày sinh của'
+        - 'ngày sinh'
+        
     app_hour_schedule:
         - 'một giờ'
         - 'hai giờ'
@@ -40,26 +45,31 @@ keyword:
         - 'lịch âm'
         - 'mồng mấy'
         - 'mùng mấy'
-        - 'âm lịch'
+        - 'âm lịch hôm nay'
+        - 'âm lịch ngày mai'
+        - 'âm lịch ngày kia'
     app_read_story:
         - 'truyện cười'
         - 'kể truyện'
         - 'đọc truyện'
         - 'tìm truyện'
+        - 'câu chuyệN'
+        - 'kể chuyện'
     app_chromecast_play:
         - 'trên loa'
         - 'trên tivi'
     app_music_play:
         - 'phát bài hát'
+        - 'phát bài nhạc'
         - 'phát nhạc'
         - 'chơi nhạc'
         - 'hát bài'
         - 'bài hát'
         - 'bài nhạc'
-        - 'youtube'
-        - 'zing'
-        - 'phát bài nhạc'
         - 'ca nhạc'
+    app_radio_play:
+        - 'nghe đài'
+        - 'radio'
     app_download_music:
         - 'download '
         - 'tải xuống'
@@ -69,9 +79,20 @@ keyword:
         - 'đọc báo'
         - 'báo nói'
     app_music_auto:
+        - 'phát danh sách'
+        - 'phát playlist'
+        - 'phát album'
+        - 'nghe danh sách'
+        - 'nghe album'
+        - 'nghe playlist'
         - 'abum'
         - 'danh sách'
         - 'list nhạc'
+    app_translate_language:
+        - 'thông dịch'
+        - 'dịch tự động'
+        - 'phiên dịch'
+        - 'dịch thuật'
     med_stop_music:
         - 'tắt nhạc'
         - 'dừng nhạc'
@@ -94,7 +115,7 @@ keyword:
     med_volume_vlc:
         - 'tiếng nhạc'
         - 'volume music'
-    med_setup_:
+    med_setup_volume:
         - 'thiết lập'
         - 'cài đặt'
     app_speedtest_net:
