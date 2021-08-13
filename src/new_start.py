@@ -1,2 +1,2 @@
-import start
-start.main()
+import new_start
+new_start.main()

@@ -43,7 +43,7 @@ ESP:
 Google_Assistant:
   device_model_id: device_model_id
   project_id: project_id
-Google_cloud_api_key: DIEN_KEY_CUA_BAN_VAO_DAY
+Google_cloud_api_key: CHANGE_ME
 Gpios:
   control: Enabled
   AIY_indicator:
@@ -64,8 +64,9 @@ Gpios:
 Home_Assistant:
   control: Enabled
   ratio: 70
-  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJhNWJlODRhZGZhMDc0MjMyODcxMjViMjdlODc0NTY1NCIsImlhdCI6MTYyMzAwMjE4MCwiZXhwIjoxOTM4MzYyMTgwfQ.us5XLLZuqzk2dFQhVdYkAjJKBSQlJxuHHQ0AlS4mAyY
-  url: http://192.168.1.246:8123
+  token: CHANGE_ME
+  internal_url: http://CHANGE_ME:8123
+  external_url: https://CHANGE_ME
 IR:
   Codes:
   - 33738799

@@ -11,6 +11,7 @@ Cutwords:
  - 'kể cho tôi'
  - 'đi nào'
  - 'ngay đi'
+ - 'nào nhỉ'
 keyword:
     app_read_note:
         - 'sinh nhật của'
@@ -61,38 +62,45 @@ keyword:
     app_music_play:
         - 'phát bài hát'
         - 'phát bài nhạc'
+        - 'hát nhạc'
         - 'phát nhạc'
         - 'chơi nhạc'
         - 'hát bài'
         - 'bài hát'
         - 'bài nhạc'
+    app_music_random:
         - 'ca nhạc'
     app_radio_play:
         - 'nghe đài'
         - 'radio'
+        - 'đài phát thanh'
     app_download_music:
         - 'download '
         - 'tải xuống'
     app_custom_weather:
         - 'dự báo thời tiết'
+        - 'mưa hay nắng'
+        - 'thời tiết'
     app_news_radio:
         - 'đọc báo'
         - 'báo nói'
+        - 'tin mới'
+        - 'tin tức'
     app_music_auto:
+        - 'nghe playlist'
+        - 'nghe danh sách'
         - 'phát danh sách'
         - 'phát playlist'
         - 'phát album'
-        - 'nghe danh sách'
         - 'nghe album'
-        - 'nghe playlist'
-        - 'abum'
         - 'danh sách'
         - 'list nhạc'
+        - 'abum'
     app_translate_language:
         - 'thông dịch'
-        - 'dịch tự động'
         - 'phiên dịch'
         - 'dịch thuật'
+        - 'dịch tự động'        
     med_stop_music:
         - 'tắt nhạc'
         - 'dừng nhạc'
@@ -271,6 +279,13 @@ units:
   'Cos φ':
     - 'cốt phi'
 commands:
+    - 'cao hay thấp'
+    - 'đóng hay mở'  
+    - 'kiểm tra'
+    - 'trạng thái'
+    - 'vị trí'
+    - 'ở đâu'
+    - 'thế nào'
     - 'bật'
     - 'mở'
     - 'tắt'
@@ -278,10 +293,5 @@ commands:
     - 'đóng'
     - 'vào'
     - 'ra'
-    - 'kiểm tra'
-    - 'trạng thái'
-    - 'vị trí'
-    - 'ở đâu'
-    - 'thế nào'
-    - 'cao hay thấp'
-    - 'đóng hay mở'   
+
+ 
