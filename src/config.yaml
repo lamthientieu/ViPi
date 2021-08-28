@@ -201,7 +201,7 @@ Tasmota_devicelist:
   - '1'
   - '1'
 TextToSpeech:
-  Choice: gTTS
+  Choice: zTTS
   Google_Cloud_TTS_Credentials_Path: ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE
   Voice_Gender: Female
   Zalo_API: Vao_zalo.ai_dang_nhap_va_tao_key  
