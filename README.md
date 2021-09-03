@@ -231,18 +231,11 @@ git clone https://github.com/lamthientieu/ViPi.git
 
 ## 7.Chạy lần đầu:
 Chạy lần đầu với raspi:
-```sh
-source ~/env/bin/activate
-google-oauthlib-tool --scope https://www.googleapis.com/auth/assistant-sdk-prototype \
-          --scope https://www.googleapis.com/auth/gcm \
-          --save --headless --client-secrets /home/pi/ten_file.json
+Mở trình duyệt và vào địa chỉ:
 ```
-Tiếp tục:
-```sh
-env/bin/python -u ./ViPi/src/start.py --project-id 'XXX' --device-model-id 'XXX'
+http://ip_cua_pi:8080
 ```
-Thay bằng project-id và device-model-id của bạn trong file config.
-
+Sau đó thực hiện các bước để tiến hành Auth với google
 
 ## 8.Thiết lập chạy tự động:
 Nếu img sẵn có thì chạy các lệnh sau:
@@ -250,6 +243,14 @@ Nếu img sẵn có thì chạy các lệnh sau:
 sudo systemctl enable supervisor
 sudo systemctl start supervisor
 ```
+Vào trang web 
+```
+http://ip_cua_pi:9001
+```
+Tên đăng nhập: user
+Mật khẩu: 123
+Để điều khiển các service
+
 Bỏ qua bước dưới đây nếu flash img sẵn môi trường.
 a. Chạy tự động với supervisor:
 ```sh
@@ -296,6 +297,8 @@ sudo supervisorctl stop ViPi
 sudo rm -rf /etc/supervisor/conf.d/ViPi.conf
 ```
 ## 9. Chạy TTS Web và điều khiển Google Assistant qua web:
+Tính năng này có sẵn trong new_start, nếu bạn sử dụng new_start thì bỏ qua bước bên dưới.
+
 Để sử dụng tính năng số 9 và 10, cần cài đặt thêm gói
 ```
 source ~/env/bin/activate
@@ -351,6 +354,8 @@ Và automation:
           message: "Nội dung."
 ```
 ## 10. OAuth qua web và edit yaml bằng web
+Tính năng này có sẵn trong file imge, bạn chỉ cài nếu sử dụng Raspbian
+
 Để sử dụng tính năng này, bạn phải cài đặt thêm gói ở bước 9. 
 Lưu ý: File yaml sau khi sửa xong sẽ có cấu trúc khác, sẽ điều chỉnh lại cho hợp lí hơn.
 ```

@@ -220,6 +220,7 @@ Weather:
   lat_long:
   - 11.555358
   - 106.172483
+  location: 'Địa chỉ nhà bạn'
 Wemo:
   Wemo_Control: Disabled
   Wemo_Devices:
