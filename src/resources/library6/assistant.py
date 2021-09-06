@@ -21,7 +21,7 @@ import os
 import sys
 
 from .auth_helpers import CredentialsRefresher
-from .event7 import Event, IterableEventQueue
+from .event import Event, IterableEventQueue
 from .version import __version__
 
 EVENT_CALLBACK = CFUNCTYPE(None, c_int, POINTER(c_char))
