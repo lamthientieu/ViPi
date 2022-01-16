@@ -4,39 +4,66 @@ try:
     import RPi.GPIO as GPIO
 except Exception as e:
     GPIO = None
-import time, os, apa102, threading, numpy, usb.core, usb.util, argparse, yaml, json
+import time
+import os
+try: 
+    import usb.core, usb.util
+except:
+    os.system('pip install pyusb >> /dev/null')
+    import usb.core, usb.util                             
+import re
 #from actions import configuration
+import apa102
+import time
+import threading
+import numpy
+import usb.core
+import usb.util
 from gpiozero import LED
+import argparse
 from termcolor import colored
 try:
     import queue as Queue
 except ImportError:
     import Queue as Queue
+import yaml
+import json
 from rpi_ws281x import PixelStrip, Color
 ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
+
 audiosetup=''
 with open('{}/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
     configuration = yaml.safe_load(conf)
-if configuration['ctr_led']['type']=="R4M":
+if configuration['ctr_led']['type']=="GEN'":
+    audiosetup=''
+elif configuration['ctr_led']['type']=="R4M":
     audiosetup='R4M'
 elif configuration['ctr_led']['type']=="R2M":
     audiosetup='R2M'
 elif configuration['ctr_led']['type']=="RUM":
     audiosetup='RUM'
-elif configuration['ctr_led']['type']=="NEO":
-    audiosetup='NEO'
-elif configuration['ctr_led']['type']=="GOO":
-    audiosetup='GOO'
-elif configuration['ctr_led']['type']=="ALE":
-    audiosetup='ALE'
 elif configuration['ctr_led']['type']=="WS2":
     audiosetup='WS2'
 else:
     audiosetup=''
-print(colored('[ViPi_1.0]_Start...','green'))
-print(colored('Mic bạn đang sử dụng là: '+ audiosetup,'green'))
-print(colored('Lưu ý cấu hình đúng loại Mic bạn đang sử dụng trong file config.yaml, Chúc bạn có những trải nghiệm vui vẻ...','green'))
+###ctr_vol
+
+if configuration['ctr_vol']['type']=="JACK":
+    ctr_vol='JACK'
+elif configuration['ctr_vol']['type']=="R2M_H":
+    ctr_vol='R2M_H'
+elif configuration['ctr_vol']['type']=="R2M_J":
+    ctr_vol='R2M_J'
+elif configuration['ctr_vol']['type']=="RUM_H":
+    ctr_vol='RUM_H'
+elif configuration['ctr_vol']['type']=="HAT":
+    ctr_vol='HAT'
+else:
+    ctr_vol='JACK'
+    
+print('Mic   : '+ audiosetup)
+print('Audio : '+ ctr_vol)
 if configuration['IR']['IR_Control']=='Enabled':
     ircontrol=True
 else:
@@ -426,12 +453,23 @@ class PixelRing:
         usb.util.dispose_resources(self.dev)
 ##start ws2812
 class ws2812:
-    PIXELS_N,LED_COUNT,LED_PIN, LED_FREQ_HZ, LED_DMA, LED_BRIGHTNESS, LED_INVERT, LED_CHANNEL  = 3, 16, 10, 800000, 10, 250, False, 0
+    PIXELS_N = 3
+    LED_COUNT = 16       # Number of LED pixels.
+    #LED_PIN = 12         # GPIO pin connected to the pixels (18 uses PWM!).
+    LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
+    LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
+    LED_DMA = 10          # DMA channel to use for generating signal (try 10)
+    LED_BRIGHTNESS = 250  # Set to 0 for darkest and 255 for brightest
+    LED_INVERT = False    # True to invert the signal (when using NPN transistor level shift)
+    LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
     strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
     
     def __init__(self):
         self.basis = [0] * 3 * self.PIXELS_N
-        self.basis[0],self.basis[3],self.basis[4],self.basis[7] = 2,1,1,2
+        self.basis[0] = 2
+        self.basis[3] = 1
+        self.basis[4] = 1
+        self.basis[7] = 2
         self.colors = [0] * 3 * self.PIXELS_N
         self.dev = apa102.APA102(num_led=self.PIXELS_N)
         self.next = threading.Event()
@@ -475,7 +513,7 @@ class ws2812:
                 self.strip.setPixelColor(i, self.wheel((i + j) & 255))
             self.strip.show()
             time.sleep(wait_ms / 2000.0)
-    def rainbowCycle(self,strip, wait_ms=3, iterations=2):
+    def rainbowCycle(self,strip, wait_ms=5, iterations=1):
         """Draw rainbow that uniformly distributes itself across all pixels."""
         for j in range(256 * iterations):
             for i in range(self.strip.numPixels()):
@@ -483,20 +521,21 @@ class ws2812:
                     (int(i * 256 / strip.numPixels()) + j) & 255))
             self.strip.show()
             time.sleep(wait_ms / 2000.0)
-    def theaterChaseRainbow(self,strip, wait_ms=3):
+    def theaterChaseRainbow(self,strip, wait_ms=5):
         """Rainbow movie theater light style chaser animation."""
         for j in range(256):
-            for q in range(2):
+            for q in range(1):
                 for i in range(0, self.strip.numPixels(), 3):
                     self.strip.setPixelColor(i + q, self.wheel((i + j) % 255))
                 self.strip.show()
-                time.sleep(wait_ms / 3000.0)
+                time.sleep(wait_ms / 2500.0)
                 for i in range(0, strip.numPixels(), 3):
                     self.strip.setPixelColor(i + q, 0)
 
 ##
 
     def wakeup(self):
+           
         self.next.set()
         self.queue.put(self._wakeup)
         self.queue.put(self._off_apa)        
@@ -539,13 +578,12 @@ class ws2812:
         self.theaterChaseRainbow(self.strip)
         self.colorWipe(self.strip, Color(0, 127, 255))         
         self.colorWipe(self.strip, Color(0, 0, 0))
-        self.write([0] * 3 * self.PIXELS_N)        
+        self.write([0] * 3 * self.PIXELS_N)                
     def _speak(self):
         self.write([0] * 3 * self.PIXELS_N)
-        self.rainbowCycle(self.strip)
+        self.theaterChaseRainbow(self.strip)
         self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 0, 0))
-
     def _off(self):
         self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 0, 0))
@@ -697,4 +735,76 @@ def ctr_led(activity):
             pixels.pixels.off()  
         elif (audiosetup=='WS2'):
             pixels.mute()
-#########  start bot #########
+#########  ctr_vol #########
+  # 1. 'JACK'    ---> audio out JACK 3.5 Pi
+  # 2. 'R2M_H'   ---> audio out Heatphone 3.5 Respeaker-2-Mic
+  # 3. 'R2M_J'   ---> audio out JST Respeaker-2-Mic
+  # 4. 'RUM_H'   ---> audio out Heatphone 3.5 Respeaker-USB-Mic
+  # 5. 'HAT'     ---> audio out i2s
+
+#def vol_level(level):
+
+#########  vol_level  #########
+def vol_level(usrcmd):
+    if any(char.isdigit() for char in str(usrcmd)):
+        for changevollevel in re.findall(r'\b\d+\b', str(usrcmd)):
+            vol=int(changevollevel)
+    else:
+        vol=0
+        print(vol)
+    if int(vol)>100: 
+        if (ctr_vol=='JACK'):
+            os.system("amixer set Headphone 1000")
+        elif (ctr_vol=='R2M_H'):
+            os.system("amixer set Headphone 100%")
+        elif (ctr_vol=='R2M_J'):
+            os.system("amixer set Speaker 100%")
+        elif (ctr_vol=='RUM_H'):
+            os.system("amixer set Headphone 100%")
+        elif (ctr_vol=='HAT'):
+            os.system("amixer set Master 100%")
+    if int(vol)>0 and int(vol)<101:
+        setvol=str(vol)
+        if (ctr_vol=='JACK'):
+            os.system("amixer set Headphone "+setvol+"%")
+        elif (ctr_vol=='R2M_H'):
+            os.system("amixer set Headphone "+setvol+"%")
+        elif (ctr_vol=='R2M_J'):
+            os.system("amixer set Speaker "+setvol+"%")
+        elif (ctr_vol=='RUM_H'):
+            os.system("amixer set Headphone "+setvol+"%")
+        elif (ctr_vol=='HAT'):
+            os.system('amixer set Master '+setvol+'%')
+    if int(vol)==0:
+        if 'tăng' in str(usrcmd).lower() or 'to lên' in str(usrcmd).lower() or 'lớn lên' in str(usrcmd).lower():
+            vol_up()
+        elif 'giảm' in str(usrcmd).lower() or 'nhỏ xuống' in str(usrcmd).lower() or 'nhỏ lại' in str(usrcmd).lower():
+            vol_down()
+def vol_up():
+#########  vol_up #########
+    if (ctr_vol=='JACK'):
+        os.system("amixer set Headphone 100+")
+    elif (ctr_vol=='R2M_H'):
+        os.system("amixer set Headphone 5%+")
+    elif (ctr_vol=='R2M_J'):
+        os.system("amixer set Speaker 5%+")
+    elif (ctr_vol=='RUM_H'):
+        os.system("amixer set Headphone 5%+")
+    elif (ctr_vol=='HAT'):
+        os.system("amixer set Master 8+")
+#########  vol_down  #########
+def vol_down():
+    if (ctr_vol=='JACK'):
+        os.system("amixer set Headphone 100-")
+    elif (ctr_vol=='R2M_H'):
+        os.system("amixer set Headphone 5%-")
+    elif (ctr_vol=='R2M_J'):
+        os.system("amixer set Speaker 5%-")
+    elif (ctr_vol=='RUM_H'):
+        os.system("amixer set Headphone 5%-")
+    elif (ctr_vol=='HAT'):
+        os.system("amixer set Master 8-")
+        
+        
+        
+ 
