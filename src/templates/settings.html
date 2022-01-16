@@ -1,0 +1,23 @@
+{% extends "header-footer.html" %}
+
+{% block content %}
+
+    <section class="content-section">
+        <div class="btn-group">
+			<form method="POST" action="interprer"> 
+            <button type="submit"> Thông dịch </button> </form>
+			<form method="POST" action="killpython"> 
+            <button type="submit"> Tắt tiến trình </button> </form>
+			<form method="POST" action="config"> 
+            <button type="submit">Sửa config {{result}}</button>  </form>
+		</div>
+		<div class="btn-group">
+			<form method="POST" action="reboot"> 
+            <button type="submit"> Reboot </button></form>
+			<form method="POST" action="shutdown"> 
+            <button type="submit"> Shutdown </button> </form>
+		</div>
+    </section>
+   
+  </div>
+{% endblock %}
