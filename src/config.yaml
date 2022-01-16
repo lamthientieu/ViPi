@@ -8,7 +8,7 @@ Chromecast:
   Chromecast_Devices:
     Device_Names:
     - Mini
-    - "Tivi trước"
+    - "Tivi tr\u01B0\u1EDBc"
     IP_Address:
     - 192.168.1.11
     - 192.168.1.21
@@ -41,32 +41,32 @@ ESP:
   - Device 2
   - Device 3
 Google_Assistant:
-  device_model_id: device_model_id
-  project_id: project_id
-Google_cloud_api_key: CHANGE_ME
+  device_model_id: loa-vipi-demo
+  project_id: loa-vipi-demo-vipi-1985
+Google_cloud_api_key: AIzaSyBSZUMffFxxxjWhOF9qSfcV75T2ySwpoJw
 Gpios:
-  control: Enabled
   AIY_indicator:
   - 0
   assistant_indicators:
   - 0
   - 0
+  control: Disabled
   ir:
-  - 12
+  - 24
   picontrol:
   - 0
   pushbutton_trigger:
-  - 17
+  - 0
   servo:
   - 0
   stopbutton_music_AIY_pushbutton:
   - 17
 Home_Assistant:
-  control: Enabled
+  control: Disabled
+  external_url: https://
+  internal_url: http://192.168.1.246:8123
   ratio: 70
-  token: CHANGE_ME
-  internal_url: http://CHANGE_ME:8123
-  external_url: https://CHANGE_ME
+  token: eyJ0eXAiOiJKV1QiLCJhbhciOiJIUzI1NiJ9.eyJpc3MiOiI0MTM0MGQxNWEyNzU0MDAwODIyNTU0NDlhOGI0ZjBjYiIsImlhdCI6MTYzNDYxNTE3NiwiZXhwIjoxOTQ5OTc1MTc2fQ.ICGvsD6_NCW8KjLdLWQrVrbUDBz2s_hU4n-Hi7I-MkI
 IR:
   Codes:
   - 33738799
@@ -96,25 +96,25 @@ IR:
   - VolDown
   - Assistant
   - Play
-  IR_Control: Enabled
+  IR_Control: Disabled
   Music_list:
-  - 'nhạc thiếu nhi'
-  - 'cháu thương chú bộ đội'
-  - 'liên khúc con heo đất'
-  - 'nhạc thiếu nhi vai chú mang súng'
-  - 'nhạc thiếu nhi quả gì'
-  - 'nhạc thiếu nhi bé xuân mai'
-  - 'nhạc thiếu nhi cả nhà thương nhau'
-  - 'nhạc dân ca thiếu nhi'
+  - "nh\u1EA1c thi\u1EBFu nhi"
+  - "ch\xE1u th\u01B0\u01A1ng ch\xFA b\u1ED9 \u0111\u1ED9i"
+  - "li\xEAn kh\xFAc con heo \u0111\u1EA5t"
+  - "nh\u1EA1c thi\u1EBFu nhi vai ch\xFA mang s\xFAng"
+  - "nh\u1EA1c thi\u1EBFu nhi qu\u1EA3 g\xEC"
+  - "nh\u1EA1c thi\u1EBFu nhi b\xE9 xu\xE2n mai"
+  - "nh\u1EA1c thi\u1EBFu nhi c\u1EA3 nh\xE0 th\u01B0\u01A1ng nhau"
+  - "nh\u1EA1c d\xE2n ca thi\u1EBFu nhi"
   Story_list:
-  - 'truyện cổ tích tích chu'
-  - 'truyện cổ tích thánh gióng'
-  - 'truyện kể cô bé quàng khăn đỏ'
-  - 'truyện cổ tích việt nam'
-  - 'truyện cổ tích tấm cám'
-  - 'sự tích hoa mào gà'
-  - 'sự tích quả dưa hấu'
-  - 'truyện cây khế'
+  - "truy\u1EC7n c\u1ED5 t\xEDch t\xEDch chu"
+  - "truy\u1EC7n c\u1ED5 t\xEDch th\xE1nh gi\xF3ng"
+  - "truy\u1EC7n k\u1EC3 c\xF4 b\xE9 qu\xE0ng kh\u0103n \u0111\u1ECF"
+  - "truy\u1EC7n c\u1ED5 t\xEDch vi\u1EC7t nam"
+  - "truy\u1EC7n c\u1ED5 t\xEDch t\u1EA5m c\xE1m"
+  - "s\u1EF1 t\xEDch hoa m\xE0o g\xE0"
+  - "s\u1EF1 t\xEDch qu\u1EA3 d\u01B0a h\u1EA5u"
+  - "truy\u1EC7n c\xE2y kh\u1EBF"
 Language:
   Choice: vi-VN
   Language options:
@@ -127,52 +127,55 @@ MQTT:
   TOPIC: ENTER your MQTT TOPIC here
   UNAME: Enter your MQTT USERNAME here
 Notify_TTS:
-  Notify_TTS_Control: Enabled
+  Notify_TTS_Control: Disabled
 Pushbullet:
   Pushbullet_API_KEY: o.K3D6uw98nPz28eiCdRh3PgNYqYsg7a6I
-  Pushbullet_Control: Enabled
+  Pushbullet_Control: Disabled
 Radio_stations:
-  Radio_Control: 'Enabled'
-  stationnames:
-    - 'Bà Rịa Vũng Tàu'
-    - 'kênh 1'
-    - 'kênh 2'
-    - 'kênh 3'
-    - 'kênh 4'
-    - 'vov2'
-    - 'vov1'
-    - 'vov3'
-    - 'vov hà nội'
-    - 'vov hồ chí minh'
+  Radio_Control: Disabled
   stationlinks:
-    - 'http://113.163.216.23:1935/live/radio1.sdp_audio/playlist.m3u8'
-    - 'https://strm.voh.com.vn/radio/channel2/chunklist_w591198153.m3u8'
-    - 'https://strm.voh.com.vn/radio/channel1/chunklist_w1204836375.m3u8'
-    - 'https://strm.voh.com.vn/radio/channel3/chunklist_w585709218.m3u8'
-    - 'https://strm.voh.com.vn/live/channel5/chunklist_w257791589.m3u8'
-    - 'http://stream2.mobiradio.vn/vovradio/vov2.stream/chunklist.m3u8'
-    - 'http://stream2.mobiradio.vn/vovradio/vov1.stream/chunklist.m3u8'
-    - 'http://stream2.mobiradio.vn/vovradio/vov3.stream/chunklist.m3u8'
-    - 'http://stream2.mobiradio.vn/vovradio/vovgthn.stream/chunklist.m3u8'
-    - 'http://stream2.mobiradio.vn/vovradio/vovgthcm.stream/chunklist.m3u8'
+  - http://113.163.216.23:1935/live/radio1.sdp_audio/playlist.m3u8
+  - https://strm.voh.com.vn/radio/channel2/chunklist_w591198153.m3u8
+  - https://strm.voh.com.vn/radio/channel1/chunklist_w1204836375.m3u8
+  - https://strm.voh.com.vn/radio/channel3/chunklist_w585709218.m3u8
+  - https://strm.voh.com.vn/live/channel5/chunklist_w257791589.m3u8
+  - https://stream.vov.vn/audio/vovvn1_vov2.stream_aac/playlist.m3u8
+  - https://str.vov.gov.vn/vovlive/vov1vov5Vietnamese.sdp_aac/playlist.m3u8
+  - https://stream.vov.vn/audio/vovvn1_vov3.stream_aac/playlist.m3u8
+  - http://stream2.mobiradio.vn/vovradio/vovgthn.stream/chunklist.m3u8
+  - http://stream2.mobiradio.vn/vovradio/vovgthcm.stream/chunklist.m3u8
+  - http://202.43.109.142:1935/radio11/tnradio/playlist.m3u8
+  stationnames:
+  - "B\xE0 R\u1ECBa V\u0169ng T\xE0u"
+  - "k\xEAnh 1"
+  - "k\xEAnh 2"
+  - "k\xEAnh 3"
+  - "k\xEAnh 4"
+  - vov2
+  - vov1
+  - vov3
+  - "vov h\xE0 n\u1ED9i"
+  - "vov h\u1ED3 ch\xED minh"
+  - "t\xE2y ninh"
   stationradio:
-    - 'Bà Rịa Vũng Tàu'
-    - 'AM 610Khz'
-    - 'FM 95.6 Mhz'
-    - 'FM 99.9 Mhz'
-    - 'FM 87.7 Mhz'
-    - 'vov 2'
-    - 'vov 1'
-    - 'vov 3'
-    - 'giao thông hà nội'
-    - 'giao thông hồ chí minh'  
+  - "B\xE0 R\u1ECBa V\u0169ng T\xE0u"
+  - AM 610Khz
+  - FM 95.6 Mhz
+  - FM 99.9 Mhz
+  - FM 87.7 Mhz
+  - vov 2
+  - vov 1
+  - vov 3
+  - "giao th\xF4ng h\xE0 n\u1ED9i"
+  - "giao th\xF4ng h\u1ED3 ch\xED minh"
+  - "t\xE2y ninh ttv 11"
 Raspberrypi_GPIO_Control:
   GPIO_Control: Disabled
   lightnames:
   - kitchen lights
   - bathroom lights
   - bedroom lights
-Register_Device: False
+Register_Device: false
 Script:
   Script_Control: Disabled
   scriptcommand:
@@ -200,11 +203,22 @@ Tasmota_devicelist:
   portID:
   - '1'
   - '1'
+SpeechToText:
+  Choice: zalo
 TextToSpeech:
-  Choice: zTTS
+  Choice: gTTS
   Google_Cloud_TTS_Credentials_Path: ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE
   Voice_Gender: Female
-  Zalo_API: Vao_zalo.ai_dang_nhap_va_tao_key  
+  Voice_Region: South
+  Zalo_API: 
+    - E8mpp9RGC2rBAV6I5xxXD3LFQtDXE9TS
+    - K6ZFa1h0REz9CB0xxBTw8BOWgTjR2Z9j
+    - 3K54SGXOvQI5xxPsbROxm9ihNAv52xsm
+    - KeKjzmnQCUZpWFOSWghF4Yqxxy6yQNUN
+    - zEMGSTKKRxxxs6m4MyUnBr3kSiiE4NM4
+    - Al8zWP6spuyEOM4LWjxxw8KxChdMCspo
+    - AuWHzxuSI6N6h2NxxGMAUTql94aGmEU2
+    - 6IMISQtw3Dfu3umtHxxm9vOig3viy1dn
 Wakewords:
   Custom_Wakeword: Enabled
   Ok_Google: Enabled
@@ -212,6 +226,7 @@ Wakewords:
   - /home/pi/ViPi/src/resources/picovoice_models/hey siri_raspberry-pi.ppn
   - /home/pi/ViPi/src/resources/picovoice_models/americano_raspberry-pi.ppn
   Wakeword_Engine: Picovoice
+  access_key: yae5LjCxgBUNiqlU18uXxx2fz9g7uPJkVLc/I1JY3U+BID8OIEeJkQ==
   sensitivities: 0.3
 Weather:
   control: Disabled
@@ -220,7 +235,7 @@ Weather:
   lat_long:
   - 11.555358
   - 106.172483
-  location: 'Địa chỉ nhà bạn'
+  location: "T\xE2n Ch\xE2u, T\xE2y Ninh"
 Wemo:
   Wemo_Control: Disabled
   Wemo_Devices:
@@ -232,7 +247,27 @@ Wemo:
     - Enter wemo device 2 ip here
 YouTube:
   YouTube_Control: Enabled
+  server: http://18.118.138.44
 app_news_radio: Enabled
 continue_conversation: False
 ctr_led:
-  type: R2M
+  type: 'R2M' #  Set type mic to:
+  # 1. 'GEN'   ---> USB-MIC-JACK
+  # 2. 'R2M'   ---> Respeaker-2-Mic
+  # 3. 'R4M'   ---> Respeaker-4-Mic
+  # 4. 'RUM'   ---> Respeaker-Usb-Mic
+  # 5. 'WS2'   ---> Led Neopixel
+  pixels: 12 # Set Number of LED pixels
+ctr_vol:
+  type: 'R2M_J' #  Set audio out to:
+  # 1. 'JACK'    ---> audio out JACK 3.5 Pi
+  # 2. 'R2M_H'   ---> audio out Heatphone 3.5 Respeaker-2-Mic
+  # 3. 'R2M_J'   ---> audio out JST Respeaker-2-Mic
+  # 4. 'RUM_H'   ---> audio out Heatphone 3.5 Respeaker-USB-Mic
+  # 5. 'HAT'     ---> audio out i2s
+  
+####Cân bằng âm lượng giữa âm thanh và gass:
+#1.thay đổi giảm dần volume_media (từ 0-100)
+#2. nói " ok google* chỉnh giọng nói" ==>bot sẽ sét âm lượng tối đa cho âm thanh gass,  bạn có thể thay đôi từ 0->10)  vi du: " ok google* chỉnh giọng nói mức 5"
+volume_media: 100
+# Âm thanh khởi động
