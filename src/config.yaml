@@ -212,13 +212,6 @@ TextToSpeech:
   Voice_Region: South
   Zalo_API: 
     - E8mpp9RGC2rBAV6I5xxXD3LFQtDXE9TS
-    - K6ZFa1h0REz9CB0xxBTw8BOWgTjR2Z9j
-    - 3K54SGXOvQI5xxPsbROxm9ihNAv52xsm
-    - KeKjzmnQCUZpWFOSWghF4Yqxxy6yQNUN
-    - zEMGSTKKRxxxs6m4MyUnBr3kSiiE4NM4
-    - Al8zWP6spuyEOM4LWjxxw8KxChdMCspo
-    - AuWHzxuSI6N6h2NxxGMAUTql94aGmEU2
-    - 6IMISQtw3Dfu3umtHxxm9vOig3viy1dn
 Wakewords:
   Custom_Wakeword: Enabled
   Ok_Google: Enabled
