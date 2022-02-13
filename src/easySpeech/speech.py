@@ -3,14 +3,8 @@ import sounddevice as sd
 from .recognize import *
 from .record import *
 from .ml import *
-import requests, time
-session = requests.Session()
-session.get('https://zalo.ai/experiments/automation-speech-recognition')
-session_cookies = session.cookies
-cookies_dictionary = session_cookies.get_dict()
-headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36 Edg/92.0.902.62', 'origin': 'https://zalo.ai', 'referer': 'https://zalo.ai/experiments/automation-speech-recognition', 'apikey':'gpGSJHG7qNRnGpL6nnkI6N3RFbr9ikrB'}
-
-
+import requests, time, random
+from knowledge_base import header
 def speech(using,freq = 44100,duration = 3,key=None, language="vi-VN", show_all=False):
     # Start recorder with the given values of 
     # duration and sample frequency
@@ -37,10 +31,10 @@ def speech(using,freq = 44100,duration = 3,key=None, language="vi-VN", show_all=
         tic = time.perf_counter()
         url = 'https://zalo.ai/api/demo/v1/asr'
         files = {'file': open('recording.wav','rb')}
-#        resp = requests.post(url, files = files, headers=headers,cookies=cookies_dictionary).json()
-#        text = resp['result']['text']
+        req_url = 'https://zalo.ai/experiments/automation-speech-recognition'
+        cookies_dictionary,headers,proxies=header(req_url)
         try:
-            resp = requests.post(url, files = files, headers=headers,cookies=cookies_dictionary).json()
+            resp = requests.post(url, files = files, headers=headers,cookies=cookies_dictionary, proxies=proxies).json()
             text = resp['result']['text']
         except:
             text = ''
