@@ -167,11 +167,13 @@ keyword:
     sma_off_switch:
         - 'tắt công tắc'
         - 'ngắt công tắc'
+        - 'tắt máy bơm'
     sma_on_socket:
         - 'bật ổ cắm'
         - 'đóng điện ổ cắm'
         - 'mở điện ổ cắm'
         - 'mở nguồn ổ cắm'
+        - 'bật máy bơm'
     sma_off_socket:
         - 'tắt ổ cắm'
         - 'ngắt ổ cắm'
@@ -279,6 +281,12 @@ units:
   'Cos φ':
     - 'cốt phi'
 commands:
+    - 'tắt toàn bộ'
+    - 'tắt tất cả'
+    - 'bật toàn bộ'
+    - 'bật tất cả'
+    - 'mở toàn bộ'
+    - 'mở tất cả'
     - 'cao hay thấp'
     - 'đóng hay mở'  
     - 'kiểm tra'
