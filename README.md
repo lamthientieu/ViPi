@@ -79,7 +79,8 @@ Khởi động lại pi!
 
 Để xem log vào địa chỉ IP:9001 với user/pass: user/123
 
-### Các key word cho dự án, các bạn có thể hỏi làm gì, là ai, bot có thể làm toán mà không cần câu lệnh chính xac:
+### Các keyword cho dự án, ngoài các keyword chính xác, các bạn có thể hỏi thêm làm gì, là ai, bot có thể làm toán mà không cần câu lệnh chính xác....:
+```
 keyword:
     app_cooking_recipe:
         - 'làm bánh'
@@ -274,4 +275,4 @@ keyword:
         - 'vị trí'
         - 'ở đâu'
 
-
+```
