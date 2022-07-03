@@ -4,7 +4,36 @@ from .recognize import *
 from .record import *
 from .ml import *
 import requests, time, random
-from knowledge_base import header
+from bs4 import BeautifulSoup
+# from knowledge_base import header
+def get_free_proxies():
+    url = "https://free-proxy-list.net/"
+    # request and grab content
+    soup = BeautifulSoup(requests.get(url).content, 'html.parser')
+    # to store proxies
+    proxies = []
+    for row in soup.find("table", attrs={"class": "table table-striped table-bordered"}).find_all("tr")[1:]:
+        tds = row.find_all("td")
+        try:
+            ip = tds[0].text.strip()
+            port = tds[1].text.strip()
+            proxies.append(str(ip) + ":" + str(port))
+        except IndexError:
+            continue
+    return proxies
+proxies = get_free_proxies()
+def header(req_url):
+    proxy = random.choice(proxies)
+    phttp = "http://" + proxy
+    proxi = {'http': phttp}
+    #print (proxi)
+    session = requests.Session()
+    session.proxies = proxi
+    session.get(req_url)
+    session_cookies = session.cookies
+    cookies_dictionary = session_cookies.get_dict()
+    headers = {'origin': 'https://zalo.ai', 'referer': 'https://zalo.ai/experiments/vietnamese-questions-answering'}
+    return cookies_dictionary,headers,proxi
 def speech(using,freq = 44100,duration = 3,key=None, language="vi-VN", show_all=False):
     # Start recorder with the given values of 
     # duration and sample frequency
@@ -28,7 +57,7 @@ def speech(using,freq = 44100,duration = 3,key=None, language="vi-VN", show_all=
     elif using.lower()=='ml':
         text=ml('recording.wav')
     elif using.lower() == 'zstt':
-        tic = time.perf_counter()
+        #tic = time.perf_counter()
         url = 'https://zalo.ai/api/demo/v1/asr'
         files = {'file': open('recording.wav','rb')}
         req_url = 'https://zalo.ai/experiments/automation-speech-recognition'
@@ -38,9 +67,9 @@ def speech(using,freq = 44100,duration = 3,key=None, language="vi-VN", show_all=
             text = resp['result']['text']
         except:
             text = ''
-        toc = time.perf_counter()
-        print("Zalo: " + text)
-        print(f"Zalo take {toc - tic:0.4f} seconds")                
+        #toc = time.perf_counter()
+        #print("Zalo: " + text)
+        #print(f"Zalo take {toc - tic:0.4f} seconds")                
     else:
         text='engine not found'
     return text
