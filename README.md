@@ -10,6 +10,9 @@ Giải nén và dùng Phần mềm win32 disk imager để ghi ra thẻ:
 Gắn thẻ vào raspi đợi 1-2 phút, kết nối với mạng WiFi được raspi phát ra với tên "ViPi"
 ![image](https://user-images.githubusercontent.com/57694952/177024308-4e08fbea-c3b3-49f8-8f2a-de8f6910acef.png)
 
+Sau đó kết nối với mạng WIFI đang sử dụng; dùng PM putty để ssh vào pi với user/pass mặc định: pi/raspberry
+
+
 Chạy thêm lệnh sau:
 ```
 pip3 install pvporcupine==1.9.5
@@ -21,3 +24,5 @@ pip3 install pvporcupine==1.9.5
 pip3 uninstall google-assistant-library
 pip3 install google-assistant-library==1.1.0
 ```
+
+Đăng ký tài khoản json theo hướng dẫn" chờ cập nhật sau chưa tìm ra link"
