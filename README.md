@@ -49,12 +49,19 @@ Lưu ý chọn đúng cấu hình đang sử dụng:
 
 ![image](https://user-images.githubusercontent.com/57694952/177025400-ce34e980-afe9-47b8-8cfe-f8a5fe6c8d29.png)
 
-Dán API zalo vào để sử dụng Zalo
+2/ Dán API zalo vào để sử dụng Zalo
 ![image](https://user-images.githubusercontent.com/57694952/177025492-37121a1c-622a-463a-bc28-67b1cc344e26.png)
 
-Thay đổi cấu hình cho phù hợp với phần cứng
+3/ Thay đổi cấu hình cho phù hợp với phần cứng
 để điều âm lượng hãy hãy kiểm tra card âm thanh đang sử dụng và điền đúng vào (Master/ Heaphone/ hoặc Speaker...)
+
 ![image](https://user-images.githubusercontent.com/57694952/177025539-ad868848-4539-4862-a421-33cedaedc00f.png)
+
+Các Gpio được sử dụng trong code
+![image](https://user-images.githubusercontent.com/57694952/177025720-53f14834-2068-4210-94b9-17351a679ba3.png)
+
+
+Khởi động lại pi!
 
 
 Để sử dụng dashboar vào địa chỉ IP:5002
