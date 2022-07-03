@@ -4,11 +4,17 @@
 ```sh
 https://drive.google.com/file/d/1ieaSzrc-2UyGz9aGLrRTsiGR50K83pEh/view?usp=sharing
 ```
+Giải nén và dùng Phần mềm win32 disk imager để ghi ra thẻ:
+![image](https://user-images.githubusercontent.com/57694952/177024364-5aa1771e-fccd-4340-8a68-9a0ffa8490a2.png)
+
+Gắn thẻ vào raspi đợi 1-2 phút, kết nối với mạng WiFi được raspi phát ra với tên "ViPi"
+![image](https://user-images.githubusercontent.com/57694952/177024308-4e08fbea-c3b3-49f8-8f2a-de8f6910acef.png)
+
 Chạy thêm lệnh sau:
 ```
 pip3 install pvporcupine==1.9.5
 ```
-![image](https://user-images.githubusercontent.com/57694952/177024308-4e08fbea-c3b3-49f8-8f2a-de8f6910acef.png)
+
 
 Để sử dụng cho Raspberry Pi Zero 2 W/ Pi 3/ 3B+ trở lên cài thêm các lệnh sau
 ```
