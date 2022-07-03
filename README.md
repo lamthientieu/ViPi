@@ -8,7 +8,7 @@ Chạy thêm lệnh sau:
 ```
 pip3 install pvporcupine==1.9.5
 ```
-```
+
 Để sử dụng cho Raspberry Pi Zero 2 W/ Pi 3/ 3B+ trở lên cài thêm các lệnh sau
 ```
 pip3 uninstall google-assistant-library
