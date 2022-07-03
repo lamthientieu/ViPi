@@ -50,11 +50,11 @@ Gpios:
   stopbutton_music_AIY_pushbutton:
   - 0
 Home_Assistant:
-  control: Disabled
-  external_url: http://vipi.ducXXXX
+  control: Enabled
+  external_url: http://vipi.duckdns.org:8123
   internal_url: http://192.168.1.150:8123
   ratio: 70
-  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUXXXXXX
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIwZTE5MzBkMDkyZTA0NTBjYWI5ZGMxODkwYzIzMmM4YyIsImlhdCI6MTY1NDcwNDg1MCwiZXhwIjoxOTcwMDY0ODUwfQ.nZmydpKFlfkXJ-NNTr_-wYiNA_SOXqkXiChKePRM4Oo
 IR:
   IR_Control: Disabled
   Codes:
@@ -163,10 +163,13 @@ TextToSpeech:
   Voice_Gender: Female
   Voice_Region: South
   Zalo_API:
-  - E8mpp9RGC2rBAV6I58AXD3LXXXX
-  - K6ZFa1h0REz9CBXXXX
-  - 3K54SGXOvQI5DBPsbROxXXXX
-
+  - E8mpp9RGC2rBAV6I58AXD3LFQtDXE9TS
+  - K6ZFa1h0REz9CB0YWBTw8BOWgTjR2Z9j
+  - 3K54SGXOvQI5DBPsbROxm9ihNAv52xsm
+  - KeKjzmnQCUZpWFOSWghF4YqMqy6yQNUN
+  - zEMGSTKKRxC5s6m4MyUnBr3kSiiE4NM4
+  - Al8zWP6spuyEOM4LWjarw8KxChdMCspo
+  - AuWHzxuSI6N6h2NFXGMAUTql94aGmEU2
 Wakewords:
   Custom_Wakeword: Enabled
   Ok_Google: Enabled
@@ -175,7 +178,7 @@ Wakewords:
   - /home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn
   - /home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn
   Wakeword_Engine: Picovoice
-  access_key: ig4J30XXXX
+  access_key: ig4J30nReYupu9q6sDv0dIsYVo0i6SBbIHIaq8i931KBYygRH58SeA==
   sensitivities: 0.3
 Weather:
   control: Disabled
