@@ -32,85 +32,75 @@ from rpi_ws281x import PixelStrip, Color
 ROOT_PATH = os.path.realpath(os.path.join(__file__, '..', '..'))
 USER_PATH = os.path.realpath(os.path.join(__file__, '..', '..','..'))
 
-#1: Config_Mic
-# R2M: ReSpeaker 2-Mics
-# R4M: ReSpeaker 4-Mics
-# RUM: ReSpeaker Mic Array v2.0
-# USB: Usb soudcard
-
-#2: Config_Led:
-# R2M: 3 Led ReSpeaker 2-Mics
-# R4M: 12 Led ReSpeaker 4-Mics
-# RUM: 12 led ReSpeaker Mic Array v2.0
-# WS2: Led WS28x hoặc SK68XX
-
-#3: Config_Audio out:
-# RPI_H: Headphone 3.5 Raspberry
-# R2M_H: Headphone ReSpeaker 2-Mics
-# R2M_J: SPEAK ReSpeaker 2-Mics (cổng JST)
-# RUM_H: Headphone 3.5 ReSpeaker Mic Array v2.0
-
-
-#ctr_led
-
+audiosetup=''
 with open('{}/src/config.yaml'.format(ROOT_PATH),'r', encoding='utf8') as conf:
     configuration = yaml.safe_load(conf)
-try:
-    led_number=configuration['led_setup']['pixels']
-except:
-    led_number=12
-#1: Config_Mic
-mic_setup=''
-if configuration['mic_setup']['type']=="USB":
-    mic_setup=''
-elif configuration['mic_setup']['type']=="R4M":
-    mic_setup='R4M'
-elif configuration['mic_setup']['type']=="R2M":
-    mic_setup='R2M'
-elif configuration['mic_setup']['type']=="RUM":
-    mic_setup='RUM'
-elif configuration['mic_setup']['type']=="HAT":
-    mic_setup='HAT'
+if configuration['ctr_led']['type']=="GEN'":
+    audiosetup=''
+elif configuration['ctr_led']['type']=="R4M":
+    audiosetup='R4M'
+elif configuration['ctr_led']['type']=="R2M":
+    audiosetup='R2M'
+elif configuration['ctr_led']['type']=="RUM":
+    audiosetup='RUM'
+elif configuration['ctr_led']['type']=="WS2":
+    audiosetup='WS2'
 else:
-    mic_setup='bạn chưa chọn Mic'
+    audiosetup=''
+###ctr_vol
 
-    
-#2: Config_Led:
-led_setup=''
-if configuration['led_setup']['type']=="USB":
-    led_setup=''
-elif configuration['led_setup']['type']=="R4M":
-    led_setup='R4M'
-elif configuration['led_setup']['type']=="R2M":
-    led_setup='R2M'
-elif configuration['led_setup']['type']=="RUM":
-    led_setup='RUM'
-elif configuration['led_setup']['type']=="WS2":
-    led_setup='WS2'
+if configuration['ctr_vol']['type']=="JACK":
+    ctr_vol='JACK'
+elif configuration['ctr_vol']['type']=="R2M_H":
+    ctr_vol='R2M_H'
+elif configuration['ctr_vol']['type']=="R2M_J":
+    ctr_vol='R2M_J'
+elif configuration['ctr_vol']['type']=="RUM_H":
+    ctr_vol='RUM_H'
+elif configuration['ctr_vol']['type']=="HAT":
+    ctr_vol='HAT'
 else:
-    led_setup='bạn chưa chọn Led'
-
-#3: Config_Audio out:
-vol_setup=''
-if configuration['vol_setup']['type']=="RPI_H":
-    vol_setup='RPI_H'
-elif configuration['vol_setup']['type']=="R2M_H":
-    vol_setup='R2M_H'
-elif configuration['vol_setup']['type']=="R2M_J":
-    vol_setup='R2M_J'
-elif configuration['vol_setup']['type']=="RUM_H":
-    vol_setup='RUM_H'
-elif configuration['vol_setup']['type']=="HAT":
-    vol_setup='HAT'
+    ctr_vol='JACK'
+    
+print('Mic   : '+ audiosetup)
+print('Audio : '+ ctr_vol)
+if configuration['IR']['IR_Control']=='Enabled':
+    ircontrol=True
 else:
-    ctr_vol='bạn chưa chọn cổng xuất âm thanh'
-    
-    
-print('Mic setup : '+ mic_setup)
-print('Led setup : '+ led_setup)
-print('Pixels_led: '+ str(led_number))
+    ircontrol=False
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 
+#Indicators
+aiyindicator=configuration['Gpios']['AIY_indicator'][0]
+listeningindicator=configuration['Gpios']['assistant_indicators'][0]
+speakingindicator=configuration['Gpios']['assistant_indicators'][1]
+
+#Stopbutton
+stoppushbutton=configuration['Gpios']['stopbutton_music_AIY_pushbutton'][0]
+GPIO.setup(stoppushbutton, GPIO.IN, pull_up_down = GPIO.PUD_UP)
+GPIO.add_event_detect(stoppushbutton,GPIO.FALLING)
+
+#IR receiver
+if ircontrol:
+    irreceiver=configuration['Gpios']['ir'][0]
+    GPIO.setup(irreceiver, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+else:
+    irreceiver=None
+
+if (audiosetup=='AIY'):
+    GPIO.setup(aiyindicator, GPIO.OUT)
+    led=GPIO.PWM(aiyindicator,1)
+    led.start(0)
+    print('Initializing GPIO '+str(aiyindicator)+' for assistant activity indication')
+if (audiosetup=='GEN'):
+#    GPIO.setup(listeningindicator, GPIO.OUT)
+#    GPIO.setup(speakingindicator, GPIO.OUT)
+#    GPIO.output(listeningindicator, GPIO.LOW)
+#    GPIO.output(speakingindicator, GPIO.LOW)
+#    print('Initializing GPIOs '+str(listeningindicator)+' and '+str(speakingindicator)+' for assistant activity indication')
+    pass
 class GoogleHomeLedPattern(object):
     def __init__(self, show=None):
         self.basis = numpy.array([0] * 4 * 12)
@@ -415,13 +405,11 @@ class PixelRing:
     def off(self):
         self.mono(0)
 
-    def wakeup(self,color,direction=None):
-        if color == None:
-            self.write(2)
-        else:
-            self.write(1, [(color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF, 0])
-    def listen(self):
+    def listen(self, direction=None):
         self.write(2)
+
+    wakeup = listen
+
     def speak(self):
         self.write(3)
 
@@ -463,10 +451,10 @@ class PixelRing:
         close the interface
         """
         usb.util.dispose_resources(self.dev)
-##start ws2812 With WS2
-class ws2812_apa102:
+##start ws2812
+class ws2812:
     PIXELS_N = 3
-    LED_COUNT = led_number      # Number of LED pixels.
+    LED_COUNT = 16       # Number of LED pixels.
     #LED_PIN = 12         # GPIO pin connected to the pixels (18 uses PWM!).
     LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
     LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
@@ -492,81 +480,23 @@ class ws2812_apa102:
         self.strip.begin()
 ##
 
-    # def colorWipe(self,strip, color, wait_ms=5):
-        # """Wipe color across display a pixel at a time."""
-        # for i in range(self.strip.numPixels()):
-            # self.strip.setPixelColor(i, color)
-            # self.strip.show()
-            # time.sleep(wait_ms / 2000.0)
-    # def theaterChase(self,strip, color, wait_ms=5, iterations=1):
-        # """Movie theater light style chaser animation."""
-        # for j in range(iterations):
-            # for q in range(3):
-                # for i in range(0, self.strip.numPixels(), 3):
-                    # strip.setPixelColor(i + q, color)
-                # self.strip.show()
-                # time.sleep(wait_ms / 2000.0)
-                # for i in range(0, strip.numPixels(), 3):
-                    # self.strip.setPixelColor(i + q, 0)
-    # def wheel(self,pos):
-        # """Generate rainbow colors across 0-255 positions."""
-        # if pos < 85:
-            # return Color(pos * 3, 255 - pos * 3, 0)
-        # elif pos < 170:
-            # pos -= 85
-            # return Color(255 - pos * 3, 0, pos * 3)
-        # else:
-            # pos -= 170
-            # return Color(0, pos * 3, 255 - pos * 3)
-    # def rainbow(self,strip, wait_ms=5, iterations=1):
-        # """Draw rainbow that fades across all pixels at once."""
-        # for j in range(256 * iterations):
-            # for i in range(self.strip.numPixels()):
-                # self.strip.setPixelColor(i, self.wheel((i + j) & 255))
-            # self.strip.show()
-            # time.sleep(wait_ms / 2000.0)
-    # def rainbowCycle(self,strip, wait_ms=5, iterations=1):
-        # """Draw rainbow that uniformly distributes itself across all pixels."""
-        # for j in range(256 * iterations):
-            # for i in range(self.strip.numPixels()):
-                # self.strip.setPixelColor(i, self.wheel(
-                    # (int(i * 256 / strip.numPixels()) + j) & 255))
-            # self.strip.show()
-            # time.sleep(wait_ms / 2000.0)
-    # def theaterChaseRainbow(self,strip, wait_ms=5):
-        # """Rainbow movie theater light style chaser animation."""
-        # for j in range(256):
-            # for q in range(1):
-                # for i in range(0, self.strip.numPixels(), 3):
-                    # self.strip.setPixelColor(i + q, self.wheel((i + j) % 255))
-                # self.strip.show()
-                # time.sleep(wait_ms / 2500.0)
-                # for i in range(0, strip.numPixels(), 3):
-                    # self.strip.setPixelColor(i + q, 0)
-
-
-# Define functions which animate LEDs in various ways.
-    def colorWipe(strip, color, wait_ms=50):
+    def colorWipe(self,strip, color, wait_ms=5):
         """Wipe color across display a pixel at a time."""
-        for i in range(strip.numPixels()):
-            strip.setPixelColor(i, color)
-            strip.show()
-            time.sleep(wait_ms / 1000.0)
-
-
-    def theaterChase(strip, color, wait_ms=50, iterations=10):
+        for i in range(self.strip.numPixels()):
+            self.strip.setPixelColor(i, color)
+            self.strip.show()
+            time.sleep(wait_ms / 2000.0)
+    def theaterChase(self,strip, color, wait_ms=5, iterations=1):
         """Movie theater light style chaser animation."""
         for j in range(iterations):
             for q in range(3):
-                for i in range(0, strip.numPixels(), 3):
+                for i in range(0, self.strip.numPixels(), 3):
                     strip.setPixelColor(i + q, color)
-                strip.show()
-                time.sleep(wait_ms / 1000.0)
+                self.strip.show()
+                time.sleep(wait_ms / 2000.0)
                 for i in range(0, strip.numPixels(), 3):
-                    strip.setPixelColor(i + q, 0)
-
-
-    def wheel(pos):
+                    self.strip.setPixelColor(i + q, 0)
+    def wheel(self,pos):
         """Generate rainbow colors across 0-255 positions."""
         if pos < 85:
             return Color(pos * 3, 255 - pos * 3, 0)
@@ -576,39 +506,36 @@ class ws2812_apa102:
         else:
             pos -= 170
             return Color(0, pos * 3, 255 - pos * 3)
-
-
-    def rainbow(strip, wait_ms=20, iterations=1):
+    def rainbow(self,strip, wait_ms=5, iterations=1):
         """Draw rainbow that fades across all pixels at once."""
         for j in range(256 * iterations):
-            for i in range(strip.numPixels()):
-                strip.setPixelColor(i, wheel((i + j) & 255))
-            strip.show()
-            time.sleep(wait_ms / 1000.0)
-
-
-    def rainbowCycle(strip, wait_ms=20, iterations=5):
+            for i in range(self.strip.numPixels()):
+                self.strip.setPixelColor(i, self.wheel((i + j) & 255))
+            self.strip.show()
+            time.sleep(wait_ms / 2000.0)
+    def rainbowCycle(self,strip, wait_ms=5, iterations=1):
         """Draw rainbow that uniformly distributes itself across all pixels."""
         for j in range(256 * iterations):
-            for i in range(strip.numPixels()):
-                strip.setPixelColor(i, wheel(((i * 256 // strip.numPixels()) + j) & 255))
-            strip.show()
-            time.sleep(wait_ms / 1000.0)
-
-
-    def theaterChaseRainbow(strip, wait_ms=50):
+            for i in range(self.strip.numPixels()):
+                self.strip.setPixelColor(i, self.wheel(
+                    (int(i * 256 / strip.numPixels()) + j) & 255))
+            self.strip.show()
+            time.sleep(wait_ms / 2000.0)
+    def theaterChaseRainbow(self,strip, wait_ms=5):
         """Rainbow movie theater light style chaser animation."""
         for j in range(256):
-            for q in range(3):
+            for q in range(1):
+                for i in range(0, self.strip.numPixels(), 3):
+                    self.strip.setPixelColor(i + q, self.wheel((i + j) % 255))
+                self.strip.show()
+                time.sleep(wait_ms / 2500.0)
                 for i in range(0, strip.numPixels(), 3):
-                    strip.setPixelColor(i + q, wheel((i + j) % 255))
-                strip.show()
-                time.sleep(wait_ms / 1000.0)
-                for i in range(0, strip.numPixels(), 3):
-                    strip.setPixelColor(i + q, 0)
-    ##
+                    self.strip.setPixelColor(i + q, 0)
+
+##
 
     def wakeup(self):
+           
         self.next.set()
         self.queue.put(self._wakeup)
         self.queue.put(self._off_apa)        
@@ -638,330 +565,246 @@ class ws2812_apa102:
             func()
           
     def _wakeup(self,direction=0):
+        self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 255, 0))
         self.colorWipe(self.strip, Color(127, 0, 0))
         self.colorWipe(self.strip, Color(0, 0, 0))
     def _listen(self):
+        self.write([0] * 3 * self.PIXELS_N)
         self.rainbow(self.strip)
         self.colorWipe(self.strip, Color(0, 0, 0))
     def _think(self):
+        self.write([0] * 3 * self.PIXELS_N)
         self.theaterChaseRainbow(self.strip)
         self.colorWipe(self.strip, Color(0, 127, 255))         
-        self.colorWipe(self.strip, Color(0, 0, 0))           
+        self.colorWipe(self.strip, Color(0, 0, 0))
+        self.write([0] * 3 * self.PIXELS_N)                
     def _speak(self):
+        self.write([0] * 3 * self.PIXELS_N)
         self.theaterChaseRainbow(self.strip)
+        self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 0, 0))
     def _off(self):
+        self.write([0] * 3 * self.PIXELS_N)
         self.colorWipe(self.strip, Color(0, 0, 0))
+        self.write([0] * 3 * self.PIXELS_N)
     def _mute(self):
         self.colorWipe(self.strip, Color(255, 0, 0))
     def _off_apa(self):
         self.write([0] * 3 * self.PIXELS_N)
-    def _volume(self, volume):
-        LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-        LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
-        LED_DMA = 10          # DMA channel to use for generating signal (try 10)
-        LED_BRIGHTNESS = 250  # Set to 0 for darkest and 255 for brightest
-        LED_INVERT = False    # True to invert the signal (when using NPN transistor level shift)
-        LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
-        LED_COUNT_1=round(volume/(100/led_number))
-        strip1 = PixelStrip(LED_COUNT_1, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
-        strip1.begin()    
-        for i in range(strip1.numPixels()):
-            strip1.setPixelColor(i, Color(0, 0, 255))
-            strip1.show()
-            time.sleep(0.07)
-            
     def write(self, colors):
         for i in range(self.PIXELS_N):
             self.dev.set_pixel(i, int(colors[3*i]), int(colors[3*i + 1]), int(colors[3*i + 2]))
         self.dev.show()
-
-#W2812
-class ws2812:
-    PIXELS_N = 3
-    LED_COUNT = led_number      # Number of LED pixels.
-    #LED_PIN = 12         # GPIO pin connected to the pixels (18 uses PWM!).
-    LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-    LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
-    LED_DMA = 10          # DMA channel to use for generating signal (try 10)
-    LED_BRIGHTNESS = 250  # Set to 0 for darkest and 255 for brightest
-    LED_INVERT = False    # True to invert the signal (when using NPN transistor level shift)
-    LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
-    strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
-    
-    def __init__(self):
-        # self.basis[0] = 2
-        # self.basis[3] = 1
-        # self.basis[4] = 1
-        # self.basis[7] = 2
-        self.next = threading.Event()
-        self.queue = Queue.Queue()
-        self.ws2 = threading.Thread(target=self._run)
-        self.ws2.daemon = True
-        self.ws2.start()
-        self.strip.begin()
-##
-
-    # def colorWipe(self,strip, color, wait_ms=5):
-        # """Wipe color across display a pixel at a time."""
-        # for i in range(self.strip.numPixels()):
-            # self.strip.setPixelColor(i, color)
-            # self.strip.show()
-            # time.sleep(wait_ms / 2000.0)
-    # def theaterChase(self,strip, color, wait_ms=5, iterations=1):
-        # """Movie theater light style chaser animation."""
-        # for j in range(iterations):
-            # for q in range(3):
-                # for i in range(0, self.strip.numPixels(), 3):
-                    # strip.setPixelColor(i + q, color)
-                # self.strip.show()
-                # time.sleep(wait_ms / 2000.0)
-                # for i in range(0, strip.numPixels(), 3):
-                    # self.strip.setPixelColor(i + q, 0)
-    # def wheel(self,pos):
-        # """Generate rainbow colors across 0-255 positions."""
-        # if pos < 85:
-            # return Color(pos * 3, 255 - pos * 3, 0)
-        # elif pos < 170:
-            # pos -= 85
-            # return Color(255 - pos * 3, 0, pos * 3)
-        # else:
-            # pos -= 170
-            # return Color(0, pos * 3, 255 - pos * 3)
-    # def rainbow(self,strip, wait_ms=5, iterations=1):
-        # """Draw rainbow that fades across all pixels at once."""
-        # for j in range(256 * iterations):
-            # for i in range(self.strip.numPixels()):
-                # self.strip.setPixelColor(i, self.wheel((i + j) & 255))
-            # self.strip.show()
-            # time.sleep(wait_ms / 2000.0)
-    # def rainbowCycle(self,strip, wait_ms=5, iterations=1):
-        # """Draw rainbow that uniformly distributes itself across all pixels."""
-        # for j in range(256 * iterations):
-            # for i in range(self.strip.numPixels()):
-                # self.strip.setPixelColor(i, self.wheel(
-                    # (int(i * 256 / strip.numPixels()) + j) & 255))
-            # self.strip.show()
-            # time.sleep(wait_ms / 2000.0)
-    # def theaterChaseRainbow(self,strip, wait_ms=5):
-        # """Rainbow movie theater light style chaser animation."""
-        # for j in range(256):
-            # for q in range(1):
-                # for i in range(0, self.strip.numPixels(), 3):
-                    # self.strip.setPixelColor(i + q, self.wheel((i + j) % 255))
-                # self.strip.show()
-                # time.sleep(wait_ms / 2500.0)
-                # for i in range(0, strip.numPixels(), 3):
-                    # self.strip.setPixelColor(i + q, 0)
-    def colorWipe(self,strip, color, wait_ms=5):
-        """Wipe color across display a pixel at a time."""
-        for i in range(self.strip.numPixels()):
-            self.strip.setPixelColor(i, color)
-            self.strip.show()
-            time.sleep(wait_ms / 2000.0)
-    def theaterChase(self,strip, color, wait_ms=5, iterations=1):
-        """Movie theater light style chaser animation."""
-        for j in range(iterations):
-            for q in range(3):
-                for i in range(0, self.strip.numPixels(), 3):
-                    strip.setPixelColor(i + q, color)
-                self.strip.show()
-                time.sleep(wait_ms / 2000.0)
-                for i in range(0, strip.numPixels(), 3):
-                    self.strip.setPixelColor(i + q, 0)
-    def wheel(self,pos):
-        """Generate rainbow colors across 0-255 positions."""
-        if pos < 85:
-            return Color(pos * 3, 255 - pos * 3, 0)
-        elif pos < 170:
-            pos -= 85
-            return Color(255 - pos * 3, 0, pos * 3)
-        else:
-            pos -= 170
-            return Color(0, pos * 3, 255 - pos * 3)
-    # def rainbow(self,strip, wait_ms=5, iterations=1):
-        # """Draw rainbow that fades across all pixels at once."""
-        # for j in range(256 * iterations):
-            # for i in range(self.strip.numPixels()):
-                # self.strip.setPixelColor(i, self.wheel((i + j) & 255))
-            # self.strip.show()
-            # time.sleep(wait_ms / 2000.0)
-            
-    def rainbow(self, strip, wait_ms=20, iterations=1):
-        """Draw rainbow that fades across all pixels at once."""
-        if not self.running: return
-        for j in range(256 * iterations):
-            if not self.running: break
-            for i in range(strip.numPixels()):
-                if not self.running: break
-                strip.setPixelColor(i,self.wheel((i + j) & 255))
-            strip.show()
-            time.sleep(wait_ms / 1000.0)
-    def rainbowCycle(self,strip, wait_ms=5, iterations=1):
-        """Draw rainbow that uniformly distributes itself across all pixels."""
-        for j in range(256 * iterations):
-            for i in range(self.strip.numPixels()):
-                self.strip.setPixelColor(i, self.wheel(
-                    (int(i * 256 / strip.numPixels()) + j) & 255))
-            self.strip.show()
-            time.sleep(wait_ms / 2000.0)
-    def theaterChaseRainbow(self,strip, wait_ms=5):
-        """Rainbow movie theater light style chaser animation."""
-        for j in range(256):
-            for q in range(1):
-                for i in range(0, self.strip.numPixels(), 3):
-                    self.strip.setPixelColor(i + q, self.wheel((i + j) % 255))
-                self.strip.show()
-                time.sleep(wait_ms / 2500.0)
-                for i in range(0, strip.numPixels(), 3):
-                    self.strip.setPixelColor(i + q, 0)
-##
-
-    def wakeup(self):
-        self.next.set()
-        self.queue.put(self._wakeup)     
-        
-    def listen(self):
-        self.next.set()
-        self.queue.put(self._listen)
-    def think(self):
-        self.next.set()
-        self.queue.put(self._think)
-    def speak(self):
-        self.next.set()
-        self.queue.put(self._speak)
-    def off(self):
-        self.next.set()
-        self.queue.put(self._off)
-    def mute(self):
-        self.next.set()
-        self.queue.put(self._mute)
-    def _run(self):
-        while True:
-            func = self.queue.get()
-            func()
-          
-    def _wakeup(self,direction=0):
-        self.colorWipe(self.strip, Color(0, 255, 0))
-        self.colorWipe(self.strip, Color(127, 0, 0))
-        self.colorWipe(self.strip, Color(0, 255, 0))
-        self.colorWipe(self.strip, Color(0, 0, 0))
-    def _listen(self):
-        self.rainbow(self.strip)
-        self.rainbow(self.strip)
-        self.colorWipe(self.strip, Color(0, 0, 0))
-    def _think(self):
-        self.theaterChaseRainbow(self.strip)
-        self.colorWipe(self.strip, Color(0, 127, 255))
-        self.theaterChaseRainbow(self.strip)
-        self.colorWipe(self.strip, Color(0, 127, 255))           
-        self.colorWipe(self.strip, Color(0, 0, 0))             
-    def _speak(self):
-        # self.theaterChaseRainbow(self.strip)
-        # self.theaterChaseRainbow(self.strip)
-        # self.colorWipe(self.strip, Color(0, 0, 0))
-        # while True:
-            # Color wipe animations.
-        self.colorWipe(self.strip, Color(255, 0, 0))  # Red wipe
-        self.colorWipe(self.strip, Color(0, 255, 0))  # Blue wipe
-        self.colorWipe(self.strip, Color(0, 0, 255))  # Green wipe
-        self.colorWipe(self.strip, Color(0, 0, 0, 255))  # White wipe
-        self.colorWipe(self.strip, Color(255, 255, 255))  # Composite White wipe
-        self.colorWipe(self.strip, Color(255, 255, 255, 255))  # Composite White + White LED wipe
-        # Theater chase animations.
-        self.theaterChase(self.strip, Color(127, 0, 0))  # Red theater chase
-        self.theaterChase(self.strip, Color(0, 127, 0))  # Green theater chase
-        self.theaterChase(self.strip, Color(0, 0, 127))  # Blue theater chase
-        self.theaterChase(self.strip, Color(0, 0, 0, 127))  # White theater chase
-        self.theaterChase(self.strip, Color(127, 127, 127, 0))  # Composite White theater chase
-        self.theaterChase(self.strip, Color(127, 127, 127, 127))  # Composite White + White theater chase
-        # Rainbow animations.
-        self.rainbow(self.strip)
-        self.rainbowCycle(self.strip)
-        self.theaterChaseRainbow(self.strip)
-    def _off(self):
-        self.colorWipe(self.strip, Color(0, 0, 0))
-    def _mute(self):
-        self.colorWipe(self.strip, Color(255, 0, 0))
-    def _volume(self, volume):
-        LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
-        LED_FREQ_HZ = 800000  # LED signal frequency in hertz (usually 800khz)
-        LED_DMA = 10          # DMA channel to use for generating signal (try 10)
-        LED_BRIGHTNESS = 250  # Set to 0 for darkest and 255 for brightest
-        LED_INVERT = False    # True to invert the signal (when using NPN transistor level shift)
-        LED_CHANNEL = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
-        LED_COUNT_1=round(volume/(100/led_number))
-        st = PixelStrip(LED_COUNT_1, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
-        st.begin()    
-        for i in range(st.numPixels()):
-            st.setPixelColor(i, Color(0, 0, 255))
-            st.show()
-            time.sleep(0.07)
-            
-        
 ## end ws2812
 def find(vid=0x2886, pid=0x0018):
     dev = usb.core.find(idVendor=vid, idProduct=pid)
     if not dev:
         return
+
+    # configuration = dev.get_active_configuration()
+
+    # interface_number = None
+    # for interface in configuration:
+    #     interface_number = interface.bInterfaceNumber
+
+    #     if dev.is_kernel_driver_active(interface_number):
+    #         dev.detach_kernel_driver(interface_number)
+
     return PixelRing(dev)
 
-
-    # find =find()
-if led_setup=='R2M':
+if audiosetup=='R2M':
     pixels=Pixels2mic()
-elif led_setup=='WS2':
+elif audiosetup=='WS2':
     pixels = ws2812()
-elif led_setup =='R4M':
-    pixels = Pixels4mic()
-elif led_setup=='RUM':
-    pixels = find()
-def off_led_ring():
-    off_led_ring=find()
-    off_led_ring.off()
+elif audiosetup=='R4M':
+    pixels=Pixels4mic()
+elif audiosetup=='RUM':
+    pixel_ring = find()
+elif audiosetup=='GOO':
+    pixel_ring = find()
+elif audiosetup=='ALE':
+    pixel_ring = AlexaLedPattern()
 
-def ctr_led(state):
-    if led_setup=='R2M':
-        pixels=Pixels2mic()
-    elif led_setup=='WS2':
-        pixels = ws2812()
-    elif led_setup =='R4M':
-        pixels = Pixels4mic()
-    elif led_setup=='RUM':
-        pixels = find()
-        
-    state=state.lower()
-    if state=='wakeup':
-        if led_setup=='RUM':
-        #tra bảng màu tại: https://www.usbhddboot.xyz/2019/10/hex-code.html
-            pixels.wakeup(0xFF0000)
-        else:
+
+def ctr_led(activity):
+    activity=activity.lower()
+#########  wakeup  #########
+    if activity=='wakeup':
+        if (audiosetup=='GEN'):
+            GPIO.output(speakingindicator,GPIO.LOW)
+            GPIO.output(listeningindicator,GPIO.HIGH)
+        elif (audiosetup=='R2M' or audiosetup=='R4M'):
             pixels.wakeup()
-    elif state=='think':
-        pixels.think()                
-    elif state=='listen':
-        pixels.listen()
-    elif state=='speak':
-        pixels.speak()
-    elif (state=='on' or state=='mute'):
-        if (led_setup=='RUM'):
-            pixels.mono(0xFF6600)#màu cam:
-        else:
+        elif (audiosetup=='WS2'):
+            pixels.wakeup()
+        elif (audiosetup=='AIY'):
+            led.ChangeDutyCycle(75)
+        elif (audiosetup=='RUM'):
+            pixel_ring.wakeup()
+        elif (audiosetup=='ALE'):
+            pixels.wakeup()              
+#########  think  #########
+    if activity=='think':
+        if (audiosetup=='GEN'):
+            GPIO.output(speakingindicator,GPIO.LOW)
+            GPIO.output(listeningindicator,GPIO.HIGH)
+        elif (audiosetup=='R2M' or audiosetup=='R4M'):
+            pixels.think()
+        elif (audiosetup=='WS2'):
+            pixels.think()
+        elif (audiosetup=='AIY'):
+            led.ChangeDutyCycle(75)
+        elif (audiosetup=='RUM'):
+            pixel_ring.think()
+        elif (audiosetup=='ALE'):
+            pixels.think()                           
+#########  listening  #########
+    if activity=='listening':
+        if (audiosetup=='GEN'):
+            GPIO.output(speakingindicator,GPIO.LOW)
+            GPIO.output(listeningindicator,GPIO.HIGH)
+        elif (audiosetup=='R2M' or audiosetup=='R4M'):
+            pixels.listen()
+        elif (audiosetup=='WS2'):
+            pixels.listen()
+        elif (audiosetup=='AIY'):
+            led.ChangeDutyCycle(75)
+        elif (audiosetup=='RUM'):
+            pixel_ring.listen()
+        elif (audiosetup=='ALE'):
+            pixels.listen()           
+#########  speaking #########
+    elif activity=='speaking':
+        if (audiosetup=='GEN'):
+            GPIO.output(speakingindicator,GPIO.HIGH)
+            GPIO.output(listeningindicator,GPIO.LOW)
+        elif (audiosetup=='R2M' or audiosetup=='R4M'):
+            pixels.speak()
+        elif (audiosetup=='WS2'):
+            pixels.speak()
+        elif (audiosetup=='AIY'):
+            led.ChangeDutyCycle(50)
+        elif (audiosetup=='RUM'):
+            pixel_ring.speak()
+        elif (audiosetup=='ALE'):
+            pixels.speak()            
+#########  off/unmute #########
+    elif (activity=='off' or activity=='unmute'):
+        if (audiosetup=='GEN'):
+            GPIO.output(speakingindicator,GPIO.LOW)
+            GPIO.output(listeningindicator,GPIO.LOW)
+        elif (audiosetup=='R2M' or audiosetup=='R4M'):
+            pixels.off()
+        elif (audiosetup=='WS2'):
+            pixels.off()
+        elif (audiosetup=='AIY'):
+            led.ChangeDutyCycle(0)
+        elif (audiosetup=='RUM'):
+            pixel_ring.off()
+        elif (audiosetup=='ALE'):
+            pixels.pixels.off()              
+#########  start bot #########        
+    if activity=='wakeup':
+        if (audiosetup=='GEN'):
+            GPIO.output(speakingindicator,GPIO.LOW)
+            GPIO.output(listeningindicator,GPIO.HIGH)
+        elif (audiosetup=='R2M' or audiosetup=='R4M'):
+            pixels.wakeup()
+        elif (audiosetup=='WS2'):
+            pixels.wakeup()
+        elif (audiosetup=='AIY'):
+            led.ChangeDutyCycle(75)
+        elif (audiosetup=='RUM'):
+            pixel_ring.wakeup()
+        elif (audiosetup=='ALE'):
+            pixels.wakeup()   
+           
+#########  on/mute #########
+    elif (activity=='on' or activity=='mute'):
+        if (audiosetup=='GEN'):
+            GPIO.output(speakingindicator,GPIO.HIGH)
+            GPIO.output(listeningindicator,GPIO.HIGH)
+        elif (audiosetup=='R2M' or audiosetup=='R4M'):
             pixels.mute()
-    elif (state=='off' or state=='unmute'):
-        pixels.off()
-def ctr_vol_led(volume):
-    if led_setup=='WS2':
-        pixels._volume(volume)
-        time.sleep(1.0)
-        pixels.off()       
-    elif led_setup=='RUM':
-        if volume<9:
-            pixels.set_volume(0)
-        else:
-            pixels.set_volume(round(volume/10)-1)
+        elif (audiosetup=='AIY'):
+            led.ChangeDutyCycle(100)
+        elif (audiosetup=='RUM'):
+            pixel_ring.mono(0xFF0000)
+        elif (audiosetup=='ALE'):
+            pixels.pixels.off()  
+        elif (audiosetup=='WS2'):
+            pixels.mute()
+#########  ctr_vol #########
+  # 1. 'JACK'    ---> audio out JACK 3.5 Pi
+  # 2. 'R2M_H'   ---> audio out Heatphone 3.5 Respeaker-2-Mic
+  # 3. 'R2M_J'   ---> audio out JST Respeaker-2-Mic
+  # 4. 'RUM_H'   ---> audio out Heatphone 3.5 Respeaker-USB-Mic
+  # 5. 'HAT'     ---> audio out i2s
+
+#def vol_level(level):
+
+#########  vol_level  #########
+def vol_level(usrcmd):
+    if any(char.isdigit() for char in str(usrcmd)):
+        for changevollevel in re.findall(r'\b\d+\b', str(usrcmd)):
+            vol=int(changevollevel)
     else:
-        pass
-
-
+        vol=0
+        print(vol)
+    if int(vol)>100: 
+        if (ctr_vol=='JACK'):
+            os.system("amixer set Headphone 1000")
+        elif (ctr_vol=='R2M_H'):
+            os.system("amixer set Headphone 100%")
+        elif (ctr_vol=='R2M_J'):
+            os.system("amixer set Speaker 100%")
+        elif (ctr_vol=='RUM_H'):
+            os.system("amixer set Headphone 100%")
+        elif (ctr_vol=='HAT'):
+            os.system("amixer set Master 100%")
+    if int(vol)>0 and int(vol)<101:
+        setvol=str(vol)
+        if (ctr_vol=='JACK'):
+            os.system("amixer set Headphone "+setvol+"%")
+        elif (ctr_vol=='R2M_H'):
+            os.system("amixer set Headphone "+setvol+"%")
+        elif (ctr_vol=='R2M_J'):
+            os.system("amixer set Speaker "+setvol+"%")
+        elif (ctr_vol=='RUM_H'):
+            os.system("amixer set Headphone "+setvol+"%")
+        elif (ctr_vol=='HAT'):
+            os.system('amixer set Master '+setvol+'%')
+    if int(vol)==0:
+        if 'tăng' in str(usrcmd).lower() or 'to lên' in str(usrcmd).lower() or 'lớn lên' in str(usrcmd).lower():
+            vol_up()
+        elif 'giảm' in str(usrcmd).lower() or 'nhỏ xuống' in str(usrcmd).lower() or 'nhỏ lại' in str(usrcmd).lower():
+            vol_down()
+def vol_up():
+#########  vol_up #########
+    if (ctr_vol=='JACK'):
+        os.system("amixer set Headphone 100+")
+    elif (ctr_vol=='R2M_H'):
+        os.system("amixer set Headphone 5%+")
+    elif (ctr_vol=='R2M_J'):
+        os.system("amixer set Speaker 5%+")
+    elif (ctr_vol=='RUM_H'):
+        os.system("amixer set Headphone 5%+")
+    elif (ctr_vol=='HAT'):
+        os.system("amixer set Master 8+")
+#########  vol_down  #########
+def vol_down():
+    if (ctr_vol=='JACK'):
+        os.system("amixer set Headphone 100-")
+    elif (ctr_vol=='R2M_H'):
+        os.system("amixer set Headphone 5%-")
+    elif (ctr_vol=='R2M_J'):
+        os.system("amixer set Speaker 5%-")
+    elif (ctr_vol=='RUM_H'):
+        os.system("amixer set Headphone 5%-")
+    elif (ctr_vol=='HAT'):
+        os.system("amixer set Master 8-")
+        
+        
+        
+ 
