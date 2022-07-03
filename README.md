@@ -57,7 +57,18 @@ Lưu ý chọn đúng cấu hình đang sử dụng:
 
 ![image](https://user-images.githubusercontent.com/57694952/177025539-ad868848-4539-4862-a421-33cedaedc00f.png)
 
-Các Gpio được sử dụng trong code
+Các Gpio được sử dụng trong code, các bạn có thể thay đổi nhưng không phải GPIO nào cũng dùng được:
+
+(Gpio_left:   Bấm 1 lần: Giảm âm lượng
+              Bấm 2 lần: Mở bài hát trước
+            
+ Gpio_right:  Bấm 1 lần: tăng âm lượng
+              Bấm 2 lần: Next bài hát
+             
+ Gpio_center: Bấm 1 lần: gọi ViPi
+              Bấm 2 lần: stop/play)
+                
+
 ![image](https://user-images.githubusercontent.com/57694952/177025720-53f14834-2068-4210-94b9-17351a679ba3.png)
 
 
@@ -67,3 +78,200 @@ Khởi động lại pi!
 Để sử dụng dashboar vào địa chỉ IP:5002
 
 Để xem log vào địa chỉ IP:9001 với user/pass: user/123
+
+### Các key word cho dự án, các bạn có thể hỏi làm gì, là ai, bot có thể làm toán mà không cần câu lệnh chính xac:
+keyword:
+    app_cooking_recipe:
+        - 'làm bánh'
+        - 'nấu món'
+        - 'cách làm món'
+    app_hour_schedule:
+        - 'một giờ'
+        - 'hai giờ'
+        - 'ba giờ'
+        - 'bốn giờ'
+        - 'năm giờ'
+        - 'sáu giờ'
+        - 'bẩy giờ'
+        - 'tám giờ'
+        - 'chín giờ'
+        - 'mười một giờ'
+        - 'mười hai giờ'
+    app_minutue_schedule:
+        - 'năm phút'
+        - 'mười phút'
+        - 'mười năm phút'
+        - 'hai mươi năm phút'
+        - 'ba mươi phút'
+        - 'ba mươi năm phút'
+        - 'bốn mươi phút'
+        - 'bốn mươi năm phút'
+        - 'năm mươi phút'
+        - 'năm mươi năm phút'
+    app_lunar_calendar:
+        - 'ngày âm'
+        - 'lịch âm'
+        - 'mồng mấy'
+        - 'mùng mấy'
+        - 'âm lịch hôm nay'
+        - 'âm lịch ngày mai'
+        - 'âm lịch ngày kia'
+    app_read_story:
+        - 'truyện cười'
+        - 'kể truyện'
+        - 'đọc truyện'
+        - 'tìm truyện'
+        - 'câu chuyệN'
+        - 'kể chuyện'
+    app_music_play:
+        - 'phát bài hát'
+        - 'phát bài nhạc'
+        - 'hát nhạc'
+        - 'phát nhạc'
+        - 'chơi nhạc'
+        - 'hát bài'
+        - 'bài hát'
+        - 'bài nhạc'
+    app_music_random:
+        - 'ca nhạc'
+    med_radio_play:
+        - 'nghe đài'
+        - 'radio'
+        - 'đài phát thanh'
+    app_music_auto:
+        - 'nghe playlist'
+        - 'nghe danh sách'
+        - 'phát danh sách'
+        - 'phát playlist'
+        - 'phát album'
+        - 'nghe album'
+        - 'danh sách'
+        - 'list nhạc'
+        - 'abum'
+    med_chromecast_play:
+        - 'trên loa'
+        - 'trên tivi'
+    med_custom_weather:
+        - 'dự báo thời tiết'
+        - 'mưa hay nắng'
+        - 'thời tiết'
+    med_news_radio:
+        - 'đọc báo'
+        - 'báo nói'
+        - 'tin mới'
+        - 'tin tức'
+    med_read_note:
+        - 'sinh nhật của'
+        - 'ngày sinh của'
+        - 'ngày sinh'
+    med_translate_language:
+        - 'thông dịch'
+        - 'phiên dịch'
+        - 'dịch thuật'
+        - 'dịch tự động'        
+    med_stop_music:
+        - 'tắt nhạc'
+        - 'dừng nhạc'
+        - 'stop music'
+    med_next_player:
+        - 'tiếp theo'
+        - 'kế tiếp'
+    med_pause_player:
+        - 'tạm dừng'
+        - 'phát lại'
+    med_continue_player:
+        - 'tiếp tục'
+    med_previous_player:
+        - 'phát lại'
+        - 'chơi lại'
+    med_volume_ctr:
+        - 'âm lượng'
+        - 'âm thanh'
+        - 'volume'
+    med_setup_volume:
+        - 'thiết lập'
+        - 'cài đặt'
+    app_speedtest_net:
+        - 'tốc độ đường truyền'
+        - 'chất lượng đường truyền'
+    sma_on_all:
+        - 'bật tất cả'
+        - 'bật hết'
+        - 'bật toàn bộ'
+        - 'bật các'
+    sma_off_all:
+        - 'tắt tất cả'
+        - 'tắt hết'
+        - 'tắt toàn bộ'
+        - 'tắt các'
+    sma_on_automation:
+        - 'bật tự động'
+    sma_off_automation:
+        - 'tắt tự động'
+        - 'vô hiệu tự động'
+    sma_trigger_automation:
+        - 'kích hoạt'
+    sma_on_script:
+        - 'bật kịch bản'
+        - 'chạy kịch bản'
+    sma_off_script:
+        - 'tắt kịch bản'
+        - 'dừng kịch bản'
+    sma_toggle_script:
+        - 'đổi kịch bản'
+    sma_on_light:
+        - 'mở đèn'
+        - 'bật đèn'
+    sma_off_light:
+        - 'tắt đèn'
+        - 'ngắt đèn'
+    sma_on_switch:
+        - 'bật công tắc'
+        - 'mở công tắc'
+        - 'bật điện'
+    sma_off_switch:
+        - 'tắt công tắc'
+        - 'ngắt công tắc'
+    sma_on_socket:
+        - 'bật ổ cắm'
+        - 'đóng điện ổ cắm'
+        - 'mở điện ổ cắm'
+        - 'mở nguồn ổ cắm'
+    sma_off_socket:
+        - 'tắt ổ cắm'
+        - 'ngắt ổ cắm'
+        - 'ngắt nguồn ổ cắm'
+    sma_open_cover:
+        - 'mở rèm'
+        - 'kéo rèm lên'
+        - 'kéo rèm ra'
+    sma_close_cover:
+        - 'đóng rèm'
+        - 'kéo rèm lại'
+    sma_on_fan:
+        - 'bật quạt'
+        - 'mở quạt'
+    sma_off_fan:
+        - 'tắt quạt'
+    sma_schedule_:
+        - 'hẹn giờ'
+        - 'đặt giờ'
+    sma_input_:
+        - 'nhập vào'
+        - 'điền vào'
+        - 'chọn mục'
+        - 'đầu vào'
+        - 'mục nhập'
+    sma_status_sensor:
+        - 'kiểm tra'
+        - 'trạng thái'
+        - 'đóng hay mởi'
+        - 'bật hay tắt'
+        - 'kiểm tra'
+        - 'hiển thị'
+        - 'thông tin'
+    sma_status_tracker:
+        - 'vị trí'
+        - 'ở đâu'
+
+
