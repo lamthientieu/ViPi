@@ -31,3 +31,8 @@ pip3 install google-assistant-library==1.1.0
 ```
 
 Đăng ký tài khoản json theo hướng dẫn" chờ cập nhật sau chưa tìm ra link"
+
+
+Tải code ở link: https://github.com/lamthientieu/ViPi/tree/beta
+Giải nén và chép vào thư mục /home/pi
+
