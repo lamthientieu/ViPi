@@ -8,6 +8,7 @@ Chạy thêm lệnh sau:
 ```
 pip3 install pvporcupine==1.9.5
 ```
+![image](https://user-images.githubusercontent.com/57694952/177024308-4e08fbea-c3b3-49f8-8f2a-de8f6910acef.png)
 
 Để sử dụng cho Raspberry Pi Zero 2 W/ Pi 3/ 3B+ trở lên cài thêm các lệnh sau
 ```
