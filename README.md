@@ -31,6 +31,7 @@ pip3 install google-assistant-library==1.1.0
 ```
 
 Đăng ký tài khoản json theo hướng dẫn" chờ cập nhật sau chưa tìm ra link"
+
 Để đăng ký tài vào địa chỉ IP:5002 thực hiện như hình
 ![image](https://user-images.githubusercontent.com/57694952/177025093-0bd11d9a-9b3c-4fdc-b26f-8ce7a375a804.png)
 
@@ -38,7 +39,24 @@ sau đó
 Tải code ở link: https://github.com/lamthientieu/ViPi/tree/beta
 Giải nén và chép vào thư mục /home/pi
 
-Để xem log vào địa chỉ IP:9001 với user/pass: user/123
+
+
+Vào địa chỉ IP:5002 chọn config để chỉnh sữa cài đặt, đăng ký tài khoản Zalo ai, mượn số điện thoại zalo bạn bè đăng ký 2-3 key zalo để dử dụng
+![image](https://user-images.githubusercontent.com/57694952/177025349-e69adda8-6909-41b9-b0d6-a935c723bb10.png)
+Lưu ý chọn đúng cấu hình đang sử dụng:
+
+1/ cấu hình homeassistant: tăng độ chuẩn xác bằng cách chỉnh ratio: 100 là đúng tên thiết bị 100% mới điều khiển được
+
+![image](https://user-images.githubusercontent.com/57694952/177025400-ce34e980-afe9-47b8-8cfe-f8a5fe6c8d29.png)
+
+Dán API zalo vào để sử dụng Zalo
+![image](https://user-images.githubusercontent.com/57694952/177025492-37121a1c-622a-463a-bc28-67b1cc344e26.png)
+
+Thay đổi cấu hình cho phù hợp với phần cứng
+để điều âm lượng hãy hãy kiểm tra card âm thanh đang sử dụng và điền đúng vào (Master/ Heaphone/ hoặc Speaker...)
+![image](https://user-images.githubusercontent.com/57694952/177025539-ad868848-4539-4862-a421-33cedaedc00f.png)
 
 
 Để sử dụng dashboar vào địa chỉ IP:5002
+
+Để xem log vào địa chỉ IP:9001 với user/pass: user/123
