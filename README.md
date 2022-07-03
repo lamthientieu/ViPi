@@ -31,10 +31,14 @@ pip3 install google-assistant-library==1.1.0
 ```
 
 Đăng ký tài khoản json theo hướng dẫn" chờ cập nhật sau chưa tìm ra link"
+Để đăng ký tài vào địa chỉ IP:5002 thực hiện như hình
+![image](https://user-images.githubusercontent.com/57694952/177025093-0bd11d9a-9b3c-4fdc-b26f-8ce7a375a804.png)
 
-
+sau đó
 Tải code ở link: https://github.com/lamthientieu/ViPi/tree/beta
 Giải nén và chép vào thư mục /home/pi
 
 Để xem log vào địa chỉ IP:9001 với user/pass: user/123
+
+
 Để sử dụng dashboar vào địa chỉ IP:5002
