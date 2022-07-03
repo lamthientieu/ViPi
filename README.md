@@ -26,13 +26,13 @@ pip3 install pvporcupine==1.9.5
 
 Để sử dụng cho Raspberry Pi Zero 2 W/ Pi 3/ 3B+ trở lên cài thêm các lệnh sau
 ```
-pip3 uninstall google-assistant-library
-pip3 install google-assistant-library==1.1.0
+pip3 uninstall google-assistant-library && pip3 install google-assistant-library==1.1.0 -y
 ```
 
 Đăng ký tài khoản json theo hướng dẫn" chờ cập nhật sau chưa tìm ra link"
 
-Để đăng ký tài vào địa chỉ IP:5002 thực hiện như hình
+Để đăng ký google assistant vào địa chỉ IP:5002 thực hiện như hình:
+
 ![image](https://user-images.githubusercontent.com/57694952/177025093-0bd11d9a-9b3c-4fdc-b26f-8ce7a375a804.png)
 
 sau đó
@@ -43,9 +43,10 @@ Giải nén và chép vào thư mục /home/pi
 
 Vào địa chỉ IP:5002 chọn config để chỉnh sữa cài đặt, đăng ký tài khoản Zalo ai, mượn số điện thoại zalo bạn bè đăng ký 2-3 key zalo để dử dụng
 ![image](https://user-images.githubusercontent.com/57694952/177025349-e69adda8-6909-41b9-b0d6-a935c723bb10.png)
-Lưu ý chọn đúng cấu hình đang sử dụng:
 
-1/ cấu hình homeassistant: tăng độ chuẩn xác bằng cách chỉnh ratio: 100 là đúng tên thiết bị 100% mới điều khiển được
+## Lưu ý chọn đúng cấu hình đang sử dụng:
+
+1/ Cấu hình homeassistant: tăng độ chuẩn xác bằng cách chỉnh ratio: 100 là đúng tên thiết bị 100% mới điều khiển được
 
 ![image](https://user-images.githubusercontent.com/57694952/177025400-ce34e980-afe9-47b8-8cfe-f8a5fe6c8d29.png)
 
