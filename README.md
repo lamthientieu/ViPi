@@ -36,3 +36,5 @@ pip3 install google-assistant-library==1.1.0
 Tải code ở link: https://github.com/lamthientieu/ViPi/tree/beta
 Giải nén và chép vào thư mục /home/pi
 
+Để xem log vào địa chỉ IP:9001 với user/pass: user/123
+Để sử dụng dashboar vào địa chỉ IP:5002
