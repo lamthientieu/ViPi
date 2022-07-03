@@ -1,0 +1,208 @@
+
+Chromecast:
+  Chromecast_Control: Enabled
+  Chromecast_Devices:
+    Device_Names:
+    - Mini
+    - "Tivi tr\u01B0\u1EDBc"
+    IP_Address:
+    - 192.168.1.11
+    - 192.168.1.21
+
+ESP:
+  ESP_Control: Disabled
+  IP: xxxxxxxxxxxx
+  deviceid:
+  - /Device1
+  - /Device2
+  - /Device3
+  devicename:
+  - Device 1
+  - Device 2
+  - Device 3
+Google_Assistant:
+  device_model_id: loa-vipi-demo
+  project_id: loa-vipi-demo-vipi-1985
+# 22 so1, 27 so 3    5 so 2
+Gpios:
+  control: Enabled
+  ir:
+  - 24
+  picontrol:
+  - 0
+  servo:
+  - 0
+  gpio_left:
+  - 13
+  gpio_right:
+  - 5
+  gpio_center:
+  - 22
+  gpio_down:
+  - 0
+  gpio_up:
+  - 0
+  AIY_indicator:
+  - 0
+  assistant_indicators:
+  - 0
+  - 0
+  stopbutton_music_AIY_pushbutton:
+  - 0
+Home_Assistant:
+  control: Enabled
+  external_url: http://vipi.duckdns.org:8123
+  internal_url: http://192.168.1.150:8123
+  ratio: 70
+  token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIwZTE5MzBkMDkyZTA0NTBjYWI5ZGMxODkwYzIzMmM4YyIsImlhdCI6MTY1NDcwNDg1MCwiZXhwIjoxOTcwMDY0ODUwfQ.nZmydpKFlfkXJ-NNTr_-wYiNA_SOXqkXiChKePRM4Oo
+IR:
+  IR_Control: Disabled
+  Codes:
+  - 33738799
+  - 33714319
+  - 33720439
+  - 33687799
+  - 33735229
+  - 33731149
+  - 33708199
+  - 33727069
+  - 33702589
+  - 33691879
+  - 33744919
+  - 33743389
+  - 33730639
+  Commands:
+  - Time
+  - Weather
+  - Next
+  - Prev
+  - Mute
+  - Stop
+  - Story
+  - Radio news
+  - Music
+  - VolUp
+  - VolDown
+  - Assistant
+  - Play
+  Music_list:
+  - "nh\u1EA1c thi\u1EBFu nhi"
+  - "ch\xE1u th\u01B0\u01A1ng ch\xFA b\u1ED9 \u0111\u1ED9i"
+  - "li\xEAn kh\xFAc con heo \u0111\u1EA5t"
+  - "nh\u1EA1c thi\u1EBFu nhi vai ch\xFA mang s\xFAng"
+  - "nh\u1EA1c thi\u1EBFu nhi qu\u1EA3 g\xEC"
+  - "nh\u1EA1c thi\u1EBFu nhi b\xE9 xu\xE2n mai"
+  - "nh\u1EA1c thi\u1EBFu nhi c\u1EA3 nh\xE0 th\u01B0\u01A1ng nhau"
+  - "nh\u1EA1c d\xE2n ca thi\u1EBFu nhi"
+  Story_list:
+  - "truy\u1EC7n c\u1ED5 t\xEDch t\xEDch chu"
+  - "truy\u1EC7n c\u1ED5 t\xEDch th\xE1nh gi\xF3ng"
+  - "truy\u1EC7n k\u1EC3 c\xF4 b\xE9 qu\xE0ng kh\u0103n \u0111\u1ECF"
+  - "truy\u1EC7n c\u1ED5 t\xEDch vi\u1EC7t nam"
+  - "truy\u1EC7n c\u1ED5 t\xEDch t\u1EA5m c\xE1m"
+  - "s\u1EF1 t\xEDch hoa m\xE0o g\xE0"
+  - "s\u1EF1 t\xEDch qu\u1EA3 d\u01B0a h\u1EA5u"
+  - "truy\u1EC7n c\xE2y kh\u1EBF"
+Language:
+  Choice: vi-VN
+  Language options:
+  - en-US
+  - vi-VN
+MQTT:
+  IP: Enter your MQTT IP ADDRESS here
+  MQTT_Control: Disabled
+  PSWRD: Enter your MQTT PASSWORD here
+  TOPIC: ENTER your MQTT TOPIC here
+  UNAME: Enter your MQTT USERNAME here
+
+Radio_stations:
+  Radio_Control: Enabled
+  stationlinks:
+  - http://113.163.216.23:1935/live/radio1.sdp_audio/playlist.m3u8
+  - https://strm.voh.com.vn/radio/channel2/chunklist_w591198153.m3u8
+  stationnames:
+  - "B\xE0 R\u1ECBa V\u0169ng T\xE0u"
+  - "k\xEAnh 1"
+  stationradio:
+  - "B\xE0 R\u1ECBa V\u0169ng T\xE0u"
+  - AM 610Khz
+Raspberrypi_GPIO_Control:
+  GPIO_Control: Disabled
+  lightnames:
+  - kitchen lights
+  - bathroom lights
+  - bedroom lights
+Register_Device: false
+Script:
+  Script_Control: Disabled
+  scriptcommand:
+  - echo test >> /home/pi/test.txt
+  scriptname:
+  - Script test
+SpeechToText:
+  Choice: zalo
+Speechtotext:
+  Google_Cloud_Speech:
+    Cloud_Speech_Control: Disabled
+    Google_Cloud_Speech_Credentials_Path: /home/pi/ViPi/src/google.json
+Startup_voice: Disabled
+Tasmota_devicelist:
+  Tasmota_Control: Disabled
+  friendly-names:
+  - Desk Light
+  - Table Light
+  ipaddresses:
+  - 192.168.1.36
+  - 192.168.1.35
+  portID:
+  - '1'
+  - '1'
+TextToSpeech:
+  Choice: ZTTS
+  Google_Cloud_TTS_Credentials_Path: ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE
+  Voice_Gender: Female
+  Voice_Region: South
+  Zalo_API:
+  - E8mpp9RGC2rBAV6I58AXD3LFQtDXE9TS
+  - K6ZFa1h0REz9CB0YWBTw8BOWgTjR2Z9j
+  - 3K54SGXOvQI5DBPsbROxm9ihNAv52xsm
+  - KeKjzmnQCUZpWFOSWghF4YqMqy6yQNUN
+  - zEMGSTKKRxC5s6m4MyUnBr3kSiiE4NM4
+  - Al8zWP6spuyEOM4LWjarw8KxChdMCspo
+  - AuWHzxuSI6N6h2NFXGMAUTql94aGmEU2
+Wakewords:
+  Custom_Wakeword: Enabled
+  Ok_Google: Enabled
+  Picovoice_wakeword_models:
+  - /home/pi/ViPi/src/resources/picovoice_models/hey siri_raspberry-pi.ppn
+  - /home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn
+  - /home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn
+  Wakeword_Engine: Picovoice
+  access_key: ig4J30nReYupu9q6sDv0dIsYVo0i6SBbIHIaq8i931KBYygRH58SeA==
+  sensitivities: 0.3
+Weather:
+  control: Disabled
+  darksky_api: c457d056f60c2aa93fd47339aad294da
+  ipfy_api: 128979ae3de728602f249354a85ac508
+  lat_long:
+  - 11.555358
+  - 106.172483
+  location: "tam k\u1EF3, qu\u1EA3ng nam"
+
+YouTube:
+  YouTube_Control: Enabled
+  server: http://vipi.duckdns.org:5000
+app_news_radio: Enabled
+continue_conversation: true
+led_setup:
+  pixels: 16
+  type: R2M
+mic_setup:
+  type: R2M
+vol_setup:
+  type: R2M_J
+  volume_min: 10
+  volume_max: 100
+  volume_start: 80
+  #amixer scontrols
+  amixer_controls: Speaker
