@@ -60,12 +60,15 @@ Lưu ý chọn đúng cấu hình đang sử dụng:
 Các Gpio được sử dụng trong code, các bạn có thể thay đổi nhưng không phải GPIO nào cũng dùng được:
 
 (Gpio_left:   Bấm 1 lần: Giảm âm lượng
+
               Bấm 2 lần: Mở bài hát trước
             
  Gpio_right:  Bấm 1 lần: tăng âm lượng
+ 
               Bấm 2 lần: Next bài hát
              
  Gpio_center: Bấm 1 lần: gọi ViPi
+ 
               Bấm 2 lần: stop/play)
                 
 
