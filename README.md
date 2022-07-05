@@ -85,7 +85,8 @@ Khởi động lại pi!
 VD:         Ok google + hát nhạc + còn thương rau đắng mọc sau hè + trên youtube==> Bot sẽ tìm nhạc trên Youtube)
             Ok google + hát nhạc + còn thương rau đắng mọc sau hè ==> Bot mặc định tìm trên Nhạc của tui, nếu trên nhạc của tui không có bài hát đó thì sẽ chuyển sang tìm trên Youtube)
 
-``` app_music_play:
+```
+app_music_play:
         - 'phát bài hát'
         - 'phát bài nhạc'
         - 'hát nhạc'
