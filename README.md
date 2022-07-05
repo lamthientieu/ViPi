@@ -80,7 +80,7 @@ Khởi động lại pi!
 
 
 
-## Để nghe 1 bài hát: Hotword + các key trong app_music_play+ bài hát + (chọn nguồn nhạc muốn phát: Youtube, nhạc của tui, Zing, mặc định khi không chọn là nhạc của tui)
+## Để nghe 1 bài hát: Hotword + các key trong "app_music_play"+ bài hát + (chọn nguồn nhạc muốn phát: Youtube, nhạc của tui, Zing, mặc định khi không chọn là nhạc của tui)
 
 VD:         Ok google + hát nhạc + còn thương rau đắng mọc sau hè + trên youtube==> Bot sẽ tìm nhạc trên Youtube)
 
@@ -96,13 +96,14 @@ VD:         Ok google + hát nhạc + còn thương rau đắng mọc sau hè + 
         - 'bài hát'
         - 'bài nhạc'
         - 'lên nhạc'
-        ```
+```
  
  Để nghe danh sách nhạc: dùng các key trong " app_music_auto:"
     
     
     
 ### Các keyword cho dự án, ngoài các keyword chính xác, các bạn có thể hỏi thêm làm gì, là ai, bot có thể làm toán mà không cần câu lệnh chính xác....:    
+
 ```
 keyword:
     app_cooking_recipe:
