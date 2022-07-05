@@ -78,13 +78,35 @@ Khởi động lại pi!
 
 Để xem log vào địa chỉ IP:9001 với user/pass: user/123
 
-### Các keyword cho dự án, ngoài các keyword chính xác, các bạn có thể hỏi thêm làm gì, là ai, bot có thể làm toán mà không cần câu lệnh chính xác....:
+
+
+Để nghe 1 bài hát: Hotword + các key trong app_music_play+ bài hát + (chọn nguồn nhạc muốn phát: Youtube, nhạc của tui, Zing, mặc định khi không chọn là nhạc của tui)
+VD: Ok google + hát nhạc + còn thương rau đắng mọc sau hè + trên youtube==> Bot sẽ tìm nhạc trên Youtube)
+    Ok google + hát nhạc + còn thương rau đắng mọc sau hè ==> Bot mặc định tìm trên Nhạc của tui, nếu trên nhạc của tui không có bài hát đó thì sẽ chuyển sang tìm trên Youtube)
+ ``` app_music_play:
+        - 'phát bài hát'
+        - 'phát bài nhạc'
+        - 'hát nhạc'
+        - 'phát nhạc'
+        - 'chơi nhạc'
+        - 'hát bài'
+        - 'bài hát'
+        - 'bài nhạc'
+        - 'lên nhạc'
+        ```
+ Để nghe danh sách nhạc: dùng các key trong " app_music_auto:"
+    
+    
+    
+### Các keyword cho dự án, ngoài các keyword chính xác, các bạn có thể hỏi thêm làm gì, là ai, bot có thể làm toán mà không cần câu lệnh chính xác....:    
 ```
 keyword:
     app_cooking_recipe:
-        - 'làm bánh'
-        - 'nấu món'
-        - 'cách làm món'
+        - 'cách nấu món'
+    app_my_name:
+        - 'bạn tên'
+        - 'tên bạn'
+        - 'tên mày'
     app_hour_schedule:
         - 'một giờ'
         - 'hai giờ'
@@ -117,11 +139,11 @@ keyword:
         - 'âm lịch ngày mai'
         - 'âm lịch ngày kia'
     app_read_story:
-        - 'truyện cười'
+        # - 'truyện cười'
         - 'kể truyện'
         - 'đọc truyện'
         - 'tìm truyện'
-        - 'câu chuyệN'
+        - 'câu chuyện'
         - 'kể chuyện'
     app_music_play:
         - 'phát bài hát'
@@ -132,6 +154,7 @@ keyword:
         - 'hát bài'
         - 'bài hát'
         - 'bài nhạc'
+        - 'lên nhạc'
     app_music_random:
         - 'ca nhạc'
     med_radio_play:
@@ -147,7 +170,7 @@ keyword:
         - 'nghe album'
         - 'danh sách'
         - 'list nhạc'
-        - 'abum'
+        # - 'abum'
     med_chromecast_play:
         - 'trên loa'
         - 'trên tivi'
@@ -155,11 +178,11 @@ keyword:
         - 'dự báo thời tiết'
         - 'mưa hay nắng'
         - 'thời tiết'
-    med_news_radio:
-        - 'đọc báo'
-        - 'báo nói'
-        - 'tin mới'
-        - 'tin tức'
+    # med_news_radio:
+        # - 'đọc báo'
+        # - 'báo nói'
+        # - 'tin mới'
+        # - 'tin tức'
     med_read_note:
         - 'sinh nhật của'
         - 'ngày sinh của'
@@ -173,6 +196,7 @@ keyword:
         - 'tắt nhạc'
         - 'dừng nhạc'
         - 'stop music'
+        - 'dừng truyện'
     med_next_player:
         - 'tiếp theo'
         - 'kế tiếp'
@@ -185,15 +209,18 @@ keyword:
         - 'phát lại'
         - 'chơi lại'
     med_volume_ctr:
-        - 'âm lượng'
-        - 'âm thanh'
-        - 'volume'
-    med_setup_volume:
-        - 'thiết lập'
-        - 'cài đặt'
-    app_speedtest_net:
-        - 'tốc độ đường truyền'
-        - 'chất lượng đường truyền'
+        - 'tăng âm'
+        - 'giảm âm'
+        - 'âm lượng' 
+        - 'to lên'
+        - 'nhỏ lại'
+        - 'nhỏ xuống' 
+    # med_setup_volume:
+        # - 'thiết lập'
+        # - 'cài đặt'
+    # app_speedtest_net:
+        # - 'tốc độ đường truyền'
+        # - 'chất lượng đường truyền'
     sma_on_all:
         - 'bật tất cả'
         - 'bật hết'
@@ -273,5 +300,3 @@ keyword:
     sma_status_tracker:
         - 'vị trí'
         - 'ở đâu'
-
-```
