@@ -670,7 +670,7 @@ class ws2812_apa102:
         for i in range(strip1.numPixels()):
             strip1.setPixelColor(i, Color(0, 0, 255))
             strip1.show()
-            time.sleep(0.07)
+            time.sleep(0.001)
             
     def write(self, colors):
         for i in range(self.PIXELS_N):
@@ -897,7 +897,7 @@ class ws2812:
         for i in range(st.numPixels()):
             st.setPixelColor(i, Color(0, 0, 255))
             st.show()
-            time.sleep(0.07)
+            time.sleep(0.05)
             
         
 ## end ws2812
@@ -954,7 +954,7 @@ def ctr_led(state):
 def ctr_vol_led(volume):
     if led_setup=='WS2':
         pixels._volume(volume)
-        time.sleep(1.0)
+        time.sleep(0.1)
         pixels.off()       
     elif led_setup=='RUM':
         if volume<9:
