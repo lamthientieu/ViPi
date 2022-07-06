@@ -9,19 +9,18 @@ print("\ncheck system: ",a)
 if configuration['Wakewords']['Ok_Google']=='Disabled' and 'armv7l' not in platform.platform():
     print ('GPIO CONTROL ENABLED & INTERPRER DISABLED')
     print ('\nimport main_v6')
-    import main_v6
-    main_v6.Myassistant().main()
+    import main6
+    main6.Myassistant().main()
 if configuration['Wakewords']['Ok_Google']=='Disabled' and 'armv7l' in platform.platform():
     print ('GPIO CONTROL ENABLED & INTERPRER DISABLED')
     print ('\nimport main_v7')
-    import main_v7
-    main_v7.Myassistant().main()
+    import main7
+    main7.Myassistant().main()
 if 'armv7l' in platform.platform() and configuration['Wakewords']['Ok_Google']=='Enabled':
-    import main_new
+    import main
     print ('\nimport main_new')
-    main_new.Myassistant().main()
+    main.Myassistant().main()
 else:
-    print ('GPIO CONTROL DISABLED & INTERPRER ENABLED')
-    print ('\nimport main_new')
-    import main_new
-    main_new.Myassistant().main()
+    print ('\nimport main_v6')
+    import main6
+    main6.Myassistant().main()
