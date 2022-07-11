@@ -189,6 +189,7 @@ Weather:
 YouTube:
   YouTube_Control: Enabled
   server: http://vipi.duckdns.org:5000
+  server1: http://api.hass.bid
 app_news_radio: Enabled
 continue_conversation: true
 led_setup:
