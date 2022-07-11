@@ -13,18 +13,16 @@ try:
     with open('{}/.config/google-oauthlib-tool/credentials.json'.format(USER_PATH), 'r') as registers:
         register = json.load(registers)
     if configuration['Wakewords']['Ok_Google']=='Disabled' and 'armv7l' not in platform.platform():
-        print ('GPIO CONTROL ENABLED & INTERPRER DISABLED')
-        print ('\nimport main_v6')
+        print ('\nimport main6')
         import main6
         main6.Myassistant().main()
     if configuration['Wakewords']['Ok_Google']=='Disabled' and 'armv7l' in platform.platform():
-        print ('GPIO CONTROL ENABLED & INTERPRER DISABLED')
-        print ('\nimport main_v7')
+        print ('\nimport main7')
         import main7
         main7.Myassistant().main()
     if 'armv7l' in platform.platform() and configuration['Wakewords']['Ok_Google']=='Enabled':
         import main
-        print ('\nimport main_new')
+        print ('\nimport main')
         main.Myassistant().main()
     else:
         say_save('gặp lỗi không khởi động được, vui lòng kiểm tra cài đặt')
