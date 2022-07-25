@@ -78,7 +78,7 @@ _Có gì mới trong img này:_
 
 ## Bước 1: Tải IMG cho raspi tại đây, IMG mặc định cho Raspberry Pi Zero:
 ```sh
-[https://drive.google.com/file/d/1ieaSzrc-2UyGz9aGLrRTsiGR50K83pEh/view?usp=sharing](https://vipiteam.page.link/img)
+https://vipiteam.page.link/img
 ```
 Giải nén và dùng Phần mềm win32 disk imager để ghi ra thẻ:
 ![image](https://user-images.githubusercontent.com/57694952/177024364-5aa1771e-fccd-4340-8a68-9a0ffa8490a2.png)
