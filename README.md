@@ -64,7 +64,7 @@ Tester nghiệp dư [tienhuansk](https://github.com/tienhuansk)
 
 Anh em muốn tham gia vào đội coder thì cứ inbox [Nhóm test code](https://t.me/vipi_code)
 
-*UPDATE: 25/07/2022:
+### *UPDATE: 25/07/2022:
 Có gì mới trong img này:
 - Cấu hình cơ bản hoàn toàn trên dashboard (trừ phần phím cảm ứng, tuỳ người sử dụng nên chưa đưa ra)
 - Xử lí lệnh gần tự nhiên nhất có thể. Có thể ra lệnh kiểu: "mấy giờ rồi bật đèn phòng khách lên", hay "bật đèn phòng khách lên phát bài hát hẹn ước từ hư vô", "bật đèn phòng khách và đèn phòng ngủ", "bật đèn trước rồi tắt đèn sau đi", và nhiều lệnh ối giời ôi khác, tất nhiên chạy được hay không thì tuỳ nhé.
