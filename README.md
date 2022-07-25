@@ -1,4 +1,4 @@
-## Dự án bot [ViPi] là dự án ban đầu được phát triển dự án GassistPi & và đến hiện tại nó được phát triển khá xa so với định hướng ban đầu!
+## [ViPi] là dự án ban đầu được tham khảo từ GassistPi (nguồn bên dưới) của 1 dev người Ấn & và đến hiện tại nó được phát triển khá xa so với định hướng ban đầu chúng ta cùng bắt đầu nào!
 https://github.com/googlesamples/assistant-sdk-python/tree/master/google-assistant-sdk
 https://github.com/shivasiddharth/GassistPi
  
