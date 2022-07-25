@@ -72,4 +72,5 @@ Anh em muốn tham gia vào đội coder thì cứ inbox [Nhóm test code](https
 - Tính năng dịch song ngữ: kích hoạt "thông dịch", "dịch tự động"; kết thúc: "dừng lại"
 - Tính năng chat trên dashboard
 - Và đặc biệt, bổ sung thêm nhiều lỗi mới.
+
 *Nào hãy bắt đầu vào việc chính! 
