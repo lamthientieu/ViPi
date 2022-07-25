@@ -89,28 +89,28 @@ Gắn thẻ vào raspi đợi 1-2 phút, kết nối với mạng WiFi được 
 Sau đó kết nối với mạng WIFI đang sử dụng
 ![image](https://user-images.githubusercontent.com/57694952/177024665-f17a300c-862f-4b39-96dc-550163f5449b.png)
 
-Dùng PM WinSCP, và putty để ssh vào pi với user/pass mặc định: pi/raspberry
-![image](https://user-images.githubusercontent.com/57694952/177024726-fd9d07a8-c7a9-4cab-bcc7-031a1bd87394.png)
-
-![image](https://user-images.githubusercontent.com/57694952/177024745-1ff85019-6efe-42f9-a27c-b8c4f125ef71.png)
-
-Chạy thêm lệnh sau:
-```
-pip3 install pvporcupine==1.9.5
-```
 
 
-Để sử dụng cho Raspberry Pi Zero 2 W/ Pi 3/ 3B+ trở lên cài thêm các lệnh sau
-```
-pip3 uninstall google-assistant-library
-pip3 install google-assistant-library==1.1.0
+
 ```
 
 Đăng ký tài khoản json theo hướng dẫn" chờ cập nhật sau chưa tìm ra link"
 
+
+ Sau đó nghe loa Thông báo IP và truy cập vào địa chỉ, nếu không tìm thấy IP thì vào modem để kiểm tra:
+ ![image](https://user-images.githubusercontent.com/57694952/180699128-adb00fd2-a0be-4d3a-b4b0-94d6dad09854.png)
 Để đăng ký google assistant vào địa chỉ IP:5002 thực hiện như hình:
 
 ![image](https://user-images.githubusercontent.com/57694952/177025093-0bd11d9a-9b3c-4fdc-b26f-8ce7a375a804.png)
+
+
+![image](https://user-images.githubusercontent.com/57694952/180699234-6ea1affc-1df1-4a5d-9b45-b18e61fcb352.png)
+
+
+![image](https://user-images.githubusercontent.com/57694952/180699312-60f5bd81-8f20-4120-85e0-65a82f6d396f.png)
+
+
+![image](https://user-images.githubusercontent.com/57694952/180699384-0e55735e-a0eb-4030-ad37-7fc2400157e3.png)
 
 sau đó
 Tải code ở link: https://github.com/lamthientieu/ViPi/tree/beta
