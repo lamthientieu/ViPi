@@ -111,9 +111,9 @@ Sau đó kết nối với mạng WIFI đang sử dụng
 
 ![image](https://user-images.githubusercontent.com/57694952/180699384-0e55735e-a0eb-4030-ad37-7fc2400157e3.png)
 
-sau đó
-Tải code ở link: https://github.com/lamthientieu/ViPi/tree/beta
-Giải nén và chép vào thư mục /home/pi
+Chờ Bot khởi động lại và thực hiện config:
+![image](https://user-images.githubusercontent.com/57694952/180699789-c2b144ce-0494-465c-b851-cabf190abace.png)
+
 
 
 
