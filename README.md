@@ -92,7 +92,6 @@ Sau đó kết nối với mạng WIFI đang sử dụng
 
 
 
-```
 
 Đăng ký tài khoản json theo hướng dẫn" chờ cập nhật sau chưa tìm ra link"
 
