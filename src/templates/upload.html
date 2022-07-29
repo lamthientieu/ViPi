@@ -6,7 +6,7 @@
 enctype = "multipart/form-data">
 Bước 1: Chọn file <input type = "file" name = "file" />
 
-<button type="submit">Bước 2: Tải json lên</button> {{upload}}
+<button type="submit">Bước 2: Tải json lên (Có thể sử dụng json sẵn trong img để hạn chế lỗi) </button> {{upload}}
 </form>
 <p>
     Bước 3: Lấy token: <a href="{{url}}" target="_blank">>> Bấm vào đây, sau đó copy mã</a>
@@ -17,19 +17,11 @@ Bước 1: Chọn file <input type = "file" name = "file" />
 </form>
 <h1>Quick action</h1>
 <p>
-<form>
-    <method="POST" action="killpython"> 
-    <button type="submit"> Tắt tiến trình </button>
-<method="POST" action="config"> 
-    <button type="submit"> Sửa config</button>
+<form method="POST" action="update">
+		<button type="submit"> CẬP NHẬT</button>
 </form>
-</p>
-<p>
-<form> 
-    <method="POST" action="reboot"> 
-        <button type="submit"> Khởi động lại </button>
-    <method="POST" action="shutdown"> 
-        <button type="submit"> Tắt ViPi </button>
+<form method="POST" action="reboot">
+		<button type="submit"> KHỞI ĐỘNG VIPI</button>
 </form>
 </p>
 <p>Phát triển bởi thangnd85@ViPi team</p>

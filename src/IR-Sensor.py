@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 from time import time, sleep
-irr = 12
+irr = 24
 
 def setup():
     GPIO.setmode(GPIO.BCM)
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         print("Listening for IR Signal on GPIO "+str(irr))
         sleep(0.1) 
         GPIO.wait_for_edge(irr, GPIO.FALLING)
-        code = on_ir_receive(ir)
+        code = on_ir_receive(irr)
         if code:
             print(str((code)))
         else:

@@ -2,145 +2,84 @@
 
 {% block content %}
 
-    <section class="content-section">
-       <div class="section-header-wrapper">
-         <h1 class="section-header">Hệ thống</h1>
-        <!-- <a class="section-header-link">
-           View in folders
-         </a>-->
-       </div>
-      <div class="content-section-line">
-        <div class="section-part left">
-          <a class="image-wrapper">
-            <div class="image-overlay">
-              <div class="video-info">
-                <div class="video-info-text">
-                  <p id="city" class="video-name medium">Loading...</p>
-                  <p class="video-subtext medium">Nhiệt độ hiện tại <span id="temp"></span></p> 
-                </div>
-                <button class="btn-play"><span id="wIcon"></span></button>
-            </div>
-            </div>
-            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2251&q=80"/>
-            <span class="video-time">Thời tiết hôm nay</span>
-          </a>
-        </div>
-        <div class="section-part right">
-          <div class="content-part-line">
-            <a class="image-wrapper">
-              <div class="image-overlay">
-              <div class="video-info">
-              <div class="video-info-text">
-                <p class="video-name tiny">Đã sử dụng</p>
-                <p class="video-subtext tiny">2.5G/32G</p>
-              </div>
-            </div>
-            </div>
-            <img src="https://images.unsplash.com/photo-1515552726023-7125c8d07fb3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2167&q=80"/>
-              <span class="video-time">Dung lượng</span>
-          </a>
-            <a class="image-wrapper">
-              <div class="image-overlay">
-              <div class="video-info">
-              <div class="video-info-text">
-                <p class="video-name tiny">CPU 45 °C / GPU 55 °C</p>
-                <p class="video-subtext tiny">Ram 154MB/1.8G</p>
-              </div>
-            </div>
-            </div>
-              <img src="https://images.unsplash.com/photo-1542359649-31e03cd4d909?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2167&q=80"/>
-              <span class="video-time">CPU / GPU / RAM</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="content-section">
-      <div class="section-header-wrapper">
-        <h1 class="section-header">Văn bản mới đọc</h1>
-        <a class="section-header-link">
-          Xem tất cả
-        </a>
-      </div>
-      <div class="files-table">
-        <div class="files-table-header">
-          <div class="column-header table-cell">Tên file</div>
-          <div class="column-header table-cell size-cell">Kích cỡ</div>
-          <div class="column-header table-cell">Ngày đọc</div>
-          <div class="column-header table-cell">Hành động</div>
-        </div>
-        <div class="files-table-row">
-          <div class="table-cell name-cell pdf">Brandenburg.mp3</div>
-          <div class="table-cell">42 MB</div>
-          <div class="table-cell">26/10/2020</div>
-          <div class="table-cell action-cell">
-            <button class="more-action"></button>
-          </div>
-        </div>
-        <div class="files-table-row">
-          <div class="table-cell name-cell jpg">TheLionsRoar.mp3</div>
-          <div class="table-cell size-cell">500 KB</div>
-          <div class="table-cell">18/12/2021</div>
-          <div class="table-cell action-cell">
-            <button class="more-action"></button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div> 
-  
-  <script>
-	$(document).ready(function(){
-
-var proxy = 'https://cors-anywhere.herokuapp.com/';
-
-  var Ip = 'https://ipinfo.io/json';
-
-     $.getJSON(Ip, function(data) {
-      var city = data.city;
-      var region = data.region;
-      var country = data.country;
-
-      var KEY = '&APPID=767a7cce68ed2b3098d41e24364ec56c';
-
-      var URL ='http://api.openweathermap.org/data/2.5/weather?q=' + city + ',' + region + country + KEY;
-
-      $.getJSON(proxy + URL, function(data) {
-        var type = data.weather[0].main;  //array 0 index
-        var id = data.weather[0].id; //array 0 index
-        var city = data.name;
-
-        var tempCel = Math.round(data.main.temp - 273.15);
-        var tempC = tempCel + '°C';
-        var weather = data.weather[0].description;
-        var tempF = Math.round(tempCel * (9 / 5) + 32) + '°F';
-        var icon = data.weather[0].icon;
-        var tempBool = true;
-
-        //Output data to display on the page
-        $('#city').text(city);
-        $('#state').text(region);
-       $('#temp').text(tempC); //Show Fahrenheit by Default
-       var weatherIcon = 'http://openweathermap.org/img/w/' + icon + '.png';
-        $('#wIcon').html('<img src=' + weatherIcon + '>');
-
-
-   //Then toggle to switch between F and C temperature.
-   $('#btnToggle').on('click', function() {
-        var temp = $('#temp');
-        if (tempBool) {
-            temp.html(tempC);
-            tempBool = false
-            } else {
-            temp.html(tempF);
-            tempBool = true;
-         }
-      }); //End of toggle function
-
-        });
-     });
-  });
-  
-  </script>
+	<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+					
+		<div class="welcome">
+			<div class="info">
+				<h1>Xin chào, {{boss}}!</h1>
+				<p>Chào mừng bạn đến với trang quản trị của loa thông minh ViPi ! Chúc bạn 1 ngày vui vẻ.</p>
+			</div>
+			<div class="weather">						
+				<div id="temp" class="temp"><span></span></div>
+				<div class="weather-info">
+					<!--<span id="weather-type"></span> -->
+						<img src="" alt="Đang cập nhật...">
+					<!-- <span id="wind-speed"></span> -->
+				</div>
+				<div id="location" class="location"></div>
+			</div>
+			<p>Hôm nay ngày <strong id="date"></strong></p>
+			<div class="clock" id="clock"> </div>
+		</div>
+						
+		<h2 class="title-box">Hass</h2>
+		<div class="row">
+			<!-- Start Device -->
+			<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+				<div class="wrab-box bg-white">
+					<div class="control">
+						<div class="device-icon">
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						</div>
+						<div class="device-button">	
+							<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+								<div class="handle"></div>
+							</button>
+						</div>	
+					</div>	
+					<small>Đèn phòng khách</small>
+				</div>	
+			</div>	
+			<!-- End Device -->
+			<!-- Start Device -->
+			<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+				<div class="wrab-box bg-white">
+					<div class="control">
+						<div class="device-icon">
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						</div>
+						<div class="device-button">	
+							<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+								<div class="handle"></div>
+							</button>
+						</div>	
+					</div>	
+					<small>Đèn phòng khách</small>
+				</div>	
+			</div>	
+			<!-- End Device -->		
+			<!-- Start Device -->
+			<div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3">
+				<div class="wrab-box bg-white">
+					<div class="control">
+						<div class="device-icon">
+							<i class="fa fa-lightbulb-o" aria-hidden="true"></i>
+						</div>
+						<div class="device-button">	
+							<button type="button" class="btn btn-sm btn-secondary btn-toggle" data-toggle="button" aria-pressed="false" autocomplete="off">
+								<div class="handle"></div>
+							</button>
+						</div>	
+					</div>	
+					<small>Đèn phòng khách</small>
+				</div>	
+			</div>	
+			<!-- End Device -->			
+															
+								
+		</div>	
+						
+	</div>
+							
   
 {% endblock %}

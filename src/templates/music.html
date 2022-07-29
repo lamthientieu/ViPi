@@ -1,58 +1,29 @@
 {% extends "header-footer.html" %}
 
 {% block content %}
-
-    <section class="content-section">
-        <form method="post" action="wplay">
-			<input name="song">
-			<button type="submit"> Tìm và phát </button> 
-		</form>
-		<div class="btn-group">
-			<form method="post" action="prev">
-				<button type="submit">  Prev </button> </form>
-			<form method="post" action="play">
-				<button type="submit"> Play </button> </form>
-			<form method="post" action="next">
-				<button type="submit"> Next </button> </form>
-			<form method="post" action = "stop">
-				<button type="submit">  Stop </button> </form>
-			<form method="post" action = "volup">
-				<button type="submit">  Vol Up </button> </form>
-			<form method="post" action = "voldown">
-				<button type="submit">  Vol Down </button> </form>
-		</div>
-    </section>
-    <section class="content-section">
-      <div class="section-header-wrapper">
-        <h1 class="section-header">Bài hát mới phát</h1>
-        <a class="section-header-link">
-          Xem tất cả
-        </a>
-      </div>
-      <div class="files-table">
-        <div class="files-table-header">
-          <div class="column-header table-cell">Tên bài hát</div>
-          <div class="column-header table-cell size-cell">Thời gian tải</div>
-          <div class="column-header table-cell">Ngày phát</div>
-          <div class="column-header table-cell">Hành động</div>
-        </div>
-        <div class="files-table-row">
-          <div class="table-cell name-cell pdf">Khuê Mộc Lang</div>
-          <div class="table-cell">2.2s</div>
-          <div class="table-cell">26/10/2020</div>
-          <div class="table-cell action-cell">
-            <button class="more-action"></button>
-          </div>
-        </div>
-        <div class="files-table-row">
-          <div class="table-cell name-cell jpg">Đế Vương</div>
-          <div class="table-cell size-cell">1.2s</div>
-          <div class="table-cell">18/12/2021</div>
-          <div class="table-cell action-cell">
-            <button class="more-action"></button>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+	<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7">
+		<section class="content-section music-btn">
+			<div id="music-box">
+			<form method="post" action="wplay">
+				<input name="song" placeholder="Nhập tên bài hát cần phát">
+				<button type="submit"> Tìm và phát </button> 
+			</form>
+			</div>
+			<div class="btn-group">
+				<form method="post" action="prev">
+					<button type="submit"><i class="fa fa-backward" aria-hidden="true"></i></button> </form>
+				<form method="post" action="play">
+					<button type="submit"><i class="fa fa-play" aria-hidden="true"></i></button> </form>
+				<form method="post" action="next">
+					<button type="submit"><i class="fa fa-forward" aria-hidden="true"></i></button> </form>
+				<form method="post" action = "stop">
+					<button type="submit"><i class="fa fa-pause" aria-hidden="true"></i></button> </form>
+				<form method="post" action = "volup">
+					<button type="submit"><i class="fa fa-volume-up" aria-hidden="true"></i></button> </form>
+				<form method="post" action = "voldown">
+					<button type="submit"><i class="fa fa-volume-down" aria-hidden="true"></i></button> </form>
+			</div>
+		</section>
+	
+	</div>
 {% endblock %}

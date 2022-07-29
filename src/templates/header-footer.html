@@ -1,259 +1,428 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta charset="UTF-8">
 	{% if title %}
     <title>ViPi Dashboard - {{ title }}</title>
     {% else %}
     <title>ViPi Dashboard</title>
     {% endif %}
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">	
+	<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='dashboard-style.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='chatbot/chat_interface.css') }}">
+	<link rel="stylesheet" href="{{ url_for('static', filename='chatbot/temporary.css') }}">
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/js/bootstrap.min.js'></script>
+	<style>
+		.navbar-mainbg i {margin: 0;}
+		.navbar-mainbg{background-color:#5161ce;padding:0;border-radius: 26px;margin-bottom: 20px;}
+		#navbarSupportedContent{overflow:hidden;position:relative}
+		#navbarSupportedContent ul{padding:0;margin:0}
+		#navbarSupportedContent li{list-style-type:none;float:left}
+		#navbarSupportedContent ul li a{color:rgba(255,255,255,.5);text-decoration:none;font-size:15px;display:block;padding: 15px 20px;transition-duration:.6s;transition-timing-function:cubic-bezier(0.68,-.55,.265,1.55);position:relative}
+		#navbarSupportedContent>ul>li.active>a{color:#5161ce;background-color:transparent;transition:all .7s}
+		#navbarSupportedContent a:not(:only-child):after{content:"\f105";position:absolute;right:20px;top:10px;font-size:14px;font-family:"Font Awesome 5 Free";display:inline-block;padding-right:3px;vertical-align:middle;font-weight:900;transition:.5s}
+		#navbarSupportedContent .active>a:not(:only-child):after{transform:rotate(90deg)}
+		.hori-selector{display:inline-block;position:absolute;height:100%;top:0;left:0;transition-duration:.6s;transition-timing-function:cubic-bezier(0.68,-.55,.265,1.55);background-color:#fff;border-top-left-radius:20px;border-top-right-radius:20px;margin-top:10px}
+		.hori-selector .left,.hori-selector .right{position:absolute;width:25px;height:25px;background-color:#fff;bottom:10px}
+		.hori-selector .right{right:-25px}
+		.hori-selector .left{left:-25px}
+		.hori-selector .left:before,.hori-selector .right:before{content:'';position:absolute;width:50px;height:50px;border-radius:40%;background-color:#5161ce}
+		.hori-selector .right:before{bottom:0;right:-25px}
+		.hori-selector .left:before{bottom:0;left:-25px}
+		.navbar-nav {
+			display: flex;
+			flex-direction: inherit;
+			justify-content: center;
+		}	
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-	<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
-	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
-	<link href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap" rel="stylesheet">
-</head>
-<body>
-	<div class="app-container">
-	  <div class="left-area">
-		<button class="btn-close-left">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-x-circle" viewBox="0 0 24 24">
-			<defs/>
-			<circle cx="12" cy="12" r="10"/>
-			<path d="M15 9l-6 6M9 9l6 6"/>
-		  </svg>
-		</button>
-		<div class="app-name"><a href="/"><img src="{{ url_for('static', filename='img/logo.png') }}"/></a></div>
-		<a href="music" class="item-link active" id="pageLink">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-grid" viewBox="0 0 24 24">
-			<defs />
-			<path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z" />
-		  </svg>
-		</a>
-		<a href="#" class="item-link" id="pageLink">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-folder" viewBox="0 0 24 24">
-			<defs />
-			<path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z" />
-		  </svg>
-		</a>
-		<a href="#" class="item-link" id="pageLink">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-hard-drive" viewBox="0 0 24 24">
-			<defs />
-			<path d="M22 12H2M5.45 5.11L2 12v6a2 2 0 002 2h16a2 2 0 002-2v-6l-3.45-6.89A2 2 0 0016.76 4H7.24a2 2 0 00-1.79 1.11zM6 16h.01M10 16h.01" />
-		  </svg>
-		</a>
-		<a href="#" class="item-link" id="pageLink">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-settings" viewBox="0 0 24 24">
-			<defs />
-			<circle cx="12" cy="12" r="3" />
-			<path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z" />
-		  </svg>
-		</a>
-		<button class="btn-logout">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-log-out" viewBox="0 0 24 24">
-			<defs/>
-			<path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4M16 17l5-5-5-5M21 12H9"/>
-		  </svg>
-		</button>
-	  </div>
-	  <div class="main-area">
-		<button class="btn-show-right-area">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
-		</button>
-		<button class="btn-show-left-area">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-		</button>
-		<div class="main-area-header">
-		  <div class="search-wrapper" id="searchLine">
-		  <input class="search-input" type="text" placeholder="Tìm kiếm...">
-		  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-search" viewBox="0 0 24 24">
-			<defs/>
-			<circle cx="11" cy="11" r="8"/>
-			<path d="M21 21l-4.35-4.35"/>
-		  </svg>
-		</div>
-		</div>
-		<section class="content-section">
-		  <h1 class="section-header">Truy cập nhanh</h1>
-		  <div class="access-links">
-			
-			<div class="access-link-wrapper">
-			  <div class="access-icon">
-				<a href="settings">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-settings" viewBox="0 0 24 24">
-				<defs></defs>
-				<circle cx="12" cy="12" r="3"></circle>
-				<path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"></path>
-				</svg>
-				</a>
-			  </div>
-			  <a href="settings"><span class="access-text">Cài đặt</span></a>
-			</div> 
-			<div class="access-link-wrapper">
-			  <div class="access-icon">
-				<a href="music">
-				<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-music">
-				  <path d="M9 18V5l12-2v13"/>
-				  <circle cx="6" cy="18" r="3"/>                   <circle cx="18" cy="16" r="3"/>
-				</svg>
-				</a>
-			  </div>
-			  <a href="music"><span class="access-text">Phát nhạc</span></a>
-			</div>
-			
-			<div class="access-link-wrapper">
-			  <div class="access-icon">
-				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-folder" viewBox="0 0 24 24">
-				<defs></defs>
-				<path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"></path>
-			  </svg>
-			  </div>
-			  <span class="access-text">Files</span>
-			</div>
-
-			
-			<div class="access-link-wrapper">
-			  <div class="access-icon">
-				<a href="doc-text">
-				<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-left">
-				  <line x1="17" y1="10" x2="3" y2="10"/>
-				  <line x1="21" y1="6" x2="3" y2="6"/>
-				  <line x1="21" y1="14" x2="3" y2="14"/>
-				  <line x1="17" y1="18" x2="3" y2="18"/>
-				</svg>
-				</a>
-			  </div>
-			  <a href="doc-text"><span class="access-text">Đọc văn bản</span></a>
-			</div>
-		
-			<div class="access-link-wrapper">
-			  <div class="access-icon">
-				<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-layers">
-				  <polygon points="12 2 2 7 12 12 22 7 12 2"/>
-				  <polyline points="2 17 12 22 22 17"/>
-				  <polyline points="2 12 12 17 22 12"/>
-				</svg>
-			  </div>
-			  <span class="access-text">Apps</span>
-			</div>
-		
-			<div class="access-link-wrapper">
-			  <div class="access-icon">
-				<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-down-circle">
-				  <circle cx="12" cy="12" r="10"/>
-				  <polyline points="8 12 12 16 16 12"/>
-				  <line x1="12" y1="8" x2="12" y2="16"/>
-				</svg>
-			  </div>
-			  <span class="access-text">Bản cập nhật</span>
-			</div>
-		  </div>
-		</section>
-<!-- End Header -->
-{% block content %}{% endblock %}
- <div class="right-area">
-    <button class="btn-close-right">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="feather feather-x-circle" viewBox="0 0 24 24">
-        <defs/>
-        <circle cx="12" cy="12" r="10"/>
-        <path d="M15 9l-6 6M9 9l6 6"/>
-      </svg>
-    </button>
-    <div class="right-area-header-wrapper">
-      <p class="right-area-header">Thông báo</p>
-      <button class="more-action"></button>
-    </div>
-    <div class="download-item-line">
-      <div class="line-header">Hôm nay</div>
-      <div class="download-area">
-        <div class="download-item-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="">
-            <defs></defs>
-            <circle cx="256" cy="256" r="256" fill="#4b50dd"></circle>
-            <path fill="#f5f5f5" d="M192 64h176c4.4 0 8 3.6 8 8v328c0 4.4-3.6 8-8 8H120c-4.4 0-8-3.6-8-8V148l80-84z"></path>
-            <path fill="#e6e6e6" d="M184 148c4.4 0 8-3.6 8-8V64l-80 84h72z"></path>
-            <circle cx="352" cy="384" r="52" fill="#2179a6"></circle>
-            <g fill="#f5f5f5" class="g">
-              <path d="M352 416c-2.208 0-4-1.788-4-4v-56c0-2.212 1.792-4 4-4s4 1.788 4 4v56c0 2.212-1.792 4-4 4z"></path>
-              <path d="M352 416a3.989 3.989 0 01-2.828-1.172l-20-20c-1.564-1.564-1.564-4.092 0-5.656s4.092-1.564 5.656 0L352 406.344l17.172-17.172c1.564-1.564 4.092-1.564 5.656 0s1.564 4.092 0 5.656l-20 20A3.989 3.989 0 01352 416z"></path>
-            </g>
-          </svg>
-        </div>
-        <div class="download-item-texts">
-          <p class="download-text-header">Nâng cấp hệ thống</p>
-          <p class="download-text-info">ViPi Team ra mắt bản nâng cấp mới.</p>
-        </div>
-        <!-- <div class="download-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 612">
-            <defs/>
-            <path d="M403.939 295.749l-78.814 78.833V172.125c0-10.557-8.568-19.125-19.125-19.125s-19.125 8.568-19.125 19.125v202.457l-78.814-78.814c-7.478-7.478-19.584-7.478-27.043 0-7.478 7.478-7.478 19.584 0 27.042L289.208 431c4.59 4.59 10.863 6.005 16.812 4.953 5.929 1.052 12.221-.382 16.811-4.953l108.19-108.19c7.478-7.478 7.478-19.583 0-27.042-7.498-7.478-19.604-7.478-27.082-.019zM306 0C137.012 0 0 136.992 0 306s137.012 306 306 306 306-137.012 306-306S475.008 0 306 0zm0 573.75C158.125 573.75 38.25 453.875 38.25 306S158.125 38.25 306 38.25 573.75 158.125 573.75 306 453.875 573.75 306 573.75z"/>
-          </svg>
-        </div> -->
-      </div>
-    </div>
-    <div class="download-item-line">
-      <div class="line-header">01/01/2022</div>
-      <div class="download-area">
-        <div class="download-item-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="">
-            <defs></defs>
-            <circle cx="256" cy="256" r="256" fill="#4bc0dd"></circle>
-            <path fill="#f5f5f5" d="M192 64h176c4.4 0 8 3.6 8 8v328c0 4.4-3.6 8-8 8H120c-4.4 0-8-3.6-8-8V148l80-84z"></path>
-            <path fill="#e6e6e6" d="M184 148c4.4 0 8-3.6 8-8V64l-80 84h72z"></path>
-            <circle cx="352" cy="384" r="52" fill="#2179a6"></circle>
-            <g fill="#f5f5f5" class="g">
-              <path d="M352 416c-2.208 0-4-1.788-4-4v-56c0-2.212 1.792-4 4-4s4 1.788 4 4v56c0 2.212-1.792 4-4 4z"></path>
-              <path d="M352 416a3.989 3.989 0 01-2.828-1.172l-20-20c-1.564-1.564-1.564-4.092 0-5.656s4.092-1.564 5.656 0L352 406.344l17.172-17.172c1.564-1.564 4.092-1.564 5.656 0s1.564 4.092 0 5.656l-20 20A3.989 3.989 0 01352 416z"></path>
-            </g>
-          </svg>
-        </div>
-        <div class="download-item-texts">
-          <p class="download-text-header">Chúc mừng năm mới 2022</p>
-          <div class="progress-bar">
-            <span class="progress"></span>
-          </div>
-        </div>
-        <!-- <div class="download-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="1 1 512 512">
-            <defs/>
-            <path d="M256 512C114.613 512 0 397.383 0 256S114.613 0 256 0s256 114.613 256 256c-.168 141.316-114.684 255.832-256 256zm0-480C132.29 32 32 132.29 32 256s100.29 224 224 224 224-100.29 224-224c-.133-123.656-100.344-223.867-224-224zm0 0"/>
-            <path d="M208 368c-8.836 0-16-7.164-16-16V160c0-8.836 7.164-16 16-16s16 7.164 16 16v192c0 8.836-7.164 16-16 16zm0 0M304 368c-8.836 0-16-7.164-16-16V160c0-8.836 7.164-16 16-16s16 7.164 16 16v192c0 8.836-7.164 16-16 16zm0 0"/>
-          </svg>
-        </div>-->
-      </div>
-    </div>
+	</style>
+	</head>
 	
-	<!--
-    <div class="right-area-header-wrapper">
-      <p class="right-area-header">File Received</p>
-    </div>
-    <div class="received-item-line">
-      <div class="progress-line">
-        <span class="time start">15:30</span>
-        <span class="time end">18:30</span>
-      </div>
-      <div class="received-items-content">
-        <div class="received-files">
-          <div class="image-wrapper">
-          <img src="https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80"/>
-        </div>
-        <div class="image-wrapper">
-          <img src="https://images.unsplash.com/photo-1498855926480-d98e83099315?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80"/>
-        </div>
-        <div class="image-wrapper">
-          <img src="https://images.unsplash.com/photo-1492648272180-61e45a8d98a7?ixlib=rb-1.2.1&auto=format&fit=crop&w=2250&q=80"/>
-        </div>
-        </div>
-        <div class="received-files-info">
-          Received <span class="info-purple">3 images</span> total  <span class="info-purple">50.3 MB</span>
-        </div>
-      </div>
-    </div> -->
-  </div>
-</div>
-<!-- partial -->
-</body>
+	
+	
+	<body>
+		<div class="container">
+			<div class="wrap">
+				<div class="row">
+					
+					<div class="col-12 col-sm-12 col-md-12 col-lg-1 col-xl-1">
+						<!-- Menu PC -->
+						<div id="accordian">
+							<ul class="show-dropdown main-navbar">							
+								<div class="selector-active"><div class="top"></div><div class="bottom"></div></div>
+								<li class="home"><a href="/"><i class="fa fa-tachometer"></i></a></li>
+								<li class="music"><a href="music"><i class="fa fa-music"></i></a></li>
+								<li class="doc-text"><a href="doc-text"><i class="fa fa-book"></i></a></li>
+								<li class="settings"><a href="settings"><i class="fa fa-cogs"></i></a></li>
+								<li class="home-assistant"><a href="home-assistant"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+							</ul>	
+						</div>
+						<!-- End Menu PC -->
+						<nav class="navbar navbar-expand-lg navbar-mainbg" id="nav-mobile">					
+							<div class="navbar-collapse" id="navbarSupportedContent">
+								<ul class="navbar-nav ml-auto">
+									<div class="hori-selector"><div class="left"></div><div class="right"></div></div>
+									<li class="nav-item home"><a class="nav-link" href="/"><i class="fa fa-tachometer"></i></a></li>
+									<li class="nav-item music"><a class="nav-link" href="music"><i class="fa fa-music"></i></a></li>
+									<li class="nav-item doc-text"><a class="nav-link" href="doc-text"><i class="fa fa-book"></i></a></li>
+									<li class="nav-item settings"><a class="nav-link" href="settings"><i class="fa fa-cogs"></i></a></li>	
+									<li class="nav-item home-assistant"><a class="nav-link" href="home-assistant"><i class="fa fa-home" aria-hidden="true"></i></a></li>									
+								</ul>
+							 </div>
+						</nav>
+					</div>
+					
+					<div class="col-12 col-sm-12 col-md-12 col-lg-11 col-xl-11">
+						<div class="row top-menu">
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+								<img src="{{ url_for('static', filename='img/logo.png') }}" style="width:45px;"/>
+							</div>
+							<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 user-control">
+								<div class="btn-group">
+									<button class="btn btn-large user-menu"><img src="{{ url_for('static', filename='img/avatar.jpg') }}"/>{{boss}}</button>
+									<button class="btn btn-large dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+										<ul class="dropdown-menu">
+											<li><a href="#">Thông tin tải khoản</a></li>
+											<li><a href="#">Đăng xuất</a></li>							
+										</ul>
+								  </div>
+							</div>
+						</div>
+						<div class="row">
+					
+							{% block content %}{% endblock %}	
+							<div class="col-12 col-sm-12 col-md-12 col-lg-5 col-xl-5">
+						
+								<div class="sidebar">
+									<h2 class="title-box">ViPi Assistant</h2>
+									<div class="row">
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-violet">
+										<div class="input-toogle button-toggle">
+											<input id="toogle-input" type="checkbox" class='btn1' {{check_b1}}>
+											<label for="toogle-input"class='b1_status'>{{b1}}</label>
+										</div> 
+										<small>Home Assistant</small>
+									</div>	
+								</div>	<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-yellow">									
+										<div class="input-toogle1 button-toggle">
+											<input id="toogle-input1" type="checkbox" class='btn2' {{check_b2}} >
+											<label for="toogle-input1" class="b2_status">{{b2}}</label>
+										</div> 
+										<small>GTTS | ZTTS</small>
+									</div>	
+								</div>	
+								<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-yellow">									
+										<div class="input-toogle3 button-toggle">
+											<input id="toogle-input3" type="checkbox" class='btn3' {{check_b3}} >
+											<label for="toogle-input3" class="b3_status">{{b3}}</label>
+										</div> 
+										<small>Ok Google</small>
+									</div>	
+								</div>	
+								<!-- End Device -->
+								
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-blue">
+										<div class="input-toogle4 button-toggle">
+											<input id="toogle-input4" type="checkbox" class='btn4' {{check_b4}} >
+											<label for="toogle-input4" class="b4_status">{{b4}}</label>
+										</div> 
+										<small>Picovoice</small>
+									</div>	
+								</div>	
+								<!-- End Device -->
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-blue">
+										<div class="input-toogle5 button-toggle">
+											<input id="toogle-input5" type="checkbox" class='btn5' {{check_b5}} >
+											<label for="toogle-input5" class="b5_status">{{b5}}</label>
+										</div> 
+										<small>new_start | new_main</small>
+									</div>	
+								</div>	
+								<!-- Start Device -->
+								<div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+									<div class="wrab-box bg-blue">
+										<div class="input-toogle6 button-toggle">
+											<input id="toogle-input6" type="checkbox" class='btn6' {{check_b6}} >
+											<label for="toogle-input6" class="b6_status">{{b6}}</label>
+										</div> 
+										<small>Đọc IP</small>
+									</div>	
+								</div>	
+								<!-- End Device -->								<!-- End Device -->								
+							</div>  
+							
+									<h2 class="title-box">Thông tin hệ thống</h2>
+									Hệ điều hành: {{sys}};
+									Tên thiết bị: {{node}};
+									Thời gian hoạt động: {{boottime}};
+									Tốc độ CPU: {{currentfrequency}} Mhz
+									
+									
+
+							
+								</div> <!-- End Sidebar -->
+						
+						
+							</div><!-- End Col Sidebar -->
+						</div>
+						
+						<div class="footer-info">
+							<p>ViPi Dashboard 1.0 - Bản quyền thuộc về ViPi Team.</p>
+						</div>
+					</div>
+
+				</div> <!-- # End Row -->
+			
+			 <!-- Trigger/Open The Modal -->
+			<button id="myBtn"><i class="fa fa-commenting" aria-hidden="true"></i></button>
+
+
+				
+			<div class="chat-container" id="chatbox">
+				<span class="close">&times;</span>
+				<h2>Vipi Assistant</h2>
+				<div class="chat_window">
+					<ul class="messages"></ul>
+					<small>Nói "Hi" để bắt đầu trò chuyện</small>
+					<div class="bottom_wrapper clearfix">
+						<div class="message_input_wrapper">
+							<input id="msg_input" class="message_input" placeholder="Nói 'Hi' để bắt đầu trò chuyện..." />
+						</div>
+						<div class="send_message">
+							 <div class="text">Gửi</div>
+						</div>
+					</div>
+				</div>
+				<div class="message_template">
+					<li class="message">
+						<div class="avatar"></div>
+						<div class="text_wrapper">
+							<div class="text"></div>
+						</div>
+					</li>
+				</div>
+        	</div>
+				
+			<script>
+				// Get the modal
+				var modal = document.getElementById("chatbox");
+
+				// Get the button that opens the modal
+				var btn = document.getElementById("myBtn");
+
+				// Get the <span> element that closes the modal
+				var span = document.getElementsByClassName("close")[0];
+
+				// When the user clicks on the button, open the modal
+				btn.onclick = function() {
+				  modal.style.display = "block";
+				}
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				  modal.style.display = "none";
+				}
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				  if (event.target == modal) {
+					modal.style.display = "none";
+				  }
+				} 
+			</script>	
+			
+				
+			</div> <!-- #End Wrap -->	
+		</div>	<!-- #End Container -->
+		<script src="{{ url_for('static', filename='dashboard-nav.js') }}"></script>
+		<script src="{{ url_for('static', filename='chatbot/bind.js') }}"></script>
+		<script src="{{ url_for('static', filename='dashboard-weather.js') }}"></script>
+		<script src="{{ url_for('static', filename='repeater-field.js') }}"></script>
+		<script src='https://code.highcharts.com/stock/highstock.js'></script>
+		<script src='https://code.highcharts.com/stock/modules/exporting.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.2.4/vue.min.js'></script>	
+		<script src="{{ url_for('static', filename='dashboard-time.js') }}"></script>
+		<script>
+			//$(function($) {
+			  //let url = window.location.href;
+			  //$('#accordian ul li a').each(function() {
+				//if (this.href === url) {
+				  //$(this).closest('li').addClass('active');
+				//}
+			  //});
+			//});
+		</script>
+		<script>
+			var today = new Date();
+			var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+			//var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+			//var dateTime = time+' '+date;
+			var dateTime = date;
+
+			document.getElementById("date").innerHTML = dateTime;
+			
+			//Dropdown menu	
+			jQuery(function($) {
+			$('.btn-group').hover(function() {
+			$(this).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
+			}, function() {
+			$(this).find('.dropdown-menu').first().stop(true, true).delay(500).slideUp();
+			});});
+						
+		</script>
+		<script>
+			// ---------Responsive-navbar-active-animation-----------
+			function test(){
+			  var tabsNewAnim = $('#navbarSupportedContent');
+			  var selectorNewAnim = $('#navbarSupportedContent').find('li').length;
+			  var activeItemNewAnim = tabsNewAnim.find('.active');
+			  var activeWidthNewAnimHeight = activeItemNewAnim.innerHeight();
+			  var activeWidthNewAnimWidth = activeItemNewAnim.innerWidth();
+			  var itemPosNewAnimTop = activeItemNewAnim.position();
+			  var itemPosNewAnimLeft = activeItemNewAnim.position();
+			  $(".hori-selector").css({
+				"top":itemPosNewAnimTop.top + "px", 
+				"left":itemPosNewAnimLeft.left + "px",
+				"height": activeWidthNewAnimHeight + "px",
+				"width": activeWidthNewAnimWidth + "px"
+			  });
+			  $("#navbarSupportedContent").on("click","li",function(e){
+				$('#navbarSupportedContent ul li').removeClass("active");
+				$(this).addClass('active');
+				var activeWidthNewAnimHeight = $(this).innerHeight();
+				var activeWidthNewAnimWidth = $(this).innerWidth();
+				var itemPosNewAnimTop = $(this).position();
+				var itemPosNewAnimLeft = $(this).position();
+				$(".hori-selector").css({
+				  "top":itemPosNewAnimTop.top + "px", 
+				  "left":itemPosNewAnimLeft.left + "px",
+				  "height": activeWidthNewAnimHeight + "px",
+				  "width": activeWidthNewAnimWidth + "px"
+				});
+			  });
+			}
+			$(document).ready(function(){
+			  setTimeout(function(){ test(); });
+			});
+			$(window).on('resize', function(){
+			  setTimeout(function(){ test(); }, 500);
+			});
+			$(".navbar-toggler").click(function(){
+			  setTimeout(function(){ test(); });
+			});
+		</script>
+		
+		<script>
+			$(document).ready(function() {
+				$(".input-toogle").click(function() {
+				  var input = jQuery(this).find("input");
+				  input.prop("checked", !input.prop("checked"));
+				});
+			});
+
+			$(document).ready(function() {
+				$(".input-toogle1").click(function() {
+				  var input = jQuery(this).find("input1");
+				  input.prop("checked", !input.prop("checked"));
+				});
+			});  
+			$(document).ready(function() {
+				$(".input-toogle4").click(function() {
+				  var input = jQuery(this).find("input4");
+				  input.prop("checked", !input.prop("checked"));
+				});
+			});
+			$(document).ready(function() {
+				$(".input-toogle3").click(function() {
+				  var input = jQuery(this).find("input3");
+				  input.prop("checked", !input.prop("checked"));
+				});
+			});
+			$(document).ready(function() {
+			  $('.input-toogle').click(function() {
+			   var b1_status = $('.b1_status').text();
+			   $.ajax({
+				url: "/b1",
+				type: "get",
+				 data: {b1_status: b1_status},
+				 success: function(response) {
+				  $(".b1_status").html(response);
+				 },
+				 error: function(xhr) {
+				  //Do Something to handle error
+				 }
+			   });
+			  });
+			});
+			
+			$(document).ready(function() {
+			  $('.input-toogle1').click(function() {
+			   var b2_status = $('.b2_status').text();
+			   $.ajax({
+				url: "/b2",
+				type: "get",
+				 data: {b2_status: b2_status},
+				 success: function(response) {
+				  $(".b2_status").html(response);
+				 },
+				 error: function(xhr) {
+				  //Do Something to handle error
+				 }
+			   });
+			  });
+			});
+			$(document).ready(function() {
+			  $('.input-toogle3').click(function() {
+			   var b3_status = $('.b3_status').text();
+			   $.ajax({
+				url: "/b3",
+				type: "get",
+				 data: {b3_status: b3_status},
+				 success: function(response) {
+				  $(".b3_status").html(response);
+				 },
+				 error: function(xhr) {
+				  //Do Something to handle error
+				 }
+			   });
+			  });
+			});
+			$(document).ready(function() {
+			  $('.input-toogle4').click(function() {
+			   var b4_status = $('.b4_status').text();
+			   $.ajax({
+				url: "/b4",
+				type: "get",
+				 data: {b4_status: b4_status},
+				 success: function(response) {
+				  $(".b2_status").html(response);
+				 },
+				 error: function(xhr) {
+				  //Do Something to handle error
+				 }
+			   });
+			  });
+			});
+		 </script>
+	</body>
 </html>
+

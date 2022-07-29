@@ -4,7 +4,9 @@ from .recognize import *
 from .record import *
 from .ml import *
 import requests, time, random
-from knowledge_base import header
+from bs4 import BeautifulSoup
+from zalo_tts import header
+
 def speech(using,freq = 44100,duration = 3,key=None, language="vi-VN", show_all=False):
     # Start recorder with the given values of 
     # duration and sample frequency
@@ -18,16 +20,19 @@ def speech(using,freq = 44100,duration = 3,key=None, language="vi-VN", show_all=
         tic = time.perf_counter()
         r = Recognizer()
         recording = AudioFile('recording.wav')
-        with recording as source:
-            audio = r.record(source)
-        text=r.recognize_google(audio,key, language, show_all)
+        try:
+            with recording as source:
+                audio = r.record(source)
+            text=r.recognize_google(audio,key, language, show_all)
+        except:
+            text = ''
         toc = time.perf_counter()
-        print("Google: " + text)
-        print(f"Google free take {toc - tic:0.4f} seconds")      
+        #print("Google: " + text)
+        print(f"[ViPi] Time_Google_free_take:  {toc - tic:0.4f} giây")      
 
     elif using.lower()=='ml':
         text=ml('recording.wav')
-    elif using.lower() == 'zstt':
+    elif using.lower() == 'zstt' or using.lower() == 'zalo':
         tic = time.perf_counter()
         url = 'https://zalo.ai/api/demo/v1/asr'
         files = {'file': open('recording.wav','rb')}
@@ -39,10 +44,10 @@ def speech(using,freq = 44100,duration = 3,key=None, language="vi-VN", show_all=
         except:
             text = ''
         toc = time.perf_counter()
-        print("Zalo: " + text)
-        print(f"Zalo take {toc - tic:0.4f} seconds")                
+        #print("Zalo: " + text)
+        print(f"[ViPi] Time_Zalo_take:   {toc - tic:0.4f} giây")                
     else:
-        text='engine not found'
+        text=''
     return text
 
 def google_audio(file,key=None, language="en-US", show_all=False):

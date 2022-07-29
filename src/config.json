@@ -1,0 +1,263 @@
+{
+    "Boss": "Nhóm ViPi",
+    "Chromecast": {
+        "Chromecast_Control": "Disabled",
+        "Chromecast_Devices": {
+            "Device_Names": [
+                "Mini",
+                "Tivi trước"
+            ],
+            "IP_Address": [
+                "192.168.1.11",
+                "192.168.1.21"
+            ]
+        }
+    },
+    "ESP": {
+        "ESP_Control": "Disabled",
+        "IP": "xxxxxxxxxxxx",
+        "deviceid": [
+            "/Device1",
+            "/Device2",
+            "/Device3"
+        ],
+        "devicename": [
+            "Device 1",
+            "Device 2",
+            "Device 3"
+        ]
+    },
+    "Google_Assistant": {
+        "Google_cloud_api_key": "AIzaSyBlN3_7HDNM-ByZaDUUoGi5tItiGZVdo1c",
+        "device_model_id": "new-vipi-dev-new-speaker",
+        "project_id": "new-vipi-dev",
+        "Interprer": "Enabled"
+    },
+    "Gpios": {
+        "AIY_indicator": [
+            0
+        ],
+        "assistant_indicators": [
+            0,
+            0
+        ],
+        "control": "Disabled",
+        "gpio_center": 22,
+        "gpio_down": 0,
+        "gpio_left": 13,
+        "gpio_right": 5,
+        "gpio_up": 0,
+        "ir": 24,
+        "picontrol": [
+            0
+        ],
+        "pushbutton_trigger": 0,
+        "servo": 0,
+        "stopbutton_music_AIY_pushbutton": 0
+    },
+    "Home_Assistant": {
+        "control": "Disabled",
+        "external_url": "https://thang.hass",
+        "internal_url": "",
+        "ratio": "75",
+        "token": "eyJ0iOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiIxZGNlN2U4ODVlYTA0MDgxYTQyNWY3NDAxN2I4NTcxMSIsImlhdCI6MTY1NzEyNTc1NywiZXhwIjoxOTcyNDg1NzU3fQ.bW67QE3alVeSM8y6gPozQ4Is6EBsTuJyBPzzY_PqZfA"
+    },
+    "IR": {
+        "Codes": [
+            33738799,
+            33714319,
+            33720439,
+            33687799,
+            33735229,
+            33731149,
+            33708199,
+            33727069,
+            33702589,
+            33691879,
+            33744919,
+            33743389,
+            33730639
+        ],
+        "Commands": [
+            "Time",
+            "Weather",
+            "Next",
+            "Prev",
+            "Mute",
+            "Stop",
+            "Story",
+            "Radio news",
+            "Music",
+            "VolUp",
+            "VolDown",
+            "Assistant",
+            "Play"
+        ],
+        "IR_Control": "Disabled",
+        "Music_list": [
+            "nhạc thiếu nhi",
+            "cháu thương chú bộ đội",
+            "liên khúc con heo đất",
+            "nhạc thiếu nhi vai chú mang súng",
+            "nhạc thiếu nhi quả gì",
+            "nhạc thiếu nhi bé xuân mai",
+            "nhạc thiếu nhi cả nhà thương nhau",
+            "nhạc dân ca thiếu nhi"
+        ],
+        "Story_list": [
+            "truyện cổ tích tích chu",
+            "truyện cổ tích thánh gióng",
+            "truyện kể cô bé quàng khăn đỏ",
+            "truyện cổ tích việt nam",
+            "truyện cổ tích tấm cám",
+            "sự tích hoa mào gà",
+            "sự tích quả dưa hấu",
+            "truyện cây khế"
+        ]
+    },
+    "Language": {
+        "Choice": "vi-VN",
+        "Language options": [
+            "en-US",
+            "vi-VN"
+        ]
+    },
+    "MQTT": {
+        "IP": "Enter your MQTT IP ADDRESS here",
+        "MQTT_Control": "Disabled",
+        "PSWRD": "Enter your MQTT PASSWORD here",
+        "TOPIC": "ENTER your MQTT TOPIC here",
+        "UNAME": "Enter your MQTT USERNAME here"
+    },
+    "Radio_stations": {
+        "Radio_Control": "Enabled",
+        "stationlinks": [
+            "http://stream2.mobiradio.vn/vovradio/vov1.stream/chunklist.m3u8",
+            "http://stream2.mobiradio.vn/vovradio/vov2.stream/chunklist.m3u8",
+            "http://stream2.mobiradio.vn/vovradio/vov3.stream/chunklist.m3u8",
+            "http://stream2.mobiradio.vn/vovradio/vovgthn.stream/chunklist.m3u8",
+            "http://stream2.mobiradio.vn/vovradio/vovgthcm.stream/chunklist.m3u8"
+        ],
+        "stationnames": [
+            "VOV1",
+            "VOV2",
+            "VOV3",
+            "VOV HÀ NỘI",
+            "VOV HỒ CHÍ MINH"
+        ],
+        "stationradio": [
+            "VOV1",
+            "VOV2",
+            "VOV3",
+            "VOV GIAO THÔNG HÀ NỘI",
+            "VOV GIAO THÔNG HỒ CHÍ MINH"
+        ]
+    },
+    "Raspberrypi_GPIO_Control": {
+        "GPIO_Control": "Disabled",
+        "lightnames": [
+            "kitchen lights",
+            "bathroom lights",
+            "bedroom lights"
+        ]
+    },
+    "Register_Device": "false",
+    "Script": {
+        "Script_Control": "Disabled",
+        "scriptcommand": [
+            "echo test >> /home/pi/test.txt"
+        ],
+        "scriptname": [
+            "Script test"
+        ]
+    },
+    "SpeechToText": {
+        "Choice": "zalo"
+    },
+    "Start_config": {
+        "Control_online": "Enabled",
+        "Lựa chọn file khởi động, new_start or new_main": "new_start",
+        "Server1": "http://api.hass.bid",
+        "Server2": "http://vipi.duckdns.org:5000",
+        "Startup_file": "new_start",
+        "Startup_voice": "Enabled",
+        "Read_IP": "Enabled"
+    },
+    "Tasmota_devicelist": {
+        "Tasmota_Control": "Disabled",
+        "friendly-names": [
+            "Desk Light",
+            "Table Light"
+        ],
+        "ipaddresses": [
+            "192.168.1.36",
+            "192.168.1.35"
+        ],
+        "portID": [
+            "1",
+            "1"
+        ]
+    },
+    "TextToSpeech": {
+        "Test": "This is test",
+        "Choice": "GTTS",
+        "Chọn gtts hoặc ztts": "ZTTS",
+        "Speed": 0.9,
+        "Quality": 1,
+        "Google_Cloud_TTS_Credentials_Path": "ENTER THE PATH TO YOUR TTS CREDENTIALS FILE HERE",
+        "Voice_Gender": "Female",
+        "Voice_Region": "South",
+        "Zalo_API": [
+            "E8mpp9RGC2rBAV6I58AXD3LFQtDXE9TS",
+            "K6ZFa1h0REz9CB0YWBTw8BOWgTjR2Z9j",
+            "3K54SGXOvQI5DBPsbROxm9ihNAv52xsm",
+            "KeKjzmnQCUZpWFOSWghF4YqMqy6yQNUN",
+            "zEMGSTKKRxC5s6m4MyUnBr3kSiiE4NM4",
+            "Al8zWP6spuyEOM4LWjarw8KxChdMCspo",
+            "AuWHzxuSI6N6h2NFXGMAUTql94aGmEU2"
+        ]
+    },
+    "Wakewords": {
+        "Custom_Wakeword": "Enabled",
+        "Ok_Google": "Enabled",
+        "Picovoice_wakeword_models": [
+            "/home/pi/ViPi/src/resources/picovoice_models/hey siri_raspberry-pi.ppn",
+            "/home/pi/ViPi/src/resources/picovoice_models/ok google_raspberry-pi.ppn",
+            "/home/pi/ViPi/src/resources/picovoice_models/alexa_raspberry-pi.ppn",
+            "/home/pi/ViPi/src/resources/picovoice_models/hey google_raspberry-pi.ppn"
+        ],
+        "Wakeword_Engine": "Picovoice",
+        "access_key": "ig4J30nReYupu9q6sDv0dIsYVo0i6SBbIHIaq8i931KBYygRH58SeA==",
+        "sensitivities": 0.5
+    },
+    "Weather": {
+        "control": "Disabled",
+        "darksky_api": "c457d056f60c2aa93fd47339aad294da",
+        "ipfy_api": "128979ae3de728602f249354a85ac508",
+        "lat_long": [
+            11.555358,
+            106.172483
+        ],
+        "location": "Tân Châu, Tây Ninh"
+    },
+    "YouTube": {
+        "YouTube_Control": "Enabled",
+        "server": "http://150.230.60.61:5000"
+    },
+    "app_news_radio": "Enabled",
+    "continue_conversation": "True",
+    "led_setup": {
+        "pixels": 16,
+        "type": "GEN"
+    },
+    "mic_setup": {
+        "type": "GEN"
+    },
+    "vol_setup": {
+        "amixer_controls": "Master",
+        "type": "GEN",
+        "volume_max": 100,
+        "volume_min": 10,
+        "volume_start": 80
+    }
+}

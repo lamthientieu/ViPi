@@ -1,23 +1,86 @@
 {% extends "header-footer.html" %}
 
 {% block content %}
+	
+	<div class="col-12 col-sm-12 col-md-12 col-lg-7 col-xl-7" >
+		<div class="content-scroll" >
+		<h2 class="title-box">Cấu hình hệ thống</h2>
+		<section class="content-section system-config">
+			<div class="btn-group">
+				<form method="POST" action="interprer"> 
+					<button class="vipi-btn" type="submit" title="Thông dịch"><i class="fa fa-book" aria-hidden="true"></i></button>
+					<small>Thông dịch</small>
+				</form>
+					<form method="POST" action="killpython"> 
+					<button class="vipi-btn" type="submit" title="Tắt tiến trình"><i class="fa fa-plug" aria-hidden="true"></i></button> 
+					<small>Tắt tiến trình</small>
+				</form>
+			</div>
+			<div class="btn-group">
+				<form method="POST" action="update"> 
+					<button class="vipi-btn" type="submit" title="Cập nhật"><i class="fa fa-globe" aria-hidden="true"></i></button>
+					<small>Cập nhật</small>
+				</form>
+			</div>	
+			<div class="btn-group">
+				<form method="POST" action="reboot"> 
+					<button class="vipi-btn" type="submit" title="Reboot"><i class="fa fa-refresh" aria-hidden="true"></i></button>
+					<small>Reboot</small>
+				</form>
+				<form method="POST" action="shutdown"> 
+					<button class="vipi-btn" type="submit" title="Shutdown"><i class="fa fa-power-off" aria-hidden="true"></i></button> 
+					<small>Shutdown</small>
+				</form>
+			</div>
+		</section>
+		<form method="post">
+		<h2 class="title-box">Cấu hình chung <span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
+			<div class="text-input-config">
+					Device model ID<input name="device_model_id" placeholder="{{device_model_id}}">
+					Project ID<input name="project_id" placeholder="{{project_id}}">
+					File khởi động (new_main or new_start) <input name="startup_file" placeholder="{{startup_file}}">
+					Âm thanh khởi động <input name="startup_sound" placeholder="{{startup_sound}}">
+					Đọc IP <input name="get_ip" placeholder="{{get_ip}}">
+			</div>
+		<h2 class="title-box">Cấu hình giọng nói <span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
+			<div class="text-input-config">
+					Độ nhạy Picovoice(Picovoice only 0.3 - 1.0)<input name="sensitivities" placeholder="{{sensitivities}}">
+					Nhận dạng âm thanh (zalo, google, google-api)<input name="stt" placeholder="{{stt}}">			
+					Giới tính (Male/Female)<input name="gender" placeholder="{{gender}}">
+					Vùng(Zalo only - South or North)<input name="region" placeholder="{{region}}">
+					Tốc độ (Zalo only 0-1)<input name="speed" placeholder="{{speed}}">
+					Chất lượng (Zalo only Cao: 1/Thấp: 0)<input name="quality" placeholder="{{quality}}">
+					Zalo API<input name="zaloapi" placeholder="{{zaloapi}}">
+			</div>
+		<h2 class="title-box">Cấu hình HASS <span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
+			<div class="text-input-config">
+					Liên kết ngoài <input name="external_url" placeholder="{{external_url}}">
+					Liên kết nội bộ<input name="internal_url" placeholder="{{internal_url}}">
+					Độ chính xác<input name="ratiohass" placeholder="{{ratiohass}}">
+					Long-lived token<input name="tokenhass" placeholder="{{tokenhass}}">
+			</div>
 
-    <section class="content-section">
-        <div class="btn-group">
-			<form method="POST" action="interprer"> 
-            <button type="submit"> Thông dịch </button> </form>
-			<form method="POST" action="killpython"> 
-            <button type="submit"> Tắt tiến trình </button> </form>
-			<form method="POST" action="config"> 
-            <button type="submit">Sửa config {{result}}</button>  </form>
+		<h2 class="title-box">Cấu hình LOA <span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
+			<div class="text-input-config">
+				Tên chủ nhân <input name="vipiname" placeholder="{{boss}}">
+				Vị trí của bạn <input name="location" placeholder="{{location}}" >
+				Số đèn led <input name="pixels" placeholder="{{pixels}}">
+				Loại led<input name="led" placeholder="{{led}}">
+				Loại MIC<input name="mic" placeholder="{{mic}}">
+				Âm lượng <input name="volume" placeholder="{{volume}}">
+			</div>
+		<h2 class="title-box">Cấu hình GPIOs<span>( <a href="#">Xem hướng dẫn</a> )</span></h2>
+			<div class="text-input-config">
+					Cho phép sử dụng<input name="control" placeholder="{{control}}">
+					Up <input name="gpio_up" placeholder="{{gpio_up}}">
+					Down<input name="gpio_down" placeholder="{{gpio_down}}">
+					Left<input name="gpio_left" placeholder="{{gpio_left}}">
+					Right<input name="gpio_right" placeholder="{{gpio_right}}">
+					Center<input name="gpio_center" placeholder="{{gpio_center}}">
+				<button class="btn-submit reading-btn" type="submit">Lưu cấu hình</button>
+			</div>	
+
+		</form>
 		</div>
-		<div class="btn-group">
-			<form method="POST" action="reboot"> 
-            <button type="submit"> Reboot </button></form>
-			<form method="POST" action="shutdown"> 
-            <button type="submit"> Shutdown </button> </form>
-		</div>
-    </section>
-   
-  </div>
+	</div>
 {% endblock %}

@@ -1,19 +1,29 @@
-import platform, os
-from actions import configuration
-try:
-    if configuration['Gpios']['control']=='Enabled' and 'armv7l' not in platform.platform():
-        print ('GPIO CONTROL ENABLED & INTERPRER DISABLED')
-        import new_start
-        new_start.main()
-    if 'armv7l' in platform.platform() and configuration['Wakewords']['Ok_Google']=='Enabled':
-        import new_main
-        new_main.Myassistant().main()
-    else:
-        print ('GPIO CONTROL DISABLED & INTERPRER ENABLED')
-        import old_start
-        old_start.main()
+import platform, os, yaml, json, time
+from actions import USER_PATH,configuration
+
+try:      
+    with open('{}/.config/google-oauthlib-tool/credentials.json'.format(USER_PATH), 'r') as registers:
+        register = json.load(registers)
+    register = False
 except:
+    register=True
+if register:
+    print('Bạn chưa đăng ký tài khoản với google, thực hiện đăng ký tài khoản')
     from new_oauth import *
     if __name__ == '__main__':
        app.run(host='0.0.0.0',port=5002)
     pass
+else:
+    if configuration['Start_config']['Startup_file']=='new_main':
+        import new_main
+        print ('\nimport new_main')
+        new_main.Myassistant().main()
+    if configuration['Start_config']['Startup_file']=='new_start':
+        import new_start
+        print ('\nimport new_start')
+        new_start.main()
+    # else:
+        # from actions import say_save
+        # say_save('đã xảy ra lỗi,vui lòng kiểm tra cài đặt và khởi động lại')
+        # time.sleep(5)
+        # pass
